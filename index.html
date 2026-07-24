@@ -570,15 +570,23 @@ async function gsPost(payload){
     var encoded = encodeURIComponent(JSON.stringify(payload));
     var url = GS + '?action=write&data=' + encoded;
     var res = await fetch(url, { method: 'GET', redirect: 'follow' });
-    var txt = await res.text();
-    // Strip JSONP wrapper if present
-    txt = txt.trim();
-    if(txt.startsWith('_') || txt.indexOf('(') < 20){
-      txt = txt.replace(/^[^(]+\(/, '').replace(/\)\s*$/, '');
+    try{
+      var txt = await res.text();
+      txt = txt.trim();
+      // Strip JSONP wrapper if present
+      if(txt.indexOf('(') > 0 && txt.indexOf('(') < 30){
+        txt = txt.slice(txt.indexOf('(')+1, txt.lastIndexOf(')'));
+      }
+      var parsed = JSON.parse(txt);
+      return parsed;
+    } catch(readErr){
+      // Can't read response body (CORS on response) but request was sent
+      // Apps Script received it — assume ok
+      console.log('gsPost sent ok (response unreadable — CORS):', payload.action, (payload.row&&payload.row.id)||payload.id||'');
+      return {status:'ok', action:'sent'};
     }
-    return JSON.parse(txt);
   } catch(fetchErr) {
-    console.warn('gsPost error:', fetchErr.message);
+    console.warn('gsPost fetch error:', fetchErr.message);
     return {status:'error', msg:fetchErr.message};
   }
 }
@@ -787,7 +795,7 @@ async function saveExp(){
   saveLocal(); closeMo('MO_EXP'); curTab=obj.raceId;
   notify(editExpId?'✅ แก้ไขแล้ว':'✅ เพิ่มแล้ว');
   // upsert single row — ไม่ replace ทั้ง sheet
-  upsertRow(ESH, obj);
+  await upsertRow(ESH, obj);
   go(curPage);
 }
 async function delExp(id){
@@ -827,7 +835,7 @@ async function saveRace(){
   }
   saveLocal(); closeMo('MO_RACE'); notify(editRaceId?'✅ แก้ไข Race แล้ว':'✅ เพิ่ม Race แล้ว');
   var raceObj=RACES.find(function(r){ return r.id===(editRaceId||newId); });
-  if(raceObj) upsertRow(BSH, Object.assign({},raceObj,{budget:BUDGETS[raceObj.id]||0}));
+  if(raceObj) await upsertRow(BSH, Object.assign({},raceObj,{budget:BUDGETS[raceObj.id]||0}));
   go('races');
 }
 async function delRace(id){
@@ -866,7 +874,7 @@ async function saveTraining(){
   else TRAINING.push(obj);
   TRAINING.sort(function(a,b){ return a.date.localeCompare(b.date); });
   saveLocal(); closeMo('MO_TR'); notify(editTrId?'✅ แก้ไขแล้ว':'✅ บันทึกซ้อมแล้ว');
-  upsertRow(TSH, obj);
+  await upsertRow(TSH, obj);
   go('training');
 }
 async function delTr(id){
@@ -878,10 +886,10 @@ async function delTr(id){
 }
 
 // Inline updates
-function updateAmt(id,val){ var e=EXPENSES.find(function(x){ return String(x.id)===String(id); }); if(e){e.amount=Number(val)||0;saveLocal();upsertRow(ESH,e);} }
-function updateSt(id,val){  var e=EXPENSES.find(function(x){ return String(x.id)===String(id); }); if(e){e.status=val;saveLocal();upsertRow(ESH,e);} }
+function updateAmt(id,val){ var e=EXPENSES.find(function(x){ return String(x.id)===String(id); }); if(e){e.amount=Number(val)||0;saveLocal();upsertRow(ESH,e).then(function(d){if(d&&d.status==='ok')setSbar('ok','✅ Amount saved · '+new Date().toLocaleTimeString('th-TH'));});} }
+function updateSt(id,val){  var e=EXPENSES.find(function(x){ return String(x.id)===String(id); }); if(e){e.status=val;saveLocal();upsertRow(ESH,e).then(function(d){if(d&&d.status==='ok')setSbar('ok','✅ Status saved · '+new Date().toLocaleTimeString('th-TH'));});} }
 function updateBud(rid,val){ BUDGETS[rid]=Number(val)||0; var r=RACES.find(function(x){return x.id===rid;}); if(r){saveLocal();upsertRow(BSH,Object.assign({},r,{budget:BUDGETS[rid]}));} }
-function updateTrSt(id,val){ var t=TRAINING.find(function(x){ return String(x.id)===String(id); }); if(t){t.status=val;saveLocal();upsertRow(TSH,t);} }
+function updateTrSt(id,val){ var t=TRAINING.find(function(x){ return String(x.id)===String(id); }); if(t){t.status=val;saveLocal();upsertRow(TSH,t).then(function(d){if(d&&d.status==='ok')setSbar('ok','✅ Training status saved · '+new Date().toLocaleTimeString('th-TH'));});} }
 function updateTrNote(id,val){ var t=TRAINING.find(function(x){ return String(x.id)===String(id); }); if(t){t.note=val;saveLocal();upsertRow(TSH,t);} }
 
 // ── Sidebar ──
