@@ -562,20 +562,24 @@ async function resetAndRepush(){
 //  SHEETS API FUNCTIONS
 // ═══════════════════════════
 
-// gsPost: fetch POST (localhost) or JSONP GET (file://)
+// gsPost: use fetch GET with data in URL
+// Reason: Apps Script redirect (302) drops POST body
+// fetch GET works from any origin (github.io, localhost, file://)
 async function gsPost(payload){
   try{
-    var res = await fetch(GS, {
-      method: 'POST',
-      headers: {'Content-Type': 'text/plain'},
-      body: JSON.stringify(payload),
-      redirect: 'follow'
-    });
+    var encoded = encodeURIComponent(JSON.stringify(payload));
+    var url = GS + '?action=write&data=' + encoded;
+    var res = await fetch(url, { method: 'GET', redirect: 'follow' });
     var txt = await res.text();
+    // Strip JSONP wrapper if present
+    txt = txt.trim();
+    if(txt.startsWith('_') || txt.indexOf('(') < 20){
+      txt = txt.replace(/^[^(]+\(/, '').replace(/\)\s*$/, '');
+    }
     return JSON.parse(txt);
   } catch(fetchErr) {
-    console.log('fetch blocked (file://), using JSONP:', fetchErr.message);
-    return await gsJsonpWrite(payload);
+    console.warn('gsPost error:', fetchErr.message);
+    return {status:'error', msg:fetchErr.message};
   }
 }
 
@@ -587,20 +591,42 @@ function gsJsonpOne(payload){
   return Promise.resolve({status:'error', msg:'JSONP not supported by Apps Script redirect'});
 }
 
+// For large saveAll: chunk into individual GET requests
 async function gsJsonpWrite(payload){
-  // Direct JSONP blocked — try fetch without CORS mode
-  try {
-    var res = await fetch(GS, {
-      method: 'POST',
-      headers: {'Content-Type': 'text/plain'},
-      body: JSON.stringify(payload),
-      redirect: 'follow'
-    });
-    return JSON.parse(await res.text());
-  } catch(e) {
-    console.warn('gsJsonpWrite fetch failed:', e.message);
-    return {status:'error', msg:e.message};
+  var action = payload.action || '';
+
+  if(action === 'upsert' || action === 'delete'){
+    return await gsPost(payload);
   }
+
+  if(action === 'saveAll'){
+    var ok = 0, fail = 0;
+    // Races — small, send as saveAll via GET
+    if(payload.races && payload.races.length){
+      var rp = {action:'saveAll', races:payload.races, expenses:[], training:[]};
+      var d = await gsPost(rp);
+      d.status==='ok' ? ok++ : fail++;
+    }
+    // Expenses — one by one
+    if(payload.expenses && payload.expenses.length){
+      for(var i=0; i<payload.expenses.length; i++){
+        var d2 = await gsPost({action:'upsert', sheet:'Expenses', row:payload.expenses[i]});
+        d2.status==='ok' ? ok++ : fail++;
+        if(i%5===0 && i>0) await new Promise(function(r){setTimeout(r,100);});
+      }
+    }
+    // Training — one by one
+    if(payload.training && payload.training.length){
+      for(var j=0; j<payload.training.length; j++){
+        var d3 = await gsPost({action:'upsert', sheet:'Training', row:payload.training[j]});
+        d3.status==='ok' ? ok++ : fail++;
+        if(j%5===0 && j>0) await new Promise(function(r){setTimeout(r,100);});
+      }
+    }
+    return {status: fail===0?'ok':'partial', ok:ok, fail:fail};
+  }
+
+  return await gsPost(payload);
 }
 
 async function upsertRow(sheet, row){
@@ -702,7 +728,7 @@ async function pushTrainingAll(){
   setSbar('load','กำลัง Sync Training ('+TRAINING.length+' sessions)...');
   var ok=0, fail=0;
   for(var i=0;i<TRAINING.length;i++){
-    var d=await gsJsonpOne({action:'upsert',sheet:'Training',row:TRAINING[i]});
+    var d=await gsPost({action:'upsert', sheet:'Training', row:TRAINING[i]});
     if(d.status==='ok') ok++; else fail++;
     if(i%3===0) setSbar('load','Syncing Training '+(i+1)+'/'+TRAINING.length+'...');
   }
