@@ -366,21 +366,36 @@ function catTag(c) {
 // ═══════════════════════════════════════
 //  API — ทุก call ไป Sheets โดยตรง
 // ═══════════════════════════════════════
-async function apiFetch(path) {
-  const res = await fetch(GS + path, {mode:'cors'});
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  return res.json();
+// JSONP GET: works from any origin, no CORS issue
+function jsonpGet(url) {
+  return new Promise(function(resolve, reject) {
+    var cb = '_cb' + Date.now() + Math.random().toString(36).slice(2,6);
+    var script = document.createElement('script');
+    var timer = setTimeout(function() {
+      cleanup();
+      reject(new Error('Timeout — ตรวจสอบ Apps Script URL และ deployment'));
+    }, 15000);
+    function cleanup() {
+      delete window[cb];
+      if (script.parentNode) script.parentNode.removeChild(script);
+      clearTimeout(timer);
+    }
+    window[cb] = function(data) { cleanup(); resolve(data); };
+    script.onerror = function() { cleanup(); reject(new Error('Script load failed')); };
+    script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + cb;
+    document.head.appendChild(script);
+  });
 }
 
+// Read: JSONP GET
+async function apiFetch(path) {
+  return await jsonpGet(GS + path);
+}
+
+// Write: encode payload in GET URL, Apps Script doGet handles action=write
 async function apiPost(body) {
-  const res = await fetch(GS, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {'Content-Type': 'text/plain'},
-    body: JSON.stringify(body)
-  });
-  if (!res.ok) throw new Error('HTTP ' + res.status);
-  return res.json();
+  var encoded = encodeURIComponent(JSON.stringify(body));
+  return await jsonpGet(GS + '?action=write&data=' + encoded);
 }
 
 // ═══════════════════════════════════════
