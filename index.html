@@ -34,7 +34,7 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1f36;fo
 .sbar.load .sdot{animation:blink 1s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 /* ── Buttons ── */
-.btn{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:filter .12s;white-space:nowrap}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:6px 13px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:filter .12s;white-space:nowrap}
 .btn:hover{filter:brightness(.92)}
 .btn:active{filter:brightness(.85)}
 .btn:disabled{opacity:.5;cursor:default}
@@ -285,20 +285,66 @@ let trCounter = 0, expCounter = 0;
 // ═══════════════════════════════════════
 const $ = id => document.getElementById(id);
 const B = n => n == null ? '—' : '฿' + Number(n).toLocaleString('th-TH', {minimumFractionDigits:0});
+
+// แปลงค่า time/pace ที่ Sheets ส่งมาเป็น Date 1899-12-30 ให้กลับเป็น string
+function fmtTime(v) {
+  if (!v) return '—';
+  var s = String(v);
+  if (s.indexOf('1899') >= 0 || s.indexOf('T') >= 0) {
+    // Sheets ส่งมาเป็น Date object → แปลงเป็น HH:MM:SS
+    var d = new Date(v);
+    if (!isNaN(d)) {
+      var h = d.getUTCHours(), m = d.getUTCMinutes(), sc = d.getUTCSeconds();
+      return h + ':' + String(m).padStart(2,'0') + ':' + String(sc).padStart(2,'0');
+    }
+    return '—';
+  }
+  return s || '—';
+}
+function fmtPace(v) {
+  if (!v) return '—';
+  var s = String(v);
+  if (s.indexOf('1899') >= 0 || s.indexOf('T') >= 0) {
+    var d = new Date(v);
+    if (!isNaN(d)) {
+      var m = d.getUTCHours()*60 + d.getUTCMinutes(), sc = d.getUTCSeconds();
+      return m + ':' + String(sc).padStart(2,'0');
+    }
+    return '—';
+  }
+  return s || '—';
+}
 const D = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('th-TH', {day:'numeric', month:'short', year:'2-digit'}) : '—';
 // Strip Google Sheets date artifact from time/pace strings
 function cleanTime(v) {
   if (!v) return '—';
   var s = String(v);
-  // Remove "1899-12-30/" or "1899-12-30T" prefix from Sheets time values
-  s = s.replace(/^1899-12-30[T\/]?/,'').replace(/^1899-12-30$/,'').trim();
+  if (s.indexOf('1899') >= 0) {
+    // ISO format: "1899-12-30T00:56:00.000Z"
+    var m = s.match(/T(\d+:\d+:\d+)/);
+    if (m) {
+      var parts = m[1].split(':');
+      var h = parseInt(parts[0]), mn = parseInt(parts[1]), sc = parseInt(parts[2]);
+      return h + ':' + String(mn).padStart(2,'0') + ':' + String(sc).padStart(2,'0');
+    }
+    return '—';
+  }
   if (!s || s === '0:00:00' || s === '00:00:00') return '—';
   return s;
 }
 function cleanPace(v) {
   if (!v) return '—';
   var s = String(v);
-  s = s.replace(/^1899-12-30[T\/]?/,'').replace('1899-12-30','').trim();
+  if (s.indexOf('1899') >= 0) {
+    // ISO format: "1899-12-30T00:05:30.000Z" → "5:30"
+    var m = s.match(/T(\d+):(\d+):(\d+)/);
+    if (m) {
+      var h = parseInt(m[1]), mn = parseInt(m[2]), sc = parseInt(m[3]);
+      var totalMin = h * 60 + mn;
+      return totalMin + ':' + String(sc).padStart(2,'0');
+    }
+    return '—';
+  }
   if (!s) return '—';
   return s;
 }
@@ -405,10 +451,16 @@ function jsonpGet(url) {
 
 // Fix time values that Sheets converts to Date (1899-12-30T...)
 function fixVal(key, val) {
-  if (typeof val === 'string' && val.startsWith('1899-12-30')) {
-    // Sheets converted a time string to a date — extract time part
-    var m = val.match(/T(\d+:\d+:\d+)/);
-    if (m) return m[1]; // return "HH:MM:SS"
+  if (!val && val !== 0) return val;
+  var s = String(val);
+  // Sheets sends time/duration as "1899-12-30T00:56:00.000Z" or similar
+  if (s.indexOf('1899') >= 0) {
+    // Try ISO format: extract time part after T
+    var mISO = s.match(/T(\d+:\d+:\d+)/);
+    if (mISO) return mISO[1];
+    // Try "1899-12-30 HH:MM:SS" format
+    var mSpc = s.match(/1899-12-30[T ]?(\d+:\d+:\d+)/);
+    if (mSpc) return mSpc[1];
     return '';
   }
   return val;
