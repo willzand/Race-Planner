@@ -284,7 +284,7 @@ const GS = 'https://script.google.com/macros/s/AKfycbwg2fDNyhUlzM0zseQneQs_BCuVR
 const RACE_COLORS = ['#f59e0b','#e63946','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
 
 let RACES=[], EXPENSES=[], TRAINING=[];
-let curPage='overview', curTab='', editExpId=null, editRaceId=null, editTrId=null;
+var curPage='overview', curTab='', editExpId=null, editRaceId=null, editTrId=null;
 
 // ── Helpers ──
 const $  = id => document.getElementById(id);
@@ -1008,7 +1008,7 @@ function pgLog() {
 // ═══════════════════════════════════════
 // INIT
 // ═══════════════════════════════════════
-var editExpId=null,editRaceId=null,editTrId=null,curTab='',curPage='overview';
+// state vars declared above
 document.querySelectorAll('.mo').forEach(function(el){el.addEventListener('click',function(e){if(e.target===el)el.classList.remove('open');});});
 loadAll();
 </script>
