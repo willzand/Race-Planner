@@ -7,52 +7,44 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:#1a1f36;font-size:14px;height:100vh;display:flex;flex-direction:column}
-
-/* ── Layout ── */
 .app{display:flex;flex:1;overflow:hidden}
-.sb{width:210px;background:#1e2a3a;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
-.sb-brand{padding:16px 14px 12px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px}
+.sb{width:210px;background:#1e2a3a;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;transition:width .2s}
+.sb.col{width:52px}
+.sb-brand{padding:16px 14px 12px;border-bottom:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px;overflow:hidden}
 .sb-logo{width:34px;height:34px;border-radius:8px;background:#e63946;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .sb-sec{padding:10px 10px 4px}
-.sb-lbl{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;padding:4px 8px 3px;font-weight:600}
-.nav{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px;cursor:pointer;color:rgba(255,255,255,.6);font-size:13.5px;white-space:nowrap;transition:all .15s;margin:1px 0}
+.sb-lbl{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.08em;padding:4px 8px 3px;font-weight:600;white-space:nowrap;overflow:hidden}
+.nav{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:7px;cursor:pointer;color:rgba(255,255,255,.6);font-size:13.5px;white-space:nowrap;overflow:hidden;transition:all .15s;margin:1px 0}
 .nav:hover{background:rgba(255,255,255,.08);color:#fff}
 .nav.act{background:#3b82f6;color:#fff;font-weight:600;box-shadow:0 2px 8px rgba(59,130,246,.35)}
 .nav .ic{font-size:16px;width:18px;text-align:center;flex-shrink:0}
-.sb-foot{margin-top:auto;padding:12px 10px;border-top:1px solid rgba(255,255,255,.08)}
-
-/* ── Main ── */
+.sb.col .nav span,.sb.col .sb-lbl,.sb.col .sb-txt{display:none}
+.sb-foot{margin-top:auto;padding:12px 10px;border-top:1px solid rgba(255,255,255,.08);overflow:hidden}
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.topbar{background:#fff;border-bottom:1px solid #e8eaf0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.tb-title{font-size:16px;font-weight:700;color:#1a1f36}
+.topbar{background:#fff;border-bottom:1px solid #e8eaf0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;flex-shrink:0;box-shadow:0 1px 4px rgba(0,0,0,.06);gap:10px}
+.tb-title{font-size:16px;font-weight:700;color:#1a1f36;white-space:nowrap}
 .tb-sub{font-size:11px;color:#9ca3af;margin-top:1px}
 .tb-r{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .content{flex:1;overflow-y:auto;padding:20px 24px;background:#f4f6fb}
-
-/* ── Status bar ── */
-.sbar{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:7px;font-size:11px;border:1px solid;font-weight:500}
+.sbar{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:7px;font-size:11px;border:1px solid;font-weight:500;white-space:nowrap}
 .sbar.ok{background:#f0fdf4;border-color:#bbf7d0;color:#065f46}
 .sbar.err{background:#fff1f2;border-color:#fecdd3;color:#9f1239}
 .sbar.load{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
 .sdot{width:7px;height:7px;border-radius:50%;flex-shrink:0;background:currentColor}
 .sbar.load .sdot{animation:blink 1.2s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-
-/* ── Buttons ── */
-.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:7px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .15s;white-space:nowrap;letter-spacing:.01em}
-.btn:hover{filter:brightness(.93)}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:7px 15px;border-radius:7px;font-size:12.5px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all .15s;white-space:nowrap}
+.btn:hover{filter:brightness(.92)}
 .btn:active{transform:scale(.98)}
 .btn:disabled{opacity:.5;cursor:default}
-.btn-r{background:#e63946;color:#fff;box-shadow:0 2px 6px rgba(230,57,70,.3)}
-.btn-b{background:#3b82f6;color:#fff;box-shadow:0 2px 6px rgba(59,130,246,.3)}
-.btn-g{background:#10b981;color:#fff}
+.btn-r{background:#e63946;color:#fff}
+.btn-b{background:#3b82f6;color:#fff}
 .btn-o{background:#fff;color:#374151;border:1px solid #d1d5db}
 .btn-o:hover{background:#f9fafb;filter:none}
 .btn-xs{padding:5px 11px;font-size:11.5px}
-.btn-ic{width:28px;height:28px;padding:0;justify-content:center;border-radius:6px;background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;font-size:13px;cursor:pointer}
-.btn-ic:hover{background:#e2e8f0;color:#1a1f36;filter:none}
-
-/* ── KPI Banner ── */
+.btn-ic{width:28px;height:28px;padding:0;justify-content:center;border-radius:6px;background:#f1f5f9;color:#64748b;border:1px solid #e2e8f0;font-size:13px;cursor:pointer;display:inline-flex;align-items:center}
+.btn-ic:hover{background:#e2e8f0;color:#1a1f36}
+.btn-ham{background:none;border:none;font-size:20px;cursor:pointer;color:#64748b;padding:4px 8px;line-height:1;display:none}
 .kban{display:flex;background:linear-gradient(135deg,#1e2a3a,#243447);border-radius:12px;overflow:hidden;margin-bottom:18px;box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .kban-hd{background:rgba(0,0,0,.2);padding:14px 16px;display:flex;flex-direction:column;justify-content:center;align-items:center;min-width:96px;flex-shrink:0}
 .kban-ico{font-size:24px;margin-bottom:3px}
@@ -68,60 +60,44 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:#1a
 .kp{background:rgba(139,92,246,.2);color:#a78bfa}
 .knum{font-size:20px;font-weight:800;color:#fff;line-height:1}
 .klbl{font-size:11px;color:rgba(255,255,255,.5);margin-top:3px}
-
-/* ── Cards ── */
 .card{background:#fff;border-radius:10px;border:1px solid #e8eaf0;margin-bottom:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05)}
 .chd{padding:12px 16px;border-bottom:1px solid #f0f2f7;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .chddk{background:#1e2a3a;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .ct{font-size:13.5px;font-weight:700;color:#1a1f36}
 .ctw{font-size:13.5px;font-weight:700;color:#fff}
 .csub{font-size:11px;color:#9ca3af}
-
-/* ── Table ── */
 .tbl{width:100%;border-collapse:collapse}
 .tbl th{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em;padding:9px 13px;border-bottom:2px solid #f0f2f7;background:#fafbfd;text-align:left;white-space:nowrap}
 .tbl td{padding:10px 13px;border-bottom:1px solid #f0f2f7;vertical-align:middle;color:#374151;font-size:13.5px}
 .tbl tr:last-child td{border-bottom:none}
 .tbl tr:hover td{background:#f8faff}
-.tbl.dk th{background:#1e2a3a;color:rgba(255,255,255,.6);border-bottom:none;font-size:11px}
+.tbl.dk th{background:#1e2a3a;color:rgba(255,255,255,.6);border-bottom:none}
 .sep-lbl{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.05em}
-
-/* ── Race cards ── */
 .rcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;margin-bottom:16px}
 .rcard{background:#fff;border-radius:10px;border:1px solid #e8eaf0;padding:14px 15px;border-top:4px solid;cursor:pointer;transition:all .15s;box-shadow:0 1px 4px rgba(0,0,0,.05)}
 .rcard:hover{box-shadow:0 6px 20px rgba(0,0,0,.1);transform:translateY(-2px)}
-
-/* ── Tabs ── */
 .tabs{display:flex;border-bottom:2px solid #f0f2f7;overflow-x:auto;background:#fff;flex-shrink:0;padding:0 4px}
 .tab{padding:10px 14px;font-size:12.5px;font-weight:600;color:#94a3b8;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;white-space:nowrap;transition:all .15s}
 .tab:hover{color:#374151}
 .tab.act{color:#3b82f6;border-bottom-color:#3b82f6}
 .cnt{font-size:10px;background:#f1f5f9;color:#64748b;padding:1px 6px;border-radius:9px;margin-left:4px}
 .tab.act .cnt{background:#dbeafe;color:#1d4ed8}
-
-/* ── Gantt ── */
 .gantt-wrap{overflow-x:auto}
 .gantt-bar{position:absolute;top:9px;height:20px;left:5%;width:90%;border-radius:5px;display:flex;align-items:center;justify-content:center}
 .gantt-cur{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#f59e0b;opacity:.6}
-
-/* ── Pills / Tags ── */
 .pill{display:inline-flex;align-items:center;font-size:10.5px;font-weight:600;padding:3px 9px;border-radius:11px}
 .p-g{background:#dcfce7;color:#166534}
 .p-a{background:#fef9c3;color:#854d0e}
 .p-r{background:#fee2e2;color:#991b1b}
 .p-b{background:#dbeafe;color:#1e40af}
 .p-gr{background:#f1f5f9;color:#64748b}
-
-/* ── Progress bar ── */
 .pbar{height:6px;background:#f1f5f9;border-radius:4px;overflow:hidden}
 .pfill{height:100%;border-radius:4px;transition:width .4s}
 .pf-g{background:linear-gradient(90deg,#34d399,#10b981)}
 .pf-a{background:linear-gradient(90deg,#fbbf24,#f59e0b)}
 .pf-r{background:linear-gradient(90deg,#f87171,#ef4444)}
 .pf-gr{background:#cbd5e1}
-
-/* ── Modal ── */
-.mo{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.mo{position:fixed;inset:0;background:rgba(15,23,42,.5);z-index:200;display:none;align-items:center;justify-content:center}
 .mo.open{display:flex}
 .modal{background:#fff;border-radius:12px;width:540px;max-width:96vw;max-height:90vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.2)}
 .mhd{padding:16px 20px;border-bottom:1px solid #f0f2f7;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:1}
@@ -135,34 +111,9 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:#1a
 .fi{width:100%;padding:8px 11px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:13.5px;font-family:inherit;color:#1a1f36;background:#fff;transition:border .15s}
 .fi:focus{outline:none;border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,.1)}
 .mfoot{display:flex;gap:8px;justify-content:flex-end;padding:14px 20px;border-top:1px solid #f0f2f7}
-
-/* ── Notify ── */
 .notif{position:fixed;top:16px;right:20px;background:#1e2a3a;color:#fff;padding:11px 18px;border-radius:9px;font-size:13px;font-weight:600;z-index:300;display:none;align-items:center;gap:9px;box-shadow:0 8px 32px rgba(0,0,0,.25);max-width:360px}
 .notif.show{display:flex}
-
-/* ── Tag cat ── */
 .tag{display:inline-flex;font-size:10px;font-weight:700;padding:2px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.03em}
-
-/* ── inline table inputs ── */
-.tbl td input[type=number],.tbl td input[type=text],.tbl td select{width:100%;padding:4px 8px;border:1.5px solid #e2e8f0;border-radius:5px;font-size:13px;font-family:inherit;color:#1a1f36;background:#fff;transition:border .15s}
-.tbl td input[type=number]{text-align:right}
-.tbl td input:focus,.tbl td select:focus{outline:none;border-color:#3b82f6}
-.tbl td input[type=number]::-webkit-inner-spin-button{opacity:.6}
-
-/* ── Loader ── */
-.loader{display:flex;align-items:center;justify-content:center;height:200px;color:#94a3b8;font-size:14px;gap:12px;flex-direction:column}
-
-/* ── Two col ── */
-.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:900px){.twocol{grid-template-columns:1fr}}
-
-/* ── Scrollbar ── */
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:#f1f5f9}
-::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:#94a3b8}
-
-/* ── cat tag colors ── */
 .t-entry{background:#fee2e2;color:#991b1b}
 .t-flight{background:#dbeafe;color:#1e40af}
 .t-hotel{background:#ede9fe;color:#5b21b6}
@@ -174,90 +125,111 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:#1a
 .t-travel{background:#e0f2fe;color:#0c4a6e}
 .t-ins{background:#faf5ff;color:#6b21a8}
 .t-misc{background:#f1f5f9;color:#475569}
+.tbl td input[type=number],.tbl td input[type=text],.tbl td select{width:100%;padding:4px 8px;border:1.5px solid #e2e8f0;border-radius:5px;font-size:13px;font-family:inherit;color:#1a1f36;background:#fff}
+.tbl td input[type=number]{text-align:right}
+.tbl td input:focus,.tbl td select:focus{outline:none;border-color:#3b82f6}
+.loader{display:flex;align-items:center;justify-content:center;height:200px;color:#94a3b8;font-size:14px;gap:12px;flex-direction:column}
+.twocol{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:#f1f5f9}
+::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:3px}
+/* Dark mode */
+body.dark{background:#0f172a;color:#e2e8f0}
+body.dark .card{background:#1e293b;border-color:#334155}
+body.dark .chd{border-color:#334155}
+body.dark .tbl th{background:#1e293b;color:#94a3b8;border-color:#334155}
+body.dark .tbl td{color:#e2e8f0;border-color:#1e293b}
+body.dark .tbl tr:hover td{background:#263245}
+body.dark .topbar{background:#1e293b;border-color:#334155;box-shadow:none}
+body.dark .ct{color:#e2e8f0}
+body.dark .btn-o{background:#263245;color:#e2e8f0;border-color:#334155}
+body.dark .tabs{background:#1e293b}
+body.dark .tab{color:#64748b}
+body.dark .tab.act{color:#60a5fa;border-color:#60a5fa}
+body.dark .modal{background:#1e293b}
+body.dark .mhd,.body.dark .mfoot{border-color:#334155;background:#1e293b}
+body.dark .fi{background:#0f172a;border-color:#334155;color:#e2e8f0}
+body.dark .tbl td input,.body.dark .tbl td select{background:#0f172a;border-color:#334155;color:#e2e8f0}
+body.dark .kban{background:linear-gradient(135deg,#0f172a,#1e293b)}
+body.dark .p-gr{background:#334155;color:#94a3b8}
+/* Mobile */
+@media(max-width:768px){
+  .btn-ham{display:block}
+  .sb{position:fixed;left:-210px;top:0;bottom:0;z-index:100;transition:left .25s;box-shadow:4px 0 24px rgba(0,0,0,.3)}
+  .sb.open{left:0}
+  .twocol{grid-template-columns:1fr}
+  .rcards{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+  .content{padding:14px}
+  .topbar{padding:0 14px}
+  .kban{flex-direction:column}
+  .kban-hd{flex-direction:row;padding:12px}
+}
 </style>
 </head>
 <body>
 <div class="app">
-
-<!-- SIDEBAR -->
-<div class="sb">
+<div class="sb" id="SB">
   <div class="sb-brand">
     <div class="sb-logo">🏃</div>
-    <div>
-      <div style="font-size:12px;font-weight:700;color:#fff">Race Planner</div>
-      <div style="font-size:9px;color:rgba(255,255,255,.4)">TomS · 2026–2027</div>
-    </div>
+    <div class="sb-txt"><div style="font-size:13px;font-weight:700;color:#fff">Race Planner</div><div style="font-size:10px;color:rgba(255,255,255,.4)">TomS · 2026–2027</div></div>
   </div>
   <div class="sb-sec">
     <div class="sb-lbl">Dashboard</div>
-    <div class="nav act" id="n-overview"    onclick="go('overview')">   <span class="ic">📊</span> Overview</div>
-    <div class="nav"     id="n-training"   onclick="go('training')">   <span class="ic">📅</span> Training Plan</div>
-    <div class="nav"     id="n-races"      onclick="go('races')">      <span class="ic">🏆</span> Race Calendar</div>
+    <div class="nav act" id="n-overview"     onclick="go('overview')">   <span class="ic">📊</span><span>Overview</span></div>
+    <div class="nav"     id="n-training"    onclick="go('training')">   <span class="ic">📅</span><span>Training Plan</span></div>
+    <div class="nav"     id="n-races"       onclick="go('races')">      <span class="ic">🏆</span><span>Race Calendar</span></div>
   </div>
   <div class="sb-sec">
     <div class="sb-lbl">การเงิน</div>
-    <div class="nav"     id="n-finance"    onclick="go('finance')">    <span class="ic">💰</span> ค่าใช้จ่าย</div>
-    <div class="nav"     id="n-gear"       onclick="go('gear')">       <span class="ic">👟</span> อุปกรณ์</div>
-    <div class="nav"     id="n-travel"     onclick="go('travel')">     <span class="ic">✈️</span> ค่าเดินทาง</div>
+    <div class="nav"     id="n-finance"     onclick="go('finance')">    <span class="ic">💰</span><span>ค่าใช้จ่าย</span></div>
+    <div class="nav"     id="n-gear"        onclick="go('gear')">       <span class="ic">👟</span><span>อุปกรณ์</span></div>
+    <div class="nav"     id="n-travel"      onclick="go('travel')">     <span class="ic">✈️</span><span>ค่าเดินทาง</span></div>
   </div>
   <div class="sb-sec">
     <div class="sb-lbl">สถิติ</div>
-    <div class="nav"     id="n-performance" onclick="go('performance')"><span class="ic">📈</span> Performance</div>
-    <div class="nav"     id="n-log"         onclick="go('log')">        <span class="ic">📋</span> Training Log</div>
+    <div class="nav"     id="n-performance" onclick="go('performance')"><span class="ic">📈</span><span>Performance</span></div>
+    <div class="nav"     id="n-log"         onclick="go('log')">        <span class="ic">📋</span><span>Training Log</span></div>
   </div>
   <div class="sb-foot">
-    <div style="display:flex;align-items:center;gap:8px">
-      <div style="width:28px;height:28px;border-radius:50%;background:#e63946;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#fff;flex-shrink:0">TS</div>
-      <div><div style="font-size:11px;font-weight:600;color:#fff">TomS</div><div style="font-size:9px;color:rgba(255,255,255,.4)">Endurance Athlete</div></div>
+    <div style="display:flex;align-items:center;gap:8px;overflow:hidden">
+      <div style="width:32px;height:32px;border-radius:50%;background:#e63946;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0">TS</div>
+      <div class="sb-txt"><div style="font-size:12px;font-weight:600;color:#fff">TomS</div><div style="font-size:10px;color:rgba(255,255,255,.4)">Endurance Athlete</div></div>
     </div>
   </div>
 </div>
-
-<!-- MAIN -->
 <div class="main">
   <div class="topbar">
-    <div>
-      <div class="tb-title" id="TB_TITLE">📊 Overview</div>
-      <div class="tb-sub">Race Planner · TomS · 2026–2027</div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <button class="btn-ham" id="HAM" onclick="toggleSB()">☰</button>
+      <div><div class="tb-title" id="TB_TITLE">📊 Overview</div><div class="tb-sub">Race Planner · TomS · 2026–2027</div></div>
     </div>
     <div class="tb-r">
       <div class="sbar load" id="SBAR"><div class="sdot"></div><span id="SMSG">กำลังโหลด...</span></div>
       <button class="btn btn-o btn-xs" onclick="loadAll()">🔄 Refresh</button>
-      <button class="btn btn-xs" id="BTN_ADD" style="background:#e63946;color:#fff;display:none" onclick="topAdd()">+ เพิ่ม</button>
+      <button class="btn btn-o btn-xs" id="DARK_BTN" onclick="toggleDark()">🌙</button>
+      <button class="btn btn-xs btn-r" id="BTN_ADD" style="display:none" onclick="topAdd()">+ เพิ่ม</button>
     </div>
   </div>
-  <div class="content" id="CONTENT">
-    <div class="loader">⏳ กำลังโหลดข้อมูลจาก Google Sheets...</div>
-  </div>
+  <div class="content" id="CONTENT"><div class="loader"><div style="font-size:28px">⏳</div>กำลังโหลดจาก Google Sheets...</div></div>
 </div>
 </div>
 
-<!-- MODALS -->
 <!-- Expense Modal -->
 <div class="mo" id="MO_EXP">
   <div class="modal">
     <div class="mhd"><div class="mtitle" id="ME_TITLE">💰 เพิ่มค่าใช้จ่าย</div><button class="btn-ic" onclick="closeMo('MO_EXP')">✕</button></div>
     <div class="mbody">
       <div class="fg">
-        <div class="fgrp fg full"><label class="lbl">Race<span class="req">*</span></label><select class="fi" id="ME_RACE"></select></div>
-        <div class="fgrp fg full"><label class="lbl">รายการ<span class="req">*</span></label><input class="fi" id="ME_NAME" placeholder="เช่น ค่าสมัคร, ตั๋วเครื่องบิน..."></div>
-        <div class="fgrp"><label class="lbl">หมวด<span class="req">*</span></label>
-          <select class="fi" id="ME_CAT">
-            <option>ค่าสมัคร</option><option>ตั๋วเครื่องบิน</option><option>โรงแรม</option>
-            <option>ค่าอาหาร</option><option>Expo</option><option>อุปกรณ์</option>
-            <option>เสื้อผ้า</option><option>Nutrition</option><option>ค่าเดินทาง</option>
-            <option>ประกัน</option><option>อื่นๆ</option>
-          </select>
-        </div>
-        <div class="fgrp"><label class="lbl">สถานะ</label>
-          <select class="fi" id="ME_STATUS"><option>วางแผน</option><option>จ่ายแล้ว</option><option>รอยืนยัน</option></select>
-        </div>
+        <div class="fgrp" style="grid-column:1/-1"><label class="lbl">Race<span class="req">*</span></label><select class="fi" id="ME_RACE"></select></div>
+        <div class="fgrp" style="grid-column:1/-1"><label class="lbl">รายการ<span class="req">*</span></label><input class="fi" id="ME_NAME" placeholder="เช่น ค่าสมัคร, ตั๋วเครื่องบิน..."></div>
+        <div class="fgrp"><label class="lbl">หมวด</label><select class="fi" id="ME_CAT"><option>ค่าสมัคร</option><option>ตั๋วเครื่องบิน</option><option>โรงแรม</option><option>ค่าอาหาร</option><option>Expo</option><option>อุปกรณ์</option><option>เสื้อผ้า</option><option>Nutrition</option><option>ค่าเดินทาง</option><option>ประกัน</option><option>อื่นๆ</option></select></div>
+        <div class="fgrp"><label class="lbl">สถานะ</label><select class="fi" id="ME_STATUS"><option>วางแผน</option><option>จ่ายแล้ว</option><option>รอยืนยัน</option></select></div>
         <div class="fgrp"><label class="lbl">จำนวน (฿)<span class="req">*</span></label><input class="fi" id="ME_AMT" type="number" step="1" placeholder="0"></div>
         <div class="fgrp"><label class="lbl">วันที่จ่าย</label><input class="fi" id="ME_DATE" type="date"></div>
         <div class="fgrp"><label class="lbl">สกุลเงิน</label><select class="fi" id="ME_CUR"><option>THB</option><option>JPY</option><option>USD</option><option>EUR</option></select></div>
-        <div class="fgrp"><label class="lbl">จำนวนสกุลต้นทาง</label><input class="fi" id="ME_ORIG" type="number" placeholder="เช่น 15000 (JPY)"></div>
+        <div class="fgrp"><label class="lbl">จำนวนสกุลต้นทาง</label><input class="fi" id="ME_ORIG" type="number" placeholder="0"></div>
         <div class="fgrp"><label class="lbl">ช่องทางชำระ</label><select class="fi" id="ME_MTH"><option>บัตรเครดิต</option><option>โอนธนาคาร</option><option>เงินสด</option><option>PromptPay</option></select></div>
-        <div class="fgrp fg full"><label class="lbl">หมายเหตุ</label><input class="fi" id="ME_NOTE" placeholder="รายละเอียดเพิ่มเติม..."></div>
+        <div class="fgrp" style="grid-column:1/-1"><label class="lbl">หมายเหตุ</label><input class="fi" id="ME_NOTE" placeholder="รายละเอียด..."></div>
       </div>
     </div>
     <div class="mfoot"><button class="btn btn-o" onclick="closeMo('MO_EXP')">ยกเลิก</button><button class="btn btn-r" onclick="saveExp()">💾 บันทึก</button></div>
@@ -270,7 +242,7 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:#1a
     <div class="mhd"><div class="mtitle" id="MR_TITLE">🏆 เพิ่ม Race</div><button class="btn-ic" onclick="closeMo('MO_RACE')">✕</button></div>
     <div class="mbody">
       <div class="fg">
-        <div class="fgrp fg full"><label class="lbl">ชื่อ Race<span class="req">*</span></label><input class="fi" id="MR_NAME" placeholder="Bangkok Marathon 2027"></div>
+        <div class="fgrp" style="grid-column:1/-1"><label class="lbl">ชื่อ Race<span class="req">*</span></label><input class="fi" id="MR_NAME" placeholder="Bangkok Marathon 2027"></div>
         <div class="fgrp"><label class="lbl">ประเภท</label><select class="fi" id="MR_TYPE"><option>Marathon</option><option>Half Marathon</option><option>10K Run</option><option>Hyrox</option><option>Triathlon</option><option>Trail Run</option><option>อื่นๆ</option></select></div>
         <div class="fgrp"><label class="lbl">วันที่แข่ง</label><input class="fi" id="MR_DATE" type="date"></div>
         <div class="fgrp"><label class="lbl">สถานที่</label><input class="fi" id="MR_LOC" placeholder="Bangkok, TH"></div>
@@ -291,13 +263,13 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:#1a
         <div class="fgrp"><label class="lbl">วันที่<span class="req">*</span></label><input class="fi" id="MT_DATE" type="date"></div>
         <div class="fgrp"><label class="lbl">ประเภท</label><select class="fi" id="MT_TYPE"><option>Easy Run</option><option>Tempo Run</option><option>Long Run</option><option>Interval / Track</option><option>Strength / Gym</option><option>Hyrox Simulation</option><option>Swim</option><option>Bike</option><option>Rest Day</option></select></div>
         <div class="fgrp"><label class="lbl">ระยะ (km)</label><input class="fi" id="MT_DIST" type="number" step="0.1" placeholder="0.0"></div>
-        <div class="fgrp"><label class="lbl">เวลา</label><input class="fi" id="MT_TIME" placeholder="1:00:00"></div>
-        <div class="fgrp"><label class="lbl">Pace (min/km)</label><input class="fi" id="MT_PACE" placeholder="5:30"></div>
+        <div class="fgrp"><label class="lbl">เวลา (H:MM:SS)</label><input class="fi" id="MT_TIME" placeholder="1:00:00"></div>
+        <div class="fgrp"><label class="lbl">Pace (M:SS/km)</label><input class="fi" id="MT_PACE" placeholder="5:30"></div>
         <div class="fgrp"><label class="lbl">HR เฉลี่ย (bpm)</label><input class="fi" id="MT_HR" type="number" placeholder="145"></div>
         <div class="fgrp"><label class="lbl">Zone</label><select class="fi" id="MT_ZONE"><option>Z1</option><option>Z2</option><option>Z3</option><option>Z4</option><option>Z5</option></select></div>
         <div class="fgrp"><label class="lbl">สถานะ</label><select class="fi" id="MT_STATUS"><option>วางแผน</option><option>เสร็จ</option><option>ข้ามไป</option></select></div>
         <div class="fgrp"><label class="lbl">ความรู้สึก</label><select class="fi" id="MT_FEEL"><option>😊 ดีมาก</option><option>🙂 ดี</option><option>😐 ปกติ</option><option>😓 เหนื่อย</option><option>😫 แย่</option></select></div>
-        <div class="fgrp fg full"><label class="lbl">หมายเหตุ</label><input class="fi" id="MT_NOTE" placeholder="สภาพอากาศ, รองเท้า, ความรู้สึก..."></div>
+        <div class="fgrp" style="grid-column:1/-1"><label class="lbl">หมายเหตุ</label><input class="fi" id="MT_NOTE" placeholder="สภาพอากาศ, รองเท้า..."></div>
       </div>
     </div>
     <div class="mfoot"><button class="btn btn-o" onclick="closeMo('MO_TR')">ยกเลิก</button><button class="btn btn-r" onclick="saveTr()">💾 บันทึก</button></div>
@@ -308,1016 +280,736 @@ body{font-family:'Segoe UI',Tahoma,Arial,sans-serif;background:#f4f6fb;color:#1a
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-// ═══════════════════════════════════════
-//  CONFIG
-// ═══════════════════════════════════════
 const GS = 'https://script.google.com/macros/s/AKfycbwg2fDNyhUlzM0zseQneQs_BCuVRL57_8CjLtRV0I87NUOtqFCv7AxlPnPDRoxmxJuzJw/exec';
-const RACE_COLORS = ['#f59e0b','#e63946','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4'];
+const RACE_COLORS = ['#f59e0b','#e63946','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4','#84cc16'];
 
-// ═══════════════════════════════════════
-//  STATE — ดึงจาก Sheets อย่างเดียว ไม่มี localStorage
-// ═══════════════════════════════════════
-let RACES = [], EXPENSES = [], TRAINING = [];
-let curPage = 'overview', curTab = '';
-let editExpId = null, editRaceId = null, editTrId = null;
-let trCounter = 0, expCounter = 0;
+let RACES=[], EXPENSES=[], TRAINING=[];
+let curPage='overview', curTab='', editExpId=null, editRaceId=null, editTrId=null;
 
-// ═══════════════════════════════════════
-//  HELPERS
-// ═══════════════════════════════════════
-const $ = id => document.getElementById(id);
-const B = n => n == null ? '—' : '฿' + Number(n).toLocaleString('th-TH', {minimumFractionDigits:0});
+// ── Helpers ──
+const $  = id => document.getElementById(id);
+const B  = n  => (n==null)?'—':'฿'+Number(n).toLocaleString('th-TH',{minimumFractionDigits:0});
+const D  = d  => d?new Date(d+'T00:00:00').toLocaleDateString('th-TH',{day:'numeric',month:'short',year:'2-digit'}):'—';
+const days = d => d?Math.ceil((new Date(d+'T00:00:00')-new Date())/86400000):null;
+const pfc  = p => p>100?'pf-r':p>80?'pf-a':p>0?'pf-g':'pf-gr';
 
-// แปลงค่า time/pace ที่ Sheets ส่งมาเป็น Date 1899-12-30 ให้กลับเป็น string
-function fmtTime(v) {
-  if (!v) return '—';
-  var s = String(v);
-  if (s.indexOf('1899') >= 0 || s.indexOf('T') >= 0) {
-    // Sheets ส่งมาเป็น Date object → แปลงเป็น HH:MM:SS
-    var d = new Date(v);
-    if (!isNaN(d)) {
-      var h = d.getUTCHours(), m = d.getUTCMinutes(), sc = d.getUTCSeconds();
-      return h + ':' + String(m).padStart(2,'0') + ':' + String(sc).padStart(2,'0');
-    }
-    return '—';
-  }
-  return s || '—';
+function nextExpId() {
+  var max=0; EXPENSES.forEach(function(e){var n=parseInt(String(e.id).replace(/\D/g,''));if(!isNaN(n)&&n>max)max=n;}); return 'EXP'+String(max+1).padStart(4,'0');
 }
-function fmtPace(v) {
-  if (!v) return '—';
-  var s = String(v);
-  if (s.indexOf('1899') >= 0 || s.indexOf('T') >= 0) {
-    var d = new Date(v);
-    if (!isNaN(d)) {
-      var m = d.getUTCHours()*60 + d.getUTCMinutes(), sc = d.getUTCSeconds();
-      return m + ':' + String(sc).padStart(2,'0');
-    }
-    return '—';
-  }
-  return s || '—';
+function nextTrId() {
+  var max=0; TRAINING.forEach(function(t){var n=parseInt(String(t.id).replace(/\D/g,''));if(!isNaN(n)&&n>max)max=n;}); return 'TR'+String(max+1).padStart(4,'0');
 }
-const D = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('th-TH', {day:'numeric', month:'short', year:'2-digit'}) : '—';
-// Strip Google Sheets date artifact from time/pace strings
+function nextRaceId() {
+  var max=0; RACES.forEach(function(r){var n=parseInt(String(r.id).replace(/\D/g,''));if(!isNaN(n)&&n>max)max=n;}); return 'RACE'+String(max+1).padStart(3,'0');
+}
+
+const CAT_CLS = {'ค่าสมัคร':'t-entry','ตั๋วเครื่องบิน':'t-flight','โรงแรม':'t-hotel','ค่าอาหาร':'t-food','Expo':'t-expo','อุปกรณ์':'t-gear','เสื้อผ้า':'t-apparel','Nutrition':'t-nutri','ค่าเดินทาง':'t-travel','ประกัน':'t-ins','อื่นๆ':'t-misc'};
+function catTag(c){ return '<span class="tag '+(CAT_CLS[c]||'t-misc')+'">'+c+'</span>'; }
+function stPill(s){ var m={'จ่ายแล้ว':'p-g','วางแผน':'p-gr','รอยืนยัน':'p-a','เสร็จ':'p-g','ข้ามไป':'p-gr'}; return '<span class="pill '+(m[s]||'p-gr')+'">'+s+'</span>'; }
+
 function cleanTime(v) {
   if (!v) return '—';
   var s = String(v);
-  if (s.indexOf('1899') >= 0) {
-    // ISO format: "1899-12-30T00:56:00.000Z"
-    var m = s.match(/T(\d+:\d+:\d+)/);
-    if (m) {
-      var parts = m[1].split(':');
-      var h = parseInt(parts[0]), mn = parseInt(parts[1]), sc = parseInt(parts[2]);
-      return h + ':' + String(mn).padStart(2,'0') + ':' + String(sc).padStart(2,'0');
-    }
+  if (s.indexOf('1899')>=0) {
+    var m = s.match(/T(\d+):(\d+):(\d+)/);
+    if (m) { var h=parseInt(m[1]),mn=parseInt(m[2]),sc=parseInt(m[3]); return h+':'+String(mn).padStart(2,'0')+':'+String(sc).padStart(2,'0'); }
     return '—';
   }
-  if (!s || s === '0:00:00' || s === '00:00:00') return '—';
+  if (!s||s==='0:00:00'||s==='00:00:00') return '—';
   return s;
 }
 function cleanPace(v) {
   if (!v) return '—';
   var s = String(v);
-  // Handle ISO date from Sheets: "1899-12-30T00:05:12.000Z"
-  if (s.indexOf('1899') >= 0) {
+  if (s.indexOf('1899')>=0) {
     var m = s.match(/T(\d+):(\d+):(\d+)/);
-    if (m) {
-      var h = parseInt(m[1]), mn = parseInt(m[2]), sc = parseInt(m[3]);
-      var totalMin = h * 60 + mn;
-      return totalMin + ':' + String(sc).padStart(2,'0');
-    }
+    if (m) { var h=parseInt(m[1]),mn=parseInt(m[2]),sc=parseInt(m[3]); return (h*60+mn)+':'+String(sc).padStart(2,'0'); }
     return '—';
   }
-  // Handle "5:12:00" format → "5:12"
   var parts = s.split(':');
-  if (parts.length === 3 && parts[2] === '00') {
-    return parts[0] + ':' + parts[1];
-  }
+  if (parts.length===3 && (parts[2]==='00'||parts[2]==='0')) return parts[0]+':'+parts[1];
   if (!s) return '—';
   return s;
 }
-const days = d => d ? Math.ceil((new Date(d + 'T00:00:00') - new Date()) / 86400000) : null;
-const pfc = p => p > 100 ? 'pf-r' : p > 80 ? 'pf-a' : p > 0 ? 'pf-g' : 'pf-gr';
 
-function uid(prefix, counter) {
-  return prefix + String(counter).padStart(4, '0');
-}
-function nextExpId() {
-  let max = 0;
-  EXPENSES.forEach(e => { const n = parseInt(String(e.id).replace(/\D/g,'')); if(n > max) max = n; });
-  return 'EXP' + String(max + 1).padStart(4, '0');
-}
-function nextTrId() {
-  let max = 0;
-  TRAINING.forEach(t => { const n = parseInt(String(t.id).replace(/\D/g,'')); if(n > max) max = n; });
-  return 'TR' + String(max + 1).padStart(4, '0');
-}
-function nextRaceId() {
-  return 'r' + Date.now().toString(36);
-}
+function sumActual(rid){ return EXPENSES.filter(function(e){return e.raceId===rid&&e.status==='จ่ายแล้ว';}).reduce(function(s,e){return s+Number(e.amount||0);},0); }
+function sumAll(rid){ return EXPENSES.filter(function(e){return e.raceId===rid;}).reduce(function(s,e){return s+Number(e.amount||0);},0); }
+function totalBudget(){ return RACES.reduce(function(s,r){return s+Number(r.budget||0);},0); }
+function totalActual(){ return EXPENSES.filter(function(e){return e.status==='จ่ายแล้ว';}).reduce(function(s,e){return s+Number(e.amount||0);},0); }
 
-function raceColor(id) {
-  const r = RACES.find(x => x.id === id);
-  return r ? r.color : '#6b7280';
+// ── UI ──
+function setSbar(st,msg){ $('SBAR').className='sbar '+st; $('SMSG').textContent=msg; }
+function notify(msg,icon){
+  if(!icon)icon='✅'; var n=$('NOTIF'); $('NI').textContent=icon; $('NM').textContent=msg;
+  n.classList.add('show'); clearTimeout(n._t); n._t=setTimeout(function(){n.classList.remove('show');},3500);
 }
-function sumActual(raceId) {
-  return EXPENSES.filter(e => e.raceId === raceId && e.status === 'จ่ายแล้ว').reduce((s,e) => s + Number(e.amount||0), 0);
-}
-function sumAll(raceId) {
-  return EXPENSES.filter(e => e.raceId === raceId).reduce((s,e) => s + Number(e.amount||0), 0);
-}
-function totalBudget() { return RACES.reduce((s,r) => s + Number(r.budget||0), 0); }
-function totalActual() { return EXPENSES.filter(e => e.status==='จ่ายแล้ว').reduce((s,e) => s + Number(e.amount||0), 0); }
+function openMo(id){ $(id).classList.add('open'); }
+function closeMo(id){ $(id).classList.remove('open'); }
+document.querySelectorAll('.mo').forEach(function(el){ el.addEventListener('click',function(e){if(e.target===el)el.classList.remove('open');}); });
 
-// ═══════════════════════════════════════
-//  UI HELPERS
-// ═══════════════════════════════════════
-function setSbar(st, msg) {
-  $('SBAR').className = 'sbar ' + st;
-  $('SMSG').textContent = msg;
-}
-function notify(msg, icon='✅') {
-  const n = $('NOTIF');
-  $('NI').textContent = icon;
-  $('NM').textContent = msg;
-  n.classList.add('show');
-  clearTimeout(n._t);
-  n._t = setTimeout(() => n.classList.remove('show'), 3000);
-}
-function openMo(id) { $(id).classList.add('open'); }
-function closeMo(id) { $(id).classList.remove('open'); }
-document.querySelectorAll('.mo').forEach(el =>
-  el.addEventListener('click', e => { if(e.target === el) el.classList.remove('open'); })
-);
-
-function stPill(s) {
-  const m = {'จ่ายแล้ว':'p-g','วางแผน':'p-gr','รอยืนยัน':'p-a','เสร็จ':'p-g','ข้ามไป':'p-gr'};
-  return '<span class="pill ' + (m[s]||'p-gr') + '">' + s + '</span>';
+function kban(icon,lbl,items){
+  var h='<div class="kban"><div class="kban-hd"><div class="kban-ico">'+icon+'</div><div class="kban-lbl">'+lbl+'</div></div><div class="kitems">';
+  items.forEach(function(it){ h+='<div class="ki"><div class="kico '+it[1]+'">'+it[0]+'</div><div><div class="knum">'+it[2]+'</div><div class="klbl">'+it[3]+'</div></div></div>'; });
+  return h+'</div></div>';
 }
 
-const CAT_CLS = {
-  'ค่าสมัคร':'t-entry','ตั๋วเครื่องบิน':'t-flight','โรงแรม':'t-hotel',
-  'ค่าอาหาร':'t-food','Expo':'t-expo','อุปกรณ์':'t-gear',
-  'เสื้อผ้า':'t-apparel','Nutrition':'t-nutri','ค่าเดินทาง':'t-travel',
-  'ประกัน':'t-ins','อื่นๆ':'t-misc',
-};
-function catTag(c) {
-  return '<span class="tag ' + (CAT_CLS[c]||'t-misc') + '">' + c + '</span>';
-}
-
-// ═══════════════════════════════════════
-//  API — ทุก call ไป Sheets โดยตรง
-// ═══════════════════════════════════════
-// JSONP GET: works from any origin, no CORS issue
+// ── JSONP API ──
 function jsonpGet(url) {
-  return new Promise(function(resolve, reject) {
-    var cb = '_cb' + Date.now() + Math.random().toString(36).slice(2,6);
-    var script = document.createElement('script');
-    var timer = setTimeout(function() {
-      cleanup();
-      reject(new Error('Timeout — ตรวจสอบ Apps Script URL และ deployment'));
-    }, 15000);
-    function cleanup() {
-      delete window[cb];
-      if (script.parentNode) script.parentNode.removeChild(script);
-      clearTimeout(timer);
-    }
-    window[cb] = function(data) { cleanup(); resolve(data); };
-    script.onerror = function() { cleanup(); reject(new Error('Script load failed')); };
-    script.src = url + (url.indexOf('?') >= 0 ? '&' : '?') + 'callback=' + cb;
+  return new Promise(function(resolve,reject){
+    var cb='_cb'+Date.now()+Math.random().toString(36).slice(2,6);
+    var script=document.createElement('script');
+    var timer=setTimeout(function(){cleanup();reject(new Error('Timeout 15s'));},15000);
+    function cleanup(){delete window[cb];if(script.parentNode)script.parentNode.removeChild(script);clearTimeout(timer);}
+    window[cb]=function(d){cleanup();resolve(d);};
+    script.onerror=function(){cleanup();reject(new Error('Script load error'));};
+    script.src=url+(url.indexOf('?')>=0?'&':'?')+'callback='+cb;
     document.head.appendChild(script);
   });
 }
-
-// Fix time values that Sheets converts to Date (1899-12-30T...)
-function fixVal(key, val) {
-  if (!val && val !== 0) return val;
-  var s = String(val);
-  // Sheets sends time/duration as "1899-12-30T00:56:00.000Z" or similar
-  if (s.indexOf('1899') >= 0) {
-    // Try ISO format: extract time part after T
-    var mISO = s.match(/T(\d+:\d+:\d+)/);
-    if (mISO) return mISO[1];
-    // Try "1899-12-30 HH:MM:SS" format
-    var mSpc = s.match(/1899-12-30[T ]?(\d+:\d+:\d+)/);
-    if (mSpc) return mSpc[1];
-    return '';
-  }
-  return val;
+async function apiFetch(path){ return await jsonpGet(GS+path); }
+async function apiPost(body){
+  var encoded=encodeURIComponent(JSON.stringify(body));
+  return await jsonpGet(GS+'?action=write&data='+encoded);
 }
 
-// Read: JSONP GET
-async function apiFetch(path) {
-  return await jsonpGet(GS + path);
-}
-
-// Write: encode payload in GET URL, Apps Script doGet handles action=write
-async function apiPost(body) {
-  var encoded = encodeURIComponent(JSON.stringify(body));
-  return await jsonpGet(GS + '?action=write&data=' + encoded);
-}
-
-// ═══════════════════════════════════════
-//  LOAD ALL — เปิดหน้าดึงจาก Sheets ทันที
-// ═══════════════════════════════════════
-async function loadAll() {
-  setSbar('load', 'กำลังโหลดจาก Google Sheets...');
-  try {
-    const d = await apiFetch('?action=getAll');
-    if (!d.ok) throw new Error(d.error || 'response not ok');
-    RACES    = (d.races    || []).map(r => ({...r, budget: Number(r.budget||0)}));
-    EXPENSES = (d.expenses || []).map(e => ({...e, amount: Number(e.amount||0), origAmt: Number(e.origAmt||0)}));
-    TRAINING = (d.training || []).map(t => ({
-      ...t,
-      dist: Number(t.dist||0),
-      hr:   Number(t.hr||0),
-      time: fixVal('time', t.time||''),
-      pace: fixVal('pace', t.pace||''),
-    }));
-    if (!curTab && RACES.length) curTab = RACES[0].id;
-    setSbar('ok', 'โหลดแล้ว · ' + RACES.length + ' races · ' + EXPENSES.length + ' exp · ' + TRAINING.length + ' tr · ' + new Date().toLocaleTimeString('th-TH'));
+// ── Load all ──
+async function loadAll(){
+  setSbar('load','กำลังโหลดจาก Google Sheets...');
+  try{
+    var d=await apiFetch('?action=getAll');
+    if(!d.ok) throw new Error(d.error||'response not ok');
+    RACES    =(d.races   ||[]).map(function(r){return Object.assign({},r,{budget:Number(r.budget||0)});});
+    EXPENSES =(d.expenses||[]).map(function(e){return Object.assign({},e,{amount:Number(e.amount||0),origAmt:Number(e.origAmt||0)});});
+    TRAINING =(d.training||[]).map(function(t){return Object.assign({},t,{dist:Number(t.dist||0),hr:Number(t.hr||0)});});
+    if(!curTab&&RACES.length) curTab=RACES[0].id;
+    setSbar('ok','โหลดแล้ว · '+RACES.length+' races · '+EXPENSES.length+' exp · '+TRAINING.length+' tr · '+new Date().toLocaleTimeString('th-TH'));
     go(curPage);
-  } catch(e) {
-    setSbar('err', 'โหลดไม่ได้: ' + e.message + ' — ตรวจสอบ Apps Script deployment');
-    $('CONTENT').innerHTML = '<div class="loader" style="flex-direction:column;gap:12px"><div style="font-size:24px">⚠️</div><div style="color:#ef4444;font-weight:600">โหลดข้อมูลไม่ได้</div><div style="color:#6b7280;text-align:center">ตรวจสอบว่า Apps Script Deploy เป็น <strong>Anyone</strong><br>แล้วกด 🔄 Refresh</div></div>';
+  }catch(e){
+    setSbar('err','โหลดไม่ได้: '+e.message);
+    $('CONTENT').innerHTML='<div class="loader"><div style="font-size:36px">⚠️</div><div style="color:#ef4444;font-weight:700">โหลดข้อมูลไม่ได้</div><div style="color:#64748b;text-align:center">'+e.message+'<br><br>ตรวจสอบ Apps Script deployment<br>Who has access = <strong>Anyone</strong></div><button class="btn btn-b" onclick="loadAll()" style="margin-top:12px">🔄 ลองใหม่</button></div>';
   }
 }
 
+// ── DB Write ──
+async function dbUpsert(sheet,row){
+  setSbar('load','กำลังบันทึก '+row.id+'...');
+  try{
+    var d=await apiPost({action:'upsert',sheet:sheet,row:row});
+    if(d.ok){ setSbar('ok','✅ ['+d.op+'] '+row.id+' · '+new Date().toLocaleTimeString('th-TH')); notify('✅ บันทึกแล้ว: '+row.id); return true; }
+    else{ setSbar('err','❌ '+(d.error||'error')); notify('❌ '+(d.error||row.id),'❌'); return false; }
+  }catch(e){ setSbar('err','❌ '+e.message); notify('❌ Network error','❌'); return false; }
+}
+async function dbDelete(sheet,id){
+  setSbar('load','กำลังลบ...');
+  try{
+    var d=await apiPost({action:'delete',sheet:sheet,id:String(id)});
+    if(d.ok){ setSbar('ok','✅ ลบแล้ว · '+new Date().toLocaleTimeString('th-TH')); notify('🗑️ ลบแล้ว'); return true; }
+    else{ setSbar('err','❌ '+(d.error||'')); return false; }
+  }catch(e){ setSbar('err','❌ '+e.message); return false; }
+}
+
+// ── Sidebar / Routing ──
+function toggleSB(){
+  var sb=$('SB');
+  if(window.innerWidth<=768){ sb.classList.toggle('open'); }
+  else{ sb.classList.toggle('col'); }
+}
+function toggleDark(){
+  document.body.classList.toggle('dark');
+  var isDark=document.body.classList.contains('dark');
+  localStorage.setItem('rp_dark',isDark?'1':'0');
+  $('DARK_BTN').textContent=isDark?'☀️':'🌙';
+}
+(function(){ if(localStorage.getItem('rp_dark')==='1'){ document.body.classList.add('dark'); setTimeout(function(){var b=$('DARK_BTN');if(b)b.textContent='☀️';},50); } })();
+
+const PAGE_TITLES={overview:'📊 Overview',training:'📅 Training Plan',races:'🏆 Race Calendar',finance:'💰 ค่าใช้จ่าย',gear:'👟 อุปกรณ์',travel:'✈️ ค่าเดินทาง',performance:'📈 Performance',log:'📋 Training Log'};
+const ADD_PAGES={finance:true,training:true,races:true,gear:true,travel:true};
+
+function go(page){
+  curPage=page;
+  document.querySelectorAll('.nav').forEach(function(e){e.classList.remove('act');});
+  var nav=$('n-'+page); if(nav)nav.classList.add('act');
+  $('TB_TITLE').textContent=PAGE_TITLES[page]||page;
+  $('BTN_ADD').style.display=ADD_PAGES[page]?'':'none';
+  var pages={overview:pgOverview,training:pgTraining,races:pgRaces,finance:pgFinance,gear:pgGear,travel:pgTravel,performance:pgPerformance,log:pgLog};
+  (pages[page]||pgOverview)();
+}
+function topAdd(){
+  var m={finance:function(){openAddExp(curTab);},training:openAddTr,races:openAddRace,gear:function(){openAddExp(curTab);},travel:function(){openAddExp(curTab);}};
+  (m[curPage]||m.finance)();
+}
+
 // ═══════════════════════════════════════
-//  UPSERT / DELETE → Sheets
+// PAGE FUNCTIONS
 // ═══════════════════════════════════════
-async function dbUpsert(sheet, row) {
-  setSbar('load', 'กำลังบันทึก...');
-  try {
-    const d = await apiPost({action:'upsert', sheet, row});
-    if (d.ok) {
-      setSbar('ok', '✅ บันทึกแล้ว [' + d.op + '] ' + row.id + ' · ' + new Date().toLocaleTimeString('th-TH'));
-      return true;
-    } else {
-      setSbar('err', '❌ ' + (d.error || 'error'));
-      notify('❌ บันทึกไม่ได้: ' + (d.error||''), '❌');
-      return false;
-    }
-  } catch(e) {
-    setSbar('err', '❌ Network error: ' + e.message);
-    notify('❌ Network error — ตรวจสอบ Apps Script', '❌');
-    return false;
+
+// ── Performance PB storage ──
+var PB = JSON.parse(localStorage.getItem('rp_pb')||'{"marathon":"","half":"","10k":"","5k":""}');
+function savePB(){ localStorage.setItem('rp_pb',JSON.stringify(PB)); }
+function updatePB(key,val){ PB[key]=val; savePB(); }
+
+// ── Export CSV ──
+function exportCSV(type) {
+  var list, headers, filename;
+  if (type==='expenses') {
+    list = curTab==='__all' ? EXPENSES : EXPENSES.filter(function(e){return e.raceId===curTab;});
+    headers = ['id','raceId','Race','name','cat','amount','date','currency','origAmt','status','method','note'];
+    filename = 'expenses_'+new Date().toISOString().split('T')[0]+'.csv';
+  } else if (type==='training') {
+    list = TRAINING;
+    headers = ['id','date','type','dist','time','pace','hr','zone','status','feel','note'];
+    filename = 'training_'+new Date().toISOString().split('T')[0]+'.csv';
   }
-}
-
-async function dbDelete(sheet, id) {
-  setSbar('load', 'กำลังลบ...');
-  try {
-    const d = await apiPost({action:'delete', sheet, id:String(id)});
-    if (d.ok) {
-      setSbar('ok', '✅ ลบแล้ว · ' + new Date().toLocaleTimeString('th-TH'));
-      return true;
-    } else {
-      setSbar('err', '❌ ' + (d.error||''));
-      return false;
-    }
-  } catch(e) {
-    setSbar('err', '❌ ' + e.message);
-    return false;
-  }
-}
-
-// ═══════════════════════════════════════
-//  SIDEBAR & PAGE ROUTING
-// ═══════════════════════════════════════
-const PAGE_TITLES = {overview:'📊 Overview', training:'📅 Training Plan', races:'🏆 Race Calendar', finance:'💰 ค่าใช้จ่าย', gear:'👟 อุปกรณ์', travel:'✈️ ค่าเดินทาง', performance:'📈 Performance', log:'📋 Training Log'};
-const ADD_PAGES   = {finance:true, training:true, races:true, gear:true, travel:true};
-
-function go(page) {
-  curPage = page;
-  document.querySelectorAll('.nav').forEach(e => e.classList.remove('act'));
-  const nav = $('n-' + page);
-  if (nav) nav.classList.add('act');
-  $('TB_TITLE').textContent = PAGE_TITLES[page] || page;
-  $('BTN_ADD').style.display = ADD_PAGES[page] ? '' : 'none';
-  const pages = {overview: pgOverview, training: pgTraining, races: pgRaces, finance: pgFinance, gear: pgGear, travel: pgTravel, performance: pgPerformance, log: pgLog};
-  (pages[page] || pgOverview)();
-}
-
-function topAdd() {
-  const m = {finance:() => openAddExp(curTab), training: openAddTr, races: openAddRace, gear:() => openAddExp(curTab), travel:() => openAddExp(curTab)};
-  (m[curPage] || m.finance)();
-}
-
-function kban(icon, lbl, items) {
-  var html = '<div class="kban"><div class="kban-hd"><div class="kban-ico">' + icon + '</div><div class="kban-lbl">' + lbl + '</div></div><div class="kitems">';
-  items.forEach(function(it) {
-    html += '<div class="ki"><div class="kico ' + it[1] + '">' + it[0] + '</div><div><div class="knum">' + it[2] + '</div><div class="klbl">' + it[3] + '</div></div></div>';
+  var rows = list.map(function(row) {
+    return headers.map(function(h) {
+      var v = h==='Race' ? ((RACES.find(function(r){return r.id===row.raceId;})||{}).name||'') : (row[h]!=null?row[h]:'');
+      return '"'+String(v).replace(/"/g,'""')+'"';
+    }).join(',');
   });
-  html += '</div></div>';
-  return html;
+  var csv = '\uFEFF' + headers.join(',') + '\n' + rows.join('\n');
+  var a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = filename;
+  a.click();
+  notify('📥 Export ' + list.length + ' rows แล้ว');
 }
 
-// ═══════════════════════════════════════
-//  EXPENSE MODAL
-// ═══════════════════════════════════════
-function openAddExp(raceId) {
-  editExpId = null;
-  $('ME_TITLE').textContent = '💰 เพิ่มค่าใช้จ่าย';
-  $('ME_RACE').innerHTML = RACES.map(r => '<option value="' + r.id + '"' + (r.id===raceId?' selected':'') + '>' + r.name + '</option>').join('');
-  $('ME_NAME').value = ''; $('ME_AMT').value = ''; $('ME_ORIG').value = ''; $('ME_NOTE').value = '';
-  $('ME_DATE').value = new Date().toISOString().split('T')[0];
-  $('ME_CAT').value = 'ค่าสมัคร'; $('ME_STATUS').value = 'วางแผน'; $('ME_CUR').value = 'THB'; $('ME_MTH').value = 'บัตรเครดิต';
-  openMo('MO_EXP');
-}
-
-function openEditExp(id) {
-  const e = EXPENSES.find(x => String(x.id) === String(id));
-  if (!e) return;
-  editExpId = id;
-  $('ME_TITLE').textContent = '✏️ แก้ไขค่าใช้จ่าย';
-  $('ME_RACE').innerHTML = RACES.map(r => '<option value="' + r.id + '"' + (r.id===e.raceId?' selected':'') + '>' + r.name + '</option>').join('');
-  $('ME_NAME').value = e.name; $('ME_CAT').value = e.cat; $('ME_AMT').value = e.amount || '';
-  $('ME_DATE').value = e.date || ''; $('ME_CUR').value = e.currency || 'THB';
-  $('ME_ORIG').value = e.origAmt || ''; $('ME_STATUS').value = e.status || 'วางแผน';
-  $('ME_MTH').value = e.method || 'บัตรเครดิต'; $('ME_NOTE').value = e.note || '';
-  openMo('MO_EXP');
-}
-
-async function saveExp() {
-  const name = $('ME_NAME').value.trim();
-  const amt  = $('ME_AMT').value;
-  if (!name) { notify('กรุณากรอกรายการ', '⚠️'); return; }
-  const row = {
-    id: editExpId || nextExpId(),
-    raceId: $('ME_RACE').value,
-    name, cat: $('ME_CAT').value,
-    amount: Number(amt) || 0,
-    date: $('ME_DATE').value,
-    currency: $('ME_CUR').value,
-    origAmt: Number($('ME_ORIG').value) || 0,
-    status: $('ME_STATUS').value,
-    method: $('ME_MTH').value,
-    note: $('ME_NOTE').value
-  };
-  const ok = await dbUpsert('EXPENSES', row);
-  if (ok) {
-    // Update local state
-    const i = EXPENSES.findIndex(x => String(x.id) === String(row.id));
-    if (i >= 0) EXPENSES[i] = row; else EXPENSES.push(row);
-    curTab = row.raceId;
-    closeMo('MO_EXP');
-    notify(editExpId ? '✅ แก้ไขแล้ว' : '✅ เพิ่มแล้ว');
-    pgFinance();
-  }
-}
-
-async function delExp(id) {
-  if (!confirm('ลบรายการนี้?')) return;
-  const ok = await dbDelete('EXPENSES', id);
-  if (ok) {
-    EXPENSES = EXPENSES.filter(e => String(e.id) !== String(id));
-    notify('🗑️ ลบแล้ว');
-    pgFinance();
-  }
-}
-
-// ═══════════════════════════════════════
-//  RACE MODAL
-// ═══════════════════════════════════════
-function openAddRace() {
-  editRaceId = null;
-  $('MR_TITLE').textContent = '🏆 เพิ่ม Race ใหม่';
-  ['MR_NAME','MR_LOC','MR_TARGET'].forEach(i => $(i).value = '');
-  $('MR_DATE').value = ''; $('MR_TYPE').value = 'Marathon'; $('MR_BUD').value = '';
-  openMo('MO_RACE');
-}
-
-function openEditRace(id) {
-  const r = RACES.find(x => x.id === id);
-  if (!r) return;
-  editRaceId = id;
-  $('MR_TITLE').textContent = '✏️ แก้ไข Race';
-  $('MR_NAME').value = r.name; $('MR_TYPE').value = r.type; $('MR_DATE').value = r.date || '';
-  $('MR_LOC').value = r.location || ''; $('MR_BUD').value = r.budget || ''; $('MR_TARGET').value = r.target || '';
-  openMo('MO_RACE');
-}
-
-async function saveRace() {
-  const name = $('MR_NAME').value.trim();
-  if (!name) { notify('กรุณากรอกชื่อ Race', '⚠️'); return; }
-  const isEdit = !!editRaceId;
-  const existingRace = isEdit ? RACES.find(r => r.id === editRaceId) : null;
-  const row = {
-    id: editRaceId || nextRaceId(),
-    name, type: $('MR_TYPE').value,
-    date: $('MR_DATE').value,
-    location: $('MR_LOC').value,
-    budget: Number($('MR_BUD').value) || 0,
-    color: existingRace ? existingRace.color : RACE_COLORS[RACES.length % RACE_COLORS.length],
-    target: $('MR_TARGET').value
-  };
-  const ok = await dbUpsert('RACES', row);
-  if (ok) {
-    const i = RACES.findIndex(r => r.id === row.id);
-    if (i >= 0) RACES[i] = row; else RACES.push(row);
-    closeMo('MO_RACE');
-    notify(isEdit ? '✅ แก้ไข Race แล้ว' : '✅ เพิ่ม Race แล้ว');
-    pgRaces();
-  }
-}
-
-async function delRace(id) {
-  if (!confirm('ลบ Race นี้?\nค่าใช้จ่ายที่ผูกอยู่จะยังอยู่ใน Sheets')) return;
-  const ok = await dbDelete('RACES', id);
-  if (ok) {
-    RACES = RACES.filter(r => r.id !== id);
-    notify('🗑️ ลบ Race แล้ว');
-    pgRaces();
-  }
-}
-
-// ═══════════════════════════════════════
-//  TRAINING MODAL
-// ═══════════════════════════════════════
-function openAddTr() {
-  editTrId = null;
-  $('MT_TITLE').textContent = '📅 บันทึกการซ้อม';
-  $('MT_DATE').value = new Date().toISOString().split('T')[0];
-  ['MT_DIST','MT_TIME','MT_PACE','MT_HR','MT_NOTE'].forEach(i => $(i).value = '');
-  $('MT_TYPE').value = 'Easy Run'; $('MT_ZONE').value = 'Z2'; $('MT_STATUS').value = 'เสร็จ'; $('MT_FEEL').value = '🙂 ดี';
-  openMo('MO_TR');
-}
-
-function openEditTr(id) {
-  const t = TRAINING.find(x => String(x.id) === String(id));
-  if (!t) return;
-  editTrId = id;
-  $('MT_TITLE').textContent = '✏️ แก้ไขการซ้อม';
-  $('MT_DATE').value = t.date || ''; $('MT_TYPE').value = t.type || 'Easy Run';
-  $('MT_DIST').value = t.dist || ''; $('MT_TIME').value = t.time || '';
-  $('MT_PACE').value = t.pace || ''; $('MT_HR').value = t.hr || '';
-  $('MT_ZONE').value = t.zone || 'Z2'; $('MT_STATUS').value = t.status || 'เสร็จ';
-  $('MT_FEEL').value = t.feel || '🙂 ดี'; $('MT_NOTE').value = t.note || '';
-  openMo('MO_TR');
-}
-
-async function saveTr() {
-  const date = $('MT_DATE').value;
-  if (!date) { notify('กรุณาเลือกวันที่', '⚠️'); return; }
-  const row = {
-    id: editTrId || nextTrId(),
-    date, type: $('MT_TYPE').value,
-    dist: Number($('MT_DIST').value) || 0,
-    time: $('MT_TIME').value, pace: $('MT_PACE').value,
-    hr: Number($('MT_HR').value) || 0,
-    zone: $('MT_ZONE').value, status: $('MT_STATUS').value,
-    feel: $('MT_FEEL').value, note: $('MT_NOTE').value
-  };
-  const ok = await dbUpsert('TRAINING', row);
-  if (ok) {
-    const i = TRAINING.findIndex(x => String(x.id) === String(row.id));
-    if (i >= 0) TRAINING[i] = row; else TRAINING.push(row);
-    TRAINING.sort((a,b) => a.date.localeCompare(b.date));
-    closeMo('MO_TR');
-    notify(editTrId ? '✅ แก้ไขแล้ว' : '✅ บันทึกซ้อมแล้ว');
-    pgTraining();
-  }
-}
-
-async function delTr(id) {
-  if (!confirm('ลบรายการซ้อมนี้?')) return;
-  const ok = await dbDelete('TRAINING', id);
-  if (ok) {
-    TRAINING = TRAINING.filter(t => String(t.id) !== String(id));
-    notify('🗑️ ลบแล้ว');
-    pgTraining();
-  }
-}
-
-// Inline status update for training
-async function updateTrStatus(id, val) {
-  const t = TRAINING.find(x => String(x.id) === String(id));
-  if (!t) return;
-  t.status = val;
-  await dbUpsert('TRAINING', t);
-}
-
-// Inline budget update
+// ── Budget inline update ──
 async function updateBudget(raceId, val) {
-  const r = RACES.find(x => x.id === raceId);
+  var r = RACES.find(function(x){return x.id===raceId;});
   if (!r) return;
-  r.budget = Number(val) || 0;
+  r.budget = Number(val)||0;
   await dbUpsert('RACES', r);
 }
 
-// Inline expense amount update
+// ── Expense inline updates ──
 async function updateExpAmt(id, val) {
-  const e = EXPENSES.find(x => String(x.id) === String(id));
+  var e = EXPENSES.find(function(x){return String(x.id)===String(id);});
   if (!e) return;
-  e.amount = Number(val) || 0;
+  e.amount = Number(val)||0;
   await dbUpsert('EXPENSES', e);
 }
-
-// Inline expense status update
 async function updateExpStatus(id, val) {
-  const e = EXPENSES.find(x => String(x.id) === String(id));
+  var e = EXPENSES.find(function(x){return String(x.id)===String(id);});
   if (!e) return;
   e.status = val;
   await dbUpsert('EXPENSES', e);
 }
 
+// ── Training inline status ──
+async function updateTrStatus(id, val) {
+  var t = TRAINING.find(function(x){return String(x.id)===String(id);});
+  if (!t) return;
+  t.status = val;
+  await dbUpsert('TRAINING', t);
+}
+
+// ── Modal functions ──
+function openAddExp(raceId) {
+  editExpId=null; $('ME_TITLE').textContent='💰 เพิ่มค่าใช้จ่าย';
+  $('ME_RACE').innerHTML=RACES.map(function(r){return '<option value="'+r.id+'"'+(r.id===raceId?' selected':'')+'>'+r.name+'</option>';}).join('');
+  ['ME_NAME','ME_AMT','ME_ORIG','ME_NOTE'].forEach(function(i){$(i).value='';});
+  $('ME_DATE').value=new Date().toISOString().split('T')[0];
+  $('ME_CAT').value='ค่าสมัคร'; $('ME_STATUS').value='วางแผน'; $('ME_CUR').value='THB'; $('ME_MTH').value='บัตรเครดิต';
+  openMo('MO_EXP');
+}
+function openEditExp(id) {
+  var e=EXPENSES.find(function(x){return String(x.id)===String(id);});
+  if(!e)return; editExpId=id; $('ME_TITLE').textContent='✏️ แก้ไขค่าใช้จ่าย';
+  $('ME_RACE').innerHTML=RACES.map(function(r){return '<option value="'+r.id+'"'+(r.id===e.raceId?' selected':'')+'>'+r.name+'</option>';}).join('');
+  $('ME_NAME').value=e.name; $('ME_CAT').value=e.cat; $('ME_AMT').value=e.amount||'';
+  $('ME_DATE').value=e.date||''; $('ME_CUR').value=e.currency||'THB'; $('ME_ORIG').value=e.origAmt||'';
+  $('ME_STATUS').value=e.status||'วางแผน'; $('ME_MTH').value=e.method||'บัตรเครดิต'; $('ME_NOTE').value=e.note||'';
+  openMo('MO_EXP');
+}
+async function saveExp() {
+  var name=$('ME_NAME').value.trim(), amt=$('ME_AMT').value;
+  if(!name){notify('กรุณากรอกรายการ','⚠️');return;}
+  var row={id:editExpId||nextExpId(),raceId:$('ME_RACE').value,name:name,cat:$('ME_CAT').value,
+    amount:Number(amt)||0,date:$('ME_DATE').value,currency:$('ME_CUR').value,origAmt:Number($('ME_ORIG').value)||0,
+    status:$('ME_STATUS').value,method:$('ME_MTH').value,note:$('ME_NOTE').value};
+  var ok=await dbUpsert('EXPENSES',row);
+  if(ok){
+    var i=EXPENSES.findIndex(function(x){return String(x.id)===String(row.id);});
+    if(i>=0)EXPENSES[i]=row; else EXPENSES.push(row);
+    curTab=row.raceId; closeMo('MO_EXP'); notify(editExpId?'✅ แก้ไขแล้ว':'✅ เพิ่มแล้ว'); pgFinance();
+  }
+}
+async function delExp(id) {
+  if(!confirm('ลบรายการนี้?'))return;
+  var ok=await dbDelete('EXPENSES',id);
+  if(ok){EXPENSES=EXPENSES.filter(function(e){return String(e.id)!==String(id);});notify('🗑️ ลบแล้ว');pgFinance();}
+}
+
+function openAddRace() {
+  editRaceId=null; $('MR_TITLE').textContent='🏆 เพิ่ม Race ใหม่';
+  ['MR_NAME','MR_LOC','MR_TARGET'].forEach(function(i){$(i).value='';});
+  $('MR_DATE').value=''; $('MR_TYPE').value='Marathon'; $('MR_BUD').value='';
+  openMo('MO_RACE');
+}
+function openEditRace(id) {
+  var r=RACES.find(function(x){return x.id===id;}); if(!r)return;
+  editRaceId=id; $('MR_TITLE').textContent='✏️ แก้ไข Race';
+  $('MR_NAME').value=r.name; $('MR_TYPE').value=r.type; $('MR_DATE').value=r.date||'';
+  $('MR_LOC').value=r.location||''; $('MR_BUD').value=r.budget||''; $('MR_TARGET').value=r.target||'';
+  openMo('MO_RACE');
+}
+async function saveRace() {
+  var name=$('MR_NAME').value.trim(); if(!name){notify('กรุณากรอกชื่อ Race','⚠️');return;}
+  var isEdit=!!editRaceId;
+  var existing=isEdit?RACES.find(function(r){return r.id===editRaceId;}):null;
+  var COLORS=['#f59e0b','#e63946','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4'];
+  var row={id:editRaceId||nextRaceId(),name:name,type:$('MR_TYPE').value,date:$('MR_DATE').value,
+    location:$('MR_LOC').value,budget:Number($('MR_BUD').value)||0,
+    color:existing?existing.color:COLORS[RACES.length%COLORS.length],target:$('MR_TARGET').value};
+  var ok=await dbUpsert('RACES',row);
+  if(ok){
+    var i=RACES.findIndex(function(r){return r.id===row.id;});
+    if(i>=0)RACES[i]=row; else RACES.push(row);
+    closeMo('MO_RACE'); notify(isEdit?'✅ แก้ไข Race แล้ว':'✅ เพิ่ม Race แล้ว'); pgRaces();
+  }
+}
+async function delRace(id) {
+  if(!confirm('ลบ Race นี้?\nค่าใช้จ่ายที่ผูกอยู่ยังอยู่ใน Sheets'))return;
+  var ok=await dbDelete('RACES',id);
+  if(ok){RACES=RACES.filter(function(r){return r.id!==id;});notify('🗑️ ลบ Race แล้ว');pgRaces();}
+}
+
+function openAddTr() {
+  editTrId=null; $('MT_TITLE').textContent='📅 บันทึกการซ้อม';
+  $('MT_DATE').value=new Date().toISOString().split('T')[0];
+  ['MT_DIST','MT_TIME','MT_PACE','MT_HR','MT_NOTE'].forEach(function(i){$(i).value='';});
+  $('MT_TYPE').value='Easy Run'; $('MT_ZONE').value='Z2'; $('MT_STATUS').value='เสร็จ'; $('MT_FEEL').value='🙂 ดี';
+  openMo('MO_TR');
+}
+function openEditTr(id) {
+  var t=TRAINING.find(function(x){return String(x.id)===String(id);}); if(!t)return;
+  editTrId=id; $('MT_TITLE').textContent='✏️ แก้ไขการซ้อม';
+  $('MT_DATE').value=t.date||''; $('MT_TYPE').value=t.type||'Easy Run';
+  $('MT_DIST').value=t.dist||''; $('MT_TIME').value=cleanTime(t.time)||'';
+  $('MT_PACE').value=cleanPace(t.pace)||''; $('MT_HR').value=t.hr||'';
+  $('MT_ZONE').value=t.zone||'Z2'; $('MT_STATUS').value=t.status||'เสร็จ';
+  $('MT_FEEL').value=t.feel||'🙂 ดี'; $('MT_NOTE').value=t.note||'';
+  openMo('MO_TR');
+}
+async function saveTr() {
+  var date=$('MT_DATE').value; if(!date){notify('กรุณาเลือกวันที่','⚠️');return;}
+  var row={id:editTrId||nextTrId(),date:date,type:$('MT_TYPE').value,
+    dist:Number($('MT_DIST').value)||0,time:$('MT_TIME').value,pace:$('MT_PACE').value,
+    hr:Number($('MT_HR').value)||0,zone:$('MT_ZONE').value,status:$('MT_STATUS').value,
+    feel:$('MT_FEEL').value,note:$('MT_NOTE').value};
+  var ok=await dbUpsert('TRAINING',row);
+  if(ok){
+    var i=TRAINING.findIndex(function(x){return String(x.id)===String(row.id);});
+    if(i>=0)TRAINING[i]=row; else TRAINING.push(row);
+    TRAINING.sort(function(a,b){return a.date.localeCompare(b.date);});
+    closeMo('MO_TR'); notify(editTrId?'✅ แก้ไขแล้ว':'✅ บันทึกซ้อมแล้ว'); pgTraining();
+  }
+}
+async function delTr(id) {
+  if(!confirm('ลบรายการซ้อมนี้?'))return;
+  var ok=await dbDelete('TRAINING',id);
+  if(ok){TRAINING=TRAINING.filter(function(t){return String(t.id)!==String(id);});notify('🗑️ ลบแล้ว');pgTraining();}
+}
+
 // ═══════════════════════════════════════
-//  PAGE: OVERVIEW
+// PAGES
 // ═══════════════════════════════════════
+
 function pgOverview() {
-  const C = $('CONTENT');
-  const tA = totalActual(), tB = totalBudget(), pct = tB ? Math.round(tA/tB*100) : 0;
-  const next = RACES.filter(r => r.date && days(r.date) > 0).sort((a,b) => a.date.localeCompare(b.date));
-  const doneTr = TRAINING.filter(t => t.status === 'เสร็จ');
-  let html = kban('📊','OVERVIEW',[
-    ['🏆','kb',RACES.length,'Races'],
-    ['⏳','ka',next.length,'ที่จะมาถึง'],
-    ['💰','kr',B(tA),'จ่ายแล้ว'],
-    ['💵','kg',B(tB-tA),'คงเหลือ'],
+  var C=$('CONTENT');
+  var tA=totalActual(),tB=totalBudget(),pct=tB?Math.round(tA/tB*100):0;
+  var next=RACES.filter(function(r){return r.date&&days(r.date)>0;}).sort(function(a,b){return a.date.localeCompare(b.date);});
+  var doneTr=TRAINING.filter(function(t){return t.status==='เสร็จ';});
+  var html=kban('📊','OVERVIEW',[
+    ['🏆','kb',RACES.length,'Races'],['⏳','ka',next.length,'ที่จะมาถึง'],
+    ['💰','kr',B(tA),'จ่ายแล้ว'],['💵','kg',B(tB-tA),'คงเหลือ'],
     ['✅','kp',doneTr.length+'/'+TRAINING.length,'ซ้อมเสร็จ'],
   ]);
-
   // Countdown
-  if (next.length) {
-    html += '<div style="background:linear-gradient(135deg,#1a1f36,#2d3561);border-radius:9px;padding:14px 18px;margin-bottom:14px">';
-    html += '<div style="font-size:9px;color:rgba(255,255,255,.4);font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px">🚀 Countdown</div>';
-    html += '<div style="display:flex;flex-wrap:wrap;gap:0">';
-    next.slice(0,5).forEach((r,i) => {
-      html += '<div style="flex:1;min-width:120px;padding:0 ' + (i?'14':'0') + 'px;' + (i?'border-left:1px solid rgba(255,255,255,.1)':'') + '">';
-      html += '<div style="font-size:11px;font-weight:700;color:#fff;line-height:1.3">' + r.name.split(' ').slice(0,3).join(' ') + '</div>';
-      html += '<div style="font-size:9px;color:rgba(255,255,255,.4);margin-top:2px">' + D(r.date) + ' · ' + r.location + '</div>';
-      html += '<div style="font-size:26px;font-weight:800;color:#f59e0b;line-height:1.2;margin-top:5px">' + days(r.date) + '</div>';
-      html += '<div style="font-size:9px;color:rgba(255,255,255,.4)">วัน</div>';
-      if (r.target) html += '<div style="font-size:10px;color:#10b981;margin-top:3px;font-weight:600">เป้า ' + r.target + '</div>';
-      html += '</div>';
+  if(next.length){
+    html+='<div style="background:linear-gradient(135deg,#1e2a3a,#243447);border-radius:12px;padding:16px 20px;margin-bottom:18px">';
+    html+='<div style="font-size:10px;color:rgba(255,255,255,.4);font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px">🚀 Countdown</div>';
+    html+='<div style="display:flex;flex-wrap:wrap;gap:0">';
+    next.slice(0,5).forEach(function(r,i){
+      html+='<div style="flex:1;min-width:130px;padding:0 '+(i?'16':'0')+'px;'+(i?'border-left:1px solid rgba(255,255,255,.1)':'')+'">';
+      html+='<div style="font-size:12px;font-weight:700;color:#fff;line-height:1.3">'+r.name.split(' ').slice(0,3).join(' ')+'</div>';
+      html+='<div style="font-size:10px;color:rgba(255,255,255,.4);margin-top:2px">'+D(r.date)+' · '+r.location+'</div>';
+      html+='<div style="font-size:28px;font-weight:800;color:#fbbf24;line-height:1.2;margin-top:6px">'+days(r.date)+'</div>';
+      html+='<div style="font-size:10px;color:rgba(255,255,255,.4)">วัน</div>';
+      if(r.target)html+='<div style="font-size:11px;color:#34d399;margin-top:3px;font-weight:600">เป้า '+r.target+'</div>';
+      html+='</div>';
     });
-    html += '</div></div>';
+    html+='</div></div>';
   }
-
-  // 2-col: Budget + Training week
-  html += '<div class="twocol">';
-
-  // Budget per race
-  html += '<div class="card"><div class="chddk"><div class="ctw">💰 Budget ต่อ Race</div></div>';
-  RACES.forEach(r => {
-    const a = sumActual(r.id), bud = Number(r.budget||0), p = bud ? Math.round(a/bud*100) : 0;
-    const d = days(r.date);
-    html += '<div style="padding:10px 14px;border-bottom:1px solid #f3f4f6;cursor:pointer" onclick="curTab=\'' + r.id + '\';go(\'finance\')">';
-    html += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:5px">';
-    html += '<div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:' + r.color + ';flex-shrink:0"></div>';
-    html += '<span style="font-size:12px;font-weight:600;color:#1a1f36">' + r.name.split(' ').slice(0,3).join(' ') + '</span>';
-    if (d !== null && d > 0) html += '<span style="font-size:10px;color:#f59e0b;font-weight:600">อีก ' + d + ' วัน</span>';
-    else if (r.date) html += '<span style="font-size:10px;color:#10b981;font-weight:600">✅</span>';
-    html += '</div><div style="text-align:right"><div style="font-size:13px;font-weight:800;color:#1a1f36">' + B(a) + '</div><div style="font-size:10px;color:#9ca3af">จาก ' + B(bud) + '</div></div></div>';
-    html += '<div style="display:flex;align-items:center;gap:6px"><div class="pbar" style="flex:1;height:6px"><div class="pfill ' + pfc(p) + '" style="width:' + Math.min(p,100) + '%"></div></div><span style="font-size:10px;font-weight:700;color:' + (p>80?'#ef4444':'#10b981') + '">' + p + '%</span></div></div>';
+  html+='<div class="twocol">';
+  // Budget col
+  html+='<div class="card"><div class="chddk"><div class="ctw">💰 Budget ต่อ Race</div></div>';
+  RACES.forEach(function(r){
+    var a=sumActual(r.id),bud=Number(r.budget||0),p=bud?Math.round(a/bud*100):0,d=days(r.date);
+    html+='<div style="padding:11px 16px;border-bottom:1px solid #f0f2f7;cursor:pointer;transition:background .12s" onmouseover="this.style.background=\'#f8faff\'" onmouseout="this.style.background=\'\'" onclick="curTab=\''+r.id+'\';go(\'finance\')">';
+    html+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">';
+    html+='<div style="display:flex;align-items:center;gap:8px"><div style="width:9px;height:9px;border-radius:50%;background:'+r.color+';flex-shrink:0"></div>';
+    html+='<span style="font-size:13px;font-weight:600;color:#1a1f36">'+r.name.split(' ').slice(0,3).join(' ')+'</span>';
+    if(d!==null&&d>0)html+='<span style="font-size:11px;color:#f59e0b;font-weight:600">อีก '+d+' วัน</span>';
+    else if(r.date)html+='<span style="font-size:11px;color:#10b981;font-weight:600">✅</span>';
+    html+='</div><div style="text-align:right"><div style="font-size:14px;font-weight:800;color:#1a1f36">'+B(a)+'</div><div style="font-size:11px;color:#94a3b8">/ '+B(bud)+'</div></div></div>';
+    html+='<div style="display:flex;align-items:center;gap:8px"><div class="pbar" style="flex:1;height:7px"><div class="pfill '+(p>100?'pf-r':p>80?'pf-a':'pf-g')+'" style="width:'+Math.min(p,100)+'%"></div></div>';
+    html+='<span style="font-size:11px;font-weight:700;color:'+(p>80?'#ef4444':'#10b981')+'">'+p+'%</span></div></div>';
   });
-  html += '<div style="padding:9px 14px;background:#1a1f36;display:flex;justify-content:space-between"><span style="font-size:11px;font-weight:700;color:#fff">TOTAL</span><span style="font-size:13px;font-weight:800;color:#fff">' + B(tA) + '<span style="font-size:10px;color:rgba(255,255,255,.4)"> / ' + B(tB) + '</span></span></div>';
-  html += '</div>';
+  html+='<div style="padding:10px 16px;background:#1e2a3a;display:flex;justify-content:space-between;align-items:center">';
+  html+='<span style="font-size:12px;font-weight:700;color:#fff">TOTAL</span>';
+  html+='<span style="font-size:15px;font-weight:800;color:#fff">'+B(tA)+'<span style="font-size:11px;color:rgba(255,255,255,.4)"> / '+B(tB)+'</span></span></div></div>';
 
-  // This week training
-  const today = new Date();
-  const ws = new Date(today); ws.setDate(today.getDate() - ((today.getDay()||7)-1));
-  const we = new Date(ws); we.setDate(ws.getDate()+6);
-  const wsStr = ws.toISOString().split('T')[0], weStr = we.toISOString().split('T')[0];
-  const weekTr = TRAINING.filter(t => t.date >= wsStr && t.date <= weStr);
-  const weekKm = weekTr.filter(t=>t.status==='เสร็จ').reduce((s,t)=>s+Number(t.dist||0),0);
-  const weekKmAll = weekTr.reduce((s,t)=>s+Number(t.dist||0),0);
-  const upcomingTr = TRAINING.filter(t => t.date >= today.toISOString().split('T')[0] && t.status==='วางแผน').slice(0,3);
+  // Training week col
+  var today=new Date(),todayStr=today.toISOString().split('T')[0];
+  var ws=new Date(today); ws.setDate(today.getDate()-((today.getDay()||7)-1));
+  var we=new Date(ws); we.setDate(ws.getDate()+6);
+  var wsStr=ws.toISOString().split('T')[0],weStr=we.toISOString().split('T')[0];
+  var weekTr=TRAINING.filter(function(t){return t.date>=wsStr&&t.date<=weStr;});
+  var weekKm=weekTr.filter(function(t){return t.status==='เสร็จ';}).reduce(function(s,t){return s+Number(t.dist||0);},0);
+  var weekKmAll=weekTr.reduce(function(s,t){return s+Number(t.dist||0);},0);
+  var upTr=TRAINING.filter(function(t){return t.date>=todayStr&&t.status==='วางแผน';}).slice(0,3);
 
-  html += '<div>';
-  html += '<div class="card" style="margin-bottom:14px"><div class="chddk"><div class="ctw">📅 Training สัปดาห์นี้</div><button class="btn btn-xs" style="background:rgba(255,255,255,.15);color:#fff" onclick="go(\'training\')">ดูทั้งหมด →</button></div>';
-  html += '<div style="padding:12px 14px">';
-  const wPct = weekKmAll ? Math.round(weekKm/weekKmAll*100) : 0;
-  html += '<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px"><span style="color:#374151;font-weight:600">km สัปดาห์นี้</span><span style="font-weight:700">' + weekKm.toFixed(0) + ' / ' + weekKmAll.toFixed(0) + ' km</span></div>';
-  html += '<div class="pbar" style="height:8px;margin-bottom:12px"><div class="pfill ' + (wPct>=80?'pf-g':'pf-a') + '" style="width:' + Math.min(wPct,100) + '%"></div></div>';
-  // Day grid
-  html += '<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:10px">';
-  ['จ','อ','พ','พฤ','ศ','ส','อา'].forEach((lb,di) => {
-    const cd = new Date(ws); cd.setDate(ws.getDate()+di);
-    const ds = cd.toISOString().split('T')[0];
-    const todayStr = today.toISOString().split('T')[0];
-    const trDay = weekTr.filter(t=>t.date===ds);
-    const main = trDay[0];
-    const isToday = ds === todayStr;
-    const isDone = main && main.status==='เสร็จ';
-    const isRest = main && main.type==='Rest Day';
-    const bg = isToday?'#e63946':isDone?'#dbeafe':isRest?'#f9fafb':'#f3f4f6';
-    const fc = isToday?'#fff':isDone?'#1e40af':'#6b7280';
-    const label = main ? (isRest?'พัก':(main.dist?main.dist+'k':main.type.slice(0,3))) : '';
-    html += '<div style="background:' + bg + ';border-radius:5px;padding:5px 2px;text-align:center"><div style="font-size:9px;color:' + (isToday?'rgba(255,255,255,.7)':'#9ca3af') + '">' + lb + '</div><div style="font-size:10px;font-weight:700;color:' + fc + ';margin-top:1px">' + label + '</div></div>';
+  html+='<div>';
+  html+='<div class="card" style="margin-bottom:16px"><div class="chddk"><div class="ctw">📅 Training สัปดาห์นี้</div><button class="btn btn-xs" style="background:rgba(255,255,255,.15);color:#fff;border:none" onclick="go(\'training\')">ดูทั้งหมด →</button></div>';
+  html+='<div style="padding:14px 16px">';
+  var wPct=weekKmAll?Math.round(weekKm/weekKmAll*100):0;
+  html+='<div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;font-weight:600"><span style="color:#374151">km สัปดาห์นี้</span><span>'+weekKm.toFixed(0)+' / '+weekKmAll.toFixed(0)+' km</span></div>';
+  html+='<div class="pbar" style="height:8px;margin-bottom:14px"><div class="pfill '+(wPct>=80?'pf-g':'pf-a')+'" style="width:'+Math.min(wPct,100)+'%"></div></div>';
+  html+='<div style="display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:12px">';
+  ['จ','อ','พ','พฤ','ศ','ส','อา'].forEach(function(lb,di){
+    var cd=new Date(ws); cd.setDate(ws.getDate()+di);
+    var ds=cd.toISOString().split('T')[0];
+    var trDay=weekTr.filter(function(t){return t.date===ds;}); var main=trDay[0];
+    var isT=ds===todayStr,isDone=main&&main.status==='เสร็จ',isRest=main&&main.type==='Rest Day';
+    var bg=isT?'#3b82f6':isDone?'#dbeafe':isRest?'#f8fafc':'#f1f5f9';
+    var fc=isT?'#fff':isDone?'#1e40af':'#64748b';
+    var lbl=main?(isRest?'พัก':(main.dist?main.dist+'k':main.type.split(' ')[0].slice(0,3))):'';
+    html+='<div style="background:'+bg+';border-radius:7px;padding:6px 3px;text-align:center"><div style="font-size:10px;color:'+(isT?'rgba(255,255,255,.7)':'#94a3b8')+'">'+lb+'</div><div style="font-size:11px;font-weight:700;color:'+fc+';margin-top:2px">'+lbl+'</div></div>';
   });
-  html += '</div>';
-  if (upcomingTr.length) {
-    html += '<div style="font-size:10px;font-weight:700;color:#374151;margin-bottom:6px">ซ้อมถัดไป</div>';
-    upcomingTr.forEach(t => {
-      const isRace = t.note && t.note.includes('🏁 RACE');
-      html += '<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid #f3f4f6"><div style="font-size:10px;color:#9ca3af;white-space:nowrap;min-width:55px">' + D(t.date) + '</div><div style="flex:1;font-size:11px;font-weight:' + (isRace?'700':'500') + ';color:' + (isRace?'#065f46':'#374151') + '">' + t.type + '</div>' + (t.dist?'<div style="font-size:11px;font-weight:600;color:#3b82f6">' + t.dist + ' km</div>':'') + (isRace?'<div style="font-size:10px;font-weight:700;color:#065f46">🏁</div>':'') + '</div>';
+  html+='</div>';
+  if(upTr.length){
+    html+='<div style="font-size:11px;font-weight:700;color:#374151;margin-bottom:7px;text-transform:uppercase;letter-spacing:.04em">ซ้อมถัดไป</div>';
+    upTr.forEach(function(t){
+      var isRace=t.note&&t.note.indexOf('RACE')>=0;
+      html+='<div style="display:flex;align-items:center;gap:9px;padding:6px 0;border-bottom:1px solid #f0f2f7"><div style="font-size:11px;color:#94a3b8;white-space:nowrap;min-width:58px">'+D(t.date)+'</div>';
+      html+='<div style="flex:1;font-size:13px;font-weight:'+(isRace?'700':'500')+';color:'+(isRace?'#065f46':'#374151')+'">'+t.type+'</div>';
+      if(t.dist)html+='<div style="font-size:12px;font-weight:600;color:#3b82f6">'+t.dist+' km</div>';
+      if(isRace)html+='<div style="font-size:11px;font-weight:700;color:#10b981">🏁</div>';
+      html+='</div>';
     });
   }
-  html += '</div></div>';
-
-  // Recent paid expenses
-  html += '<div class="card"><div class="chd"><div class="ct">💰 ค่าใช้จ่ายล่าสุด</div><button class="btn btn-o btn-xs" onclick="go(\'finance\')">ดูทั้งหมด →</button></div>';
-  const recExp = EXPENSES.filter(e=>e.status==='จ่ายแล้ว'&&e.amount>0).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,5);
-  if (recExp.length) {
-    recExp.forEach(e => {
-      const rc = RACES.find(r=>r.id===e.raceId);
-      html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 14px;border-bottom:1px solid #f3f4f6"><div style="display:flex;align-items:center;gap:7px"><div style="width:7px;height:7px;border-radius:50%;background:' + (rc?rc.color:'#6b7280') + ';flex-shrink:0"></div><div><div style="font-size:11px;font-weight:500">' + e.name + '</div><div style="font-size:9px;color:#9ca3af">' + e.cat + (rc?' · '+rc.name.split(' ').slice(0,2).join(' '):'') + ' · ' + D(e.date) + '</div></div></div><div style="font-size:12px;font-weight:700;color:#e63946">' + B(e.amount) + '</div></div>';
+  html+='</div></div>';
+  // Recent expenses
+  html+='<div class="card"><div class="chd"><div class="ct">💰 ค่าใช้จ่ายล่าสุด</div><button class="btn btn-o btn-xs" onclick="go(\'finance\')">ดูทั้งหมด →</button></div>';
+  var recExp=EXPENSES.filter(function(e){return e.status==='จ่ายแล้ว'&&e.amount>0;}).sort(function(a,b){return b.date.localeCompare(a.date);}).slice(0,5);
+  if(recExp.length){
+    recExp.forEach(function(e){
+      var rc=RACES.find(function(r){return r.id===e.raceId;});
+      html+='<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-bottom:1px solid #f0f2f7"><div style="display:flex;align-items:center;gap:9px"><div style="width:8px;height:8px;border-radius:50%;background:'+(rc?rc.color:'#94a3b8')+';flex-shrink:0"></div>';
+      html+='<div><div style="font-size:13px;font-weight:500">'+e.name+'</div><div style="font-size:11px;color:#94a3b8">'+e.cat+(rc?' · '+rc.name.split(' ').slice(0,2).join(' '):'')+(e.date?' · '+D(e.date):'')+'</div></div></div>';
+      html+='<div style="font-size:14px;font-weight:700;color:#e63946">'+B(e.amount)+'</div></div>';
     });
-  } else html += '<div style="text-align:center;padding:20px;color:#9ca3af;font-size:12px">ยังไม่มีรายการจ่าย</div>';
-  html += '</div>';
-  html += '</div>'; // end col2
-  html += '</div>'; // end twocol
-  C.innerHTML = html;
+  } else html+='<div class="loader" style="height:80px">ยังไม่มีรายการจ่าย</div>';
+  html+='</div>';
+  html+='</div>';
+  html+='</div>';
+  C.innerHTML=html;
 }
 
-// ═══════════════════════════════════════
-//  PAGE: TRAINING PLAN
-// ═══════════════════════════════════════
 function pgTraining() {
-  const C = $('CONTENT');
-  const done = TRAINING.filter(t=>t.status==='เสร็จ');
-  const dKm = done.reduce((s,t)=>s+Number(t.dist||0),0);
-  const todayStr = new Date().toISOString().split('T')[0];
-  let html = kban('📅','TRAINING<br>PLAN',[
-    ['📋','kb',TRAINING.length,'รายการทั้งหมด'],
-    ['✅','kg',done.length,'เสร็จแล้ว'],
-    ['📏','ka',dKm.toFixed(0)+' km','km สะสม'],
+  var C=$('CONTENT');
+  var done=TRAINING.filter(function(t){return t.status==='เสร็จ';});
+  var dKm=done.reduce(function(s,t){return s+Number(t.dist||0);},0);
+  var todayStr=new Date().toISOString().split('T')[0];
+  var html=kban('📅','TRAINING<br>PLAN',[
+    ['📋','kb',TRAINING.length,'รายการทั้งหมด'],['✅','kg',done.length,'เสร็จแล้ว'],['📏','ka',dKm.toFixed(0)+' km','km สะสม'],
   ]);
-
-  // Group by week
-  const groups = {};
-  TRAINING.forEach(t => {
-    const d = new Date(t.date+'T00:00:00');
-    const mon = new Date(d); mon.setDate(d.getDate()-((d.getDay()||7)-1));
-    const key = mon.toISOString().split('T')[0];
-    if (!groups[key]) groups[key] = [];
+  var groups={};
+  TRAINING.forEach(function(t){
+    var d=new Date(t.date+'T00:00:00');
+    var mon=new Date(d); mon.setDate(d.getDate()-((d.getDay()||7)-1));
+    var key=mon.toISOString().split('T')[0];
+    if(!groups[key])groups[key]=[];
     groups[key].push(t);
   });
-
-  html += '<div class="card"><div class="chddk"><div class="ctw">📅 แผนซ้อม — Hyrox Bangkok 2026 Prep</div><button class="btn btn-r btn-xs" onclick="openAddTr()">+ บันทึกซ้อม</button></div>';
-  html += '<div style="overflow-x:auto"><table class="tbl dk" style="min-width:760px">';
-  html += '<thead><tr><th>วันที่</th><th>ประเภท</th><th>ระยะ</th><th>เวลา</th><th>Pace</th><th>HR</th><th>Zone</th><th>สถานะ</th><th>ความรู้สึก</th><th>หมายเหตุ</th><th style="width:60px"></th></tr></thead><tbody>';
-
-  Object.keys(groups).sort().forEach((wk,wi) => {
-    const wDate = new Date(wk+'T00:00:00');
-    const wEnd = new Date(wDate); wEnd.setDate(wDate.getDate()+6);
-    const wKm = groups[wk].reduce((s,t)=>s+Number(t.dist||0),0);
-    html += '<tr><td colspan="11" style="background:#f1f5f9;padding:6px 11px;font-size:10px;font-weight:700;color:#374151;border-top:2px solid #e5e7eb">สัปดาห์ที่ '+(wi+1)+' ('+D(wk)+' – '+D(wEnd.toISOString().split('T')[0])+') · '+wKm.toFixed(1)+' km</td></tr>';
-    groups[wk].forEach(t => {
-      const isToday = t.date === todayStr;
-      const isRace  = t.note && t.note.includes('🏁 RACE');
-      html += '<tr style="'+(isToday?'background:#fffbe6':isRace?'background:#f0fdf4':'')+'">';
-      html += '<td style="white-space:nowrap;font-size:11px;color:'+(isToday?'#f59e0b':'#374151')+';font-weight:'+(isToday?'700':'400')+'">'+D(t.date)+(isToday?' 📍':'')+'</td>';
-      html += '<td style="font-weight:'+(isRace?'700':'500')+';color:'+(isRace?'#065f46':'#1a1f36')+'">'+t.type+'</td>';
-      html += '<td style="font-weight:600">'+(t.dist?t.dist+' km':'—')+'</td>';
-      html += '<td>'+cleanTime(t.time)+'</td>';
-      html += '<td style="color:#3b82f6;font-weight:600">'+(cleanPace(t.pace)!=='—'?cleanPace(t.pace)+'/km':'—')+'</td>';
-      html += '<td>'+(t.hr?t.hr+' bpm':'—')+'</td>';
-      html += '<td><span class="pill p-b" style="font-size:9px">'+t.zone+'</span></td>';
-      html += '<td><select onchange="updateTrStatus(\''+t.id+'\',this.value)" style="font-size:10px;padding:2px 5px;border:1px solid #e5e7eb;border-radius:4px"><option '+(t.status==='วางแผน'?'selected':'')+'>วางแผน</option><option '+(t.status==='เสร็จ'?'selected':'')+'>เสร็จ</option><option '+(t.status==='ข้ามไป'?'selected':'')+'>ข้ามไป</option></select></td>';
-      html += '<td>'+(t.feel||'—')+'</td>';
-      html += '<td style="font-size:12px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(t.note||'')+'">'+(t.note||'—')+'</td>';
-      html += '<td><div style="display:flex;gap:2px"><button class="btn-ic btn-xs" data-id="'+t.id+'" onclick="event.stopPropagation();openEditTr(this.dataset.id)">✏️</button><button class="btn-ic btn-xs" data-id="'+t.id+'" onclick="event.stopPropagation();delTr(this.dataset.id)">🗑️</button></div></td>';
-      html += '</tr>';
+  html+='<div class="card"><div class="chddk"><div class="ctw">📅 แผนซ้อม — Hyrox Bangkok 2026 Prep</div>';
+  html+='<div style="display:flex;gap:7px"><button class="btn btn-xs" style="background:#10b981;color:#fff;border:none" onclick="exportCSV(\'training\')">📥 CSV</button>';
+  html+='<button class="btn btn-r btn-xs" onclick="openAddTr()">+ บันทึกซ้อม</button></div></div>';
+  html+='<div style="overflow-x:auto"><table class="tbl dk" style="min-width:780px"><thead><tr><th>วันที่</th><th>ประเภท</th><th>ระยะ</th><th>เวลา</th><th>Pace</th><th>HR</th><th>Zone</th><th>สถานะ</th><th>ความรู้สึก</th><th>หมายเหตุ</th><th style="width:64px"></th></tr></thead><tbody>';
+  Object.keys(groups).sort().forEach(function(wk,wi){
+    var wDate=new Date(wk+'T00:00:00');
+    var wEnd=new Date(wDate); wEnd.setDate(wDate.getDate()+6);
+    var wKm=groups[wk].reduce(function(s,t){return s+Number(t.dist||0);},0);
+    html+='<tr><td colspan="11" style="background:#f8fafc;padding:7px 14px;font-size:11px;font-weight:700;color:#475569;border-top:2px solid #e8eaf0;text-transform:uppercase;letter-spacing:.04em">สัปดาห์ที่ '+(wi+1)+' · '+D(wk)+' – '+D(wEnd.toISOString().split('T')[0])+' · '+wKm.toFixed(1)+' km</td></tr>';
+    groups[wk].forEach(function(t){
+      var isToday=t.date===todayStr,isRace=t.note&&t.note.indexOf('RACE')>=0;
+      html+='<tr style="'+(isToday?'background:#fefce8':isRace?'background:#f0fdf4':'')+'">';
+      html+='<td style="white-space:nowrap;font-size:12px;color:'+(isToday?'#f59e0b':'#64748b')+';font-weight:'+(isToday?'700':'400')+'">'+D(t.date)+(isToday?' 📍':'')+'</td>';
+      html+='<td style="font-weight:'+(isRace?'700':'500')+';color:'+(isRace?'#065f46':'#1a1f36')+'">'+t.type+'</td>';
+      html+='<td style="font-weight:600">'+(t.dist?t.dist+' km':'—')+'</td>';
+      html+='<td style="font-size:13px">'+cleanTime(t.time)+'</td>';
+      html+='<td style="color:#3b82f6;font-weight:600">'+(cleanPace(t.pace)!=='—'?cleanPace(t.pace)+'/km':'—')+'</td>';
+      html+='<td>'+(t.hr?t.hr+' bpm':'—')+'</td>';
+      html+='<td><span class="pill p-b" style="font-size:10px">'+t.zone+'</span></td>';
+      html+='<td><select onchange="updateTrStatus(\''+t.id+'\',this.value)" style="font-size:11px;padding:3px 6px;border:1.5px solid #e2e8f0;border-radius:5px;cursor:pointer"><option '+(t.status==='วางแผน'?'selected':'')+'>วางแผน</option><option '+(t.status==='เสร็จ'?'selected':'')+'>เสร็จ</option><option '+(t.status==='ข้ามไป'?'selected':'')+'>ข้ามไป</option></select></td>';
+      html+='<td>'+(t.feel||'—')+'</td>';
+      html+='<td style="font-size:12px;color:#94a3b8;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(t.note||'')+'">'+(t.note||'—')+'</td>';
+      html+='<td><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();openEditTr(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();delTr(this.dataset.id)">🗑️</button></div></td></tr>';
     });
   });
-  html += '</tbody></table></div></div>';
-  C.innerHTML = html;
+  html+='</tbody></table></div></div>';
+  C.innerHTML=html;
 }
 
-// ═══════════════════════════════════════
-//  PAGE: RACE CALENDAR
-// ═══════════════════════════════════════
 function pgRaces() {
-  const C = $('CONTENT');
-  const MO = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-  const now = new Date(), curM = now.getMonth(), curY = now.getFullYear();
-  const CW = 54;
-
-  function buildGantt(races, year) {
-    if (!races.length) return '';
-    const isCY = year === curY;
-    let colg = '<colgroup><col style="width:200px"><col style="width:90px"><col style="width:70px">';
-    for(let i=0;i<12;i++) colg += '<col style="width:'+CW+'px">';
-    colg += '<col style="width:60px"></colgroup>';
-
-    let thead = '<thead><tr style="background:#'+(year===2026?'1a1f36':'2d1f36')+'">'
-      + '<th style="padding:7px 11px;text-align:left;font-size:10px;color:rgba(255,255,255,.7)">Race</th>'
-      + '<th style="padding:7px 11px;text-align:left;font-size:10px;color:rgba(255,255,255,.7)">ประเภท</th>'
-      + '<th style="padding:7px 11px;text-align:left;font-size:10px;color:rgba(255,255,255,.7)">Countdown</th>';
-    for(let m=0;m<12;m++){
-      const isC = isCY && m===curM;
-      thead += '<th style="padding:6px 2px;font-size:9px;font-weight:700;text-align:center;width:'+CW+'px;color:'+(isC?'#f59e0b':'rgba(255,255,255,.5)')+';background:'+(isC?'rgba(245,158,11,.15)':'')+';border-right:1px solid rgba(255,255,255,.08)">'+MO[m]+'</th>';
+  var C=$('CONTENT');
+  var MO=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+  var now=new Date(),curM=now.getMonth(),curY=now.getFullYear();
+  var CW=56;
+  function buildGantt(races,year){
+    if(!races.length)return '';
+    var isCY=year===curY;
+    var colg='<colgroup><col style="width:210px"><col style="width:100px"><col style="width:80px">';
+    for(var i=0;i<12;i++)colg+='<col style="width:'+CW+'px">';
+    colg+='<col style="width:68px"></colgroup>';
+    var thead='<thead><tr style="background:#'+(year===2026?'1e2a3a':'2d1f36')+'">';
+    thead+='<th style="padding:9px 13px;text-align:left;font-size:11px;color:rgba(255,255,255,.65)">Race</th>';
+    thead+='<th style="padding:9px 13px;text-align:left;font-size:11px;color:rgba(255,255,255,.65)">ประเภท</th>';
+    thead+='<th style="padding:9px 13px;text-align:left;font-size:11px;color:rgba(255,255,255,.65)">Countdown</th>';
+    for(var m=0;m<12;m++){
+      var isC=isCY&&m===curM;
+      thead+='<th style="padding:7px 2px;font-size:10px;font-weight:700;text-align:center;width:'+CW+'px;color:'+(isC?'#fbbf24':'rgba(255,255,255,.45)')+';background:'+(isC?'rgba(251,191,36,.12)':'')+';border-right:1px solid rgba(255,255,255,.07)">'+MO[m]+'</th>';
     }
-    thead += '<th></th></tr></thead>';
-
-    let tbody = '<tbody>';
-    races.forEach(r => {
-      const rM = new Date(r.date+'T00:00:00').getMonth(), d = days(r.date);
-      let cells = '';
-      for(let m=0;m<12;m++){
-        const isC=isCY&&m===curM, isR=m===rM;
-        cells += '<td style="position:relative;background:'+(isC?'#fffbe6':'#fff')+';border-right:1px solid #f0f0f0;height:38px;padding:0;width:'+CW+'px">';
-        if(isR) cells += '<div class="gantt-bar" style="background:'+r.color+'"><span style="font-size:8px;color:#fff;font-weight:700;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 3px">'+r.type+'</span></div>';
-        if(isC&&!isR) cells += '<div class="gantt-cur"></div>';
-        cells += '</td>';
+    thead+='<th></th></tr></thead>';
+    var tbody='<tbody>';
+    races.forEach(function(r){
+      var rM=new Date(r.date+'T00:00:00').getMonth(),d=days(r.date);
+      var cells='';
+      for(var m=0;m<12;m++){
+        var isC=isCY&&m===curM,isR=m===rM;
+        cells+='<td style="position:relative;background:'+(isC?'#fffbeb':'#fff')+';border-right:1px solid #f0f2f7;height:42px;padding:0;width:'+CW+'px">';
+        if(isR)cells+='<div style="position:absolute;top:10px;left:4%;width:92%;height:22px;border-radius:6px;background:'+r.color+';display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px '+r.color+'55"><span style="font-size:9px;color:#fff;font-weight:700;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 4px">'+r.type+'</span></div>';
+        if(isC&&!isR)cells+='<div style="position:absolute;top:0;bottom:0;left:50%;width:2px;background:#f59e0b;opacity:.5"></div>';
+        cells+='</td>';
       }
-      tbody += '<tr style="border-bottom:1px solid #f3f4f6">'
-        + '<td style="padding:8px 11px"><div style="display:flex;align-items:center;gap:7px"><div style="width:9px;height:9px;border-radius:50%;background:'+r.color+';flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600;color:#1a1f36">'+r.name+'</div><div style="font-size:10px;color:#9ca3af">'+r.location+'</div></div></div></td>'
-        + '<td style="padding:8px 11px"><span style="font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;background:'+r.color+'20;color:'+r.color+';border:1px solid '+r.color+'40">'+r.type+'</span></td>'
-        + '<td style="padding:8px 11px;font-size:12px;font-weight:700;color:'+(d>0?'#f59e0b':'#10b981')+'">'+(d>0?d+' วัน':'✅')+'</td>'
-        + cells
-        + '<td style="padding:6px 8px"><div style="display:flex;gap:2px"><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();openEditRace(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();delRace(this.dataset.id)">🗑️</button></div></td>'
-        + '</tr>';
+      tbody+='<tr style="border-bottom:1px solid #f0f2f7">'
+        +'<td style="padding:9px 13px"><div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:'+r.color+';flex-shrink:0"></div><div><div style="font-size:13px;font-weight:600;color:#1a1f36">'+r.name+'</div><div style="font-size:11px;color:#94a3b8">'+r.location+'</div></div></div></td>'
+        +'<td style="padding:9px 13px"><span style="font-size:11px;padding:3px 9px;border-radius:11px;font-weight:600;background:'+r.color+'20;color:'+r.color+';border:1px solid '+r.color+'40">'+r.type+'</span></td>'
+        +'<td style="padding:9px 13px;font-size:13px;font-weight:700;color:'+(d>0?'#f59e0b':'#10b981')+'">'+(d>0?d+' วัน':'✅')+'</td>'
+        +cells
+        +'<td style="padding:6px 9px"><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();openEditRace(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();delRace(this.dataset.id)">🗑️</button></div></td>'
+        +'</tr>';
     });
-    tbody += '</tbody>';
-    return '<div class="card" style="margin-bottom:14px"><div class="chddk" style="background:#'+(year===2026?'1a1f36':'2d1f36')+'"><div class="ctw">📅 '+year+' — '+races.length+' races</div></div><div class="gantt-wrap"><table style="border-collapse:collapse;min-width:860px;width:100%;table-layout:fixed">'+colg+thead+tbody+'</table></div></div>';
+    tbody+='</tbody>';
+    return '<div class="card" style="margin-bottom:16px"><div class="chddk" style="background:#'+(year===2026?'1e2a3a':'2d1f36')+'"><div class="ctw">📅 '+year+' — '+races.length+' races</div></div><div class="gantt-wrap"><table style="border-collapse:collapse;min-width:880px;width:100%;table-layout:fixed">'+colg+thead+tbody+'</table></div></div>';
   }
-
-  const r2026 = RACES.filter(r=>r.date&&new Date(r.date).getFullYear()===2026);
-  const r2027 = RACES.filter(r=>r.date&&new Date(r.date).getFullYear()===2027);
-
-  let html = kban('🏆','RACE<br>CALENDAR',[
-    ['🏁','kb',RACES.length,'ทั้งหมด'],
-    ['📅','ka',r2026.length,'2026'],
-    ['📅','kp',r2027.length,'2027'],
-    ['⏳','kg',RACES.filter(r=>days(r.date)>0).length,'ที่จะมาถึง'],
+  var r2026=RACES.filter(function(r){return r.date&&new Date(r.date).getFullYear()===2026;});
+  var r2027=RACES.filter(function(r){return r.date&&new Date(r.date).getFullYear()===2027;});
+  var html=kban('🏆','RACE<br>CALENDAR',[
+    ['🏁','kb',RACES.length,'ทั้งหมด'],['📅','ka',r2026.length,'2026'],['📅','kp',r2027.length,'2027'],
+    ['⏳','kg',RACES.filter(function(r){return days(r.date)>0;}).length,'ที่จะมาถึง'],
   ]);
-  html += buildGantt(r2026, 2026);
-  html += buildGantt(r2027, 2027);
-
-  // List with edit/delete
-  html += '<div class="card"><div class="chddk"><div class="ctw">📋 รายการทั้งหมด</div><button class="btn btn-r btn-xs" onclick="openAddRace()">+ Race ใหม่</button></div>';
-  html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>Race</th><th>ประเภท</th><th>วันที่</th><th>สถานที่</th><th>เป้าหมาย</th><th style="text-align:right">Budget</th><th>Countdown</th><th style="width:60px"></th></tr></thead><tbody>';
-  RACES.forEach(r => {
-    const d = days(r.date);
-    html += '<tr><td><div style="display:flex;align-items:center;gap:7px"><div style="width:9px;height:9px;border-radius:50%;background:'+r.color+';flex-shrink:0"></div><span style="font-weight:600">'+r.name+'</span></div></td>';
-    html += '<td><span class="pill p-b">'+r.type+'</span></td>';
-    html += '<td style="white-space:nowrap;font-size:11px;color:#6b7280">'+D(r.date)+'</td>';
-    html += '<td style="font-size:11px;color:#6b7280">'+(r.location||'—')+'</td>';
-    html += '<td style="font-size:11px">'+(r.target||'—')+'</td>';
-    html += '<td style="text-align:right;font-weight:600">'+B(r.budget)+'</td>';
-    html += '<td style="font-weight:700;color:'+(d>0?'#f59e0b':'#10b981')+'">'+(d>0?d+' วัน':'✅ ผ่านแล้ว')+'</td>';
-    html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();openEditRace(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();delRace(this.dataset.id)">🗑️</button></div></td></tr>';
+  html+=buildGantt(r2026,2026);
+  html+=buildGantt(r2027,2027);
+  html+='<div class="card"><div class="chddk"><div class="ctw">📋 รายการทั้งหมด</div><button class="btn btn-r btn-xs" onclick="openAddRace()">+ Race ใหม่</button></div>';
+  html+='<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>Race</th><th>ประเภท</th><th>วันที่</th><th>สถานที่</th><th>เป้าหมาย</th><th style="text-align:right">Budget</th><th>Countdown</th><th style="width:68px"></th></tr></thead><tbody>';
+  RACES.forEach(function(r){
+    var d=days(r.date);
+    html+='<tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:'+r.color+';flex-shrink:0"></div><span style="font-weight:600;font-size:13px">'+r.name+'</span></div></td>';
+    html+='<td><span class="pill p-b">'+r.type+'</span></td><td style="white-space:nowrap;font-size:12px;color:#94a3b8">'+D(r.date)+'</td>';
+    html+='<td style="font-size:12px;color:#94a3b8">'+(r.location||'—')+'</td><td style="font-size:13px">'+(r.target||'—')+'</td>';
+    html+='<td style="text-align:right;font-weight:600;font-size:13px">'+B(r.budget)+'</td>';
+    html+='<td style="font-weight:700;font-size:13px;color:'+(d>0?'#f59e0b':'#10b981')+'">'+(d>0?d+' วัน':'✅ ผ่านแล้ว')+'</td>';
+    html+='<td><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();openEditRace(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();delRace(this.dataset.id)">🗑️</button></div></td></tr>';
   });
-  html += '</tbody></table></div></div>';
-  C.innerHTML = html;
+  html+='</tbody></table></div></div>';
+  C.innerHTML=html;
 }
 
-// ═══════════════════════════════════════
-//  PAGE: FINANCE
-// ═══════════════════════════════════════
 function pgFinance() {
-  const C = $('CONTENT');
-  const tA = totalActual(), tB = totalBudget(), tP = EXPENSES.reduce((s,e)=>s+Number(e.amount||0),0);
-  const pct = tB ? Math.round(tA/tB*100) : 0;
-  let html = kban('💰','BUDGET &<br>ACTUAL',[
-    ['🎯','kb',B(tB),'Budget รวม'],
-    ['✅','kr',B(tA),'จ่ายแล้ว'],
-    ['📋','ka',B(tP),'วางแผน'],
-    ['💵','kg',B(tB-tA),'คงเหลือ'],
-    ['📊',pct<80?'kg':'kr',pct+'%','% ใช้'],
+  var C=$('CONTENT');
+  var tA=totalActual(),tB=totalBudget(),tP=EXPENSES.reduce(function(s,e){return s+Number(e.amount||0);},0);
+  var pct=tB?Math.round(tA/tB*100):0;
+  var html=kban('💰','BUDGET &<br>ACTUAL',[
+    ['🎯','kb',B(tB),'Budget รวม'],['✅','kr',B(tA),'จ่ายแล้ว'],['📋','ka',B(tP),'วางแผน'],
+    ['💵','kg',B(tB-tA),'คงเหลือ'],['📊',pct<80?'kg':'kr',pct+'%','% ใช้'],
   ]);
-
-  // Race cards
-  html += '<div class="rcards">';
-  RACES.forEach(r => {
-    const a=sumActual(r.id), bud=Number(r.budget||0), p=bud?Math.round(a/bud*100):0, d=days(r.date);
-    const expCount = EXPENSES.filter(e=>e.raceId===r.id).length;
-    html += '<div class="rcard" style="border-top-color:'+r.color+'" data-rid="'+r.id+'" onclick="(function(b){curTab=b.dataset.rid;pgFinance();})(this)">';
-
-    html += '<div style="font-size:11px;font-weight:700;color:#1a1f36;line-height:1.3;margin-bottom:2px">'+r.name+'</div>';
-    html += '<div style="font-size:10px;color:#9ca3af;margin-bottom:6px">'+(d>0?'อีก '+d+' วัน':r.date?'✅ ผ่านแล้ว':'')+'</div>';
-    html += '<div style="font-size:16px;font-weight:800;color:#1a1f36;margin-bottom:3px">'+B(a)+'</div>';
-    html += '<div style="display:flex;justify-content:space-between;font-size:10px;margin-bottom:4px"><span style="color:#9ca3af">Budget</span><span style="font-weight:600">'+B(bud)+'</span></div>';
-    html += '<div class="pbar"><div class="pfill '+pfc(p)+'" style="width:'+Math.min(p,100)+'%"></div></div>';
-    html += '<div style="display:flex;justify-content:space-between;font-size:10px;margin-top:3px"><span style="font-weight:600;color:'+(bud-a<0?'#ef4444':'#10b981')+'">'+B(bud-a)+'</span><span style="font-weight:700;color:'+(p>80?'#ef4444':'#6b7280')+'">'+p+'%</span></div>';
-    html += '</div>';
+  // Race mini cards
+  html+='<div class="rcards">';
+  RACES.forEach(function(r){
+    var a=sumActual(r.id),bud=Number(r.budget||0),p=bud?Math.round(a/bud*100):0,d=days(r.date);
+    html+='<div class="rcard" style="border-top-color:'+r.color+'" onclick="curTab=\''+r.id+'\';pgFinance()">';
+    html+='<div style="font-size:12px;font-weight:700;color:#1a1f36;line-height:1.3;margin-bottom:3px">'+r.name+'</div>';
+    html+='<div style="font-size:11px;color:#94a3b8;margin-bottom:8px">'+(d>0?'อีก '+d+' วัน':r.date?'✅ ผ่านแล้ว':'')+'</div>';
+    html+='<div style="font-size:18px;font-weight:800;color:#1a1f36;margin-bottom:4px">'+B(a)+'</div>';
+    html+='<div style="display:flex;justify-content:space-between;font-size:11px;margin-bottom:5px;align-items:center"><span style="color:#94a3b8">Budget</span>';
+    html+='<input type="number" value="'+(bud||'')+'" onclick="event.stopPropagation()" onchange="updateBudget(\''+r.id+'\',this.value)" style="width:90px;text-align:right;padding:2px 5px;border:1.5px solid #e2e8f0;border-radius:5px;font-size:12px;font-weight:600;font-family:inherit" /></div>';
+    html+='<div class="pbar"><div class="pfill '+(p>100?'pf-r':p>80?'pf-a':'pf-g')+'" style="width:'+Math.min(p,100)+'%"></div></div>';
+    html+='<div style="display:flex;justify-content:space-between;font-size:11px;margin-top:4px"><span style="font-weight:600;color:'+(bud-a<0?'#ef4444':'#10b981')+'">'+B(bud-a)+'</span><span style="font-weight:700;color:'+(p>80?'#ef4444':'#64748b')+'">'+p+'%</span></div></div>';
   });
-  html += '</div>';
-
-  // BVA Table
-  html += '<div class="card" style="margin-bottom:14px"><div class="chddk"><div class="ctw">📊 Budget vs Actual</div></div>';
-  html += '<div style="overflow-x:auto"><table class="tbl"><thead><tr><th style="min-width:200px">Race</th><th style="text-align:right;min-width:120px">Budget (฿)</th><th style="text-align:right">Actual</th><th style="text-align:right">วางแผน</th><th style="text-align:right">คงเหลือ</th><th style="min-width:120px">%</th><th>สถานะ</th><th></th></tr></thead><tbody>';
-  RACES.forEach(r => {
-    const a=sumActual(r.id), bud=Number(r.budget||0), pl=sumAll(r.id), rem=bud-a, p=bud?Math.round(a/bud*100):0;
-    const st = p>100?'<span style="color:#ef4444;font-weight:700">เกิน!</span>':p>80?'<span style="color:#f59e0b;font-weight:700">ใกล้ครบ</span>':'<span style="color:#10b981;font-weight:700">On Track</span>';
-    html += '<tr>';
-    html += '<td><div style="display:flex;align-items:center;gap:7px"><div style="width:8px;height:8px;border-radius:50%;background:'+r.color+';flex-shrink:0"></div><div><div style="font-size:12px;font-weight:600">'+r.name+'</div><div style="font-size:10px;color:#9ca3af">'+D(r.date)+'</div></div></div></td>';
-    html += '<td style="text-align:right;font-weight:600">'+B(bud)+'</td>';
-    html += '<td style="text-align:right;font-weight:700;color:#e63946">'+B(a)+'</td>';
-    html += '<td style="text-align:right;color:#f59e0b;font-weight:600">'+B(pl)+'</td>';
-    html += '<td style="text-align:right;font-weight:700;color:'+(rem<0?'#ef4444':'#10b981')+'">'+B(rem)+'</td>';
-    html += '<td><div style="display:flex;align-items:center;gap:5px"><div class="pbar" style="flex:1"><div class="pfill '+pfc(p)+'" style="width:'+Math.min(p,100)+'%"></div></div><span style="font-size:11px;font-weight:700;min-width:28px;color:'+(p>80?'#ef4444':'#10b981')+'">'+p+'%</span></div></td>';
-    html += '<td>'+st+'</td>';
-    html += '<td><button class="btn btn-o btn-xs" data-rid="'+r.id+'" onclick="(function(b){curTab=b.dataset.rid;pgFinance();})(this)">รายการ</button></td>';
-
-    html += '</tr>';
+  html+='</div>';
+  // BVA table
+  html+='<div class="card" style="margin-bottom:16px"><div class="chddk"><div class="ctw">📊 Budget vs Actual</div></div>';
+  html+='<div style="overflow-x:auto"><table class="tbl"><thead><tr><th style="min-width:200px">Race</th><th style="text-align:right;min-width:120px">Budget</th><th style="text-align:right">Actual</th><th style="text-align:right">วางแผน</th><th style="text-align:right">คงเหลือ</th><th style="min-width:130px">%</th><th>สถานะ</th><th></th></tr></thead><tbody>';
+  RACES.forEach(function(r){
+    var a=sumActual(r.id),bud=Number(r.budget||0),pl=sumAll(r.id),rem=bud-a,p=bud?Math.round(a/bud*100):0;
+    var st=p>100?'<span style="color:#ef4444;font-weight:700">เกิน!</span>':p>80?'<span style="color:#f59e0b;font-weight:700">ใกล้ครบ</span>':'<span style="color:#10b981;font-weight:700">On Track</span>';
+    html+='<tr><td><div style="display:flex;align-items:center;gap:8px"><div style="width:9px;height:9px;border-radius:50%;background:'+r.color+';flex-shrink:0"></div><div><div style="font-size:13px;font-weight:600">'+r.name+'</div><div style="font-size:11px;color:#94a3b8">'+D(r.date)+'</div></div></div></td>';
+    html+='<td style="text-align:right"><input type="number" value="'+(bud||'')+'" onchange="updateBudget(\''+r.id+'\',this.value)" style="width:110px;text-align:right;padding:5px 8px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:13px;font-weight:600;font-family:inherit" /></td>';
+    html+='<td style="text-align:right;font-weight:700;color:#e63946;font-size:13px">'+B(a)+'</td>';
+    html+='<td style="text-align:right;color:#f59e0b;font-weight:600;font-size:13px">'+B(pl)+'</td>';
+    html+='<td style="text-align:right;font-weight:700;color:'+(rem<0?'#ef4444':'#10b981')+';font-size:13px">'+B(rem)+'</td>';
+    html+='<td><div style="display:flex;align-items:center;gap:6px"><div class="pbar" style="flex:1"><div class="pfill '+(p>100?'pf-r':p>80?'pf-a':'pf-g')+'" style="width:'+Math.min(p,100)+'%"></div></div><span style="font-size:12px;font-weight:700;min-width:30px;color:'+(p>80?'#ef4444':'#10b981')+'">'+p+'%</span></div></td>';
+    html+='<td>'+st+'</td><td><button class="btn btn-o btn-xs" data-rid="'+r.id+'" onclick="curTab=this.dataset.rid;pgFinance()">รายการ</button></td></tr>';
   });
-  const tp = tB?Math.round(tA/tB*100):0;
-  html += '<tr style="background:#1a1f36"><td colspan="2" style="padding:9px 11px;color:#fff;font-weight:700">TOTAL</td><td style="text-align:right;color:#fff;font-weight:800;padding:9px 11px">'+B(tA)+'</td><td style="text-align:right;color:#f59e0b;font-weight:700;padding:9px 11px">'+B(tP)+'</td><td style="text-align:right;font-weight:700;color:'+(tB-tA<0?'#ef4444':'#10b981')+';padding:9px 11px">'+B(tB-tA)+'</td><td style="padding:9px 11px"><span style="color:#fff;font-weight:700">'+tp+'%</span></td><td colspan="2"></td></tr>';
-  html += '</tbody></table></div></div>';
-
-  // Expense detail tabs
-  const curRace = RACES.find(r=>r.id===curTab) || RACES[0];
-  if (curTab && !RACES.find(r=>r.id===curTab) && RACES.length) curTab = RACES[0].id;
-
-  let tabs = '<div class="tabs"><div class="tab '+(curTab==='__all'?'act':'')+'" onclick="curTab=\'__all\';pgFinance()">🌐 ทั้งหมด<span class="cnt">'+EXPENSES.length+'</span></div>';
-  RACES.forEach(r => {
-    const c = EXPENSES.filter(e=>e.raceId===r.id).length;
-    tabs += '<div class="tab '+(curTab===r.id?'act':'')+' data-rid="'+r.id+'" onclick="(function(b){curTab=b.dataset.rid;pgFinance();})(this)"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+r.color+';margin-right:4px;vertical-align:1px"></span>'+r.name.split(' ').slice(0,2).join(' ')+'<span class="cnt">'+c+'</span></div>';
-
+  var tp=tB?Math.round(tA/tB*100):0;
+  html+='<tr style="background:#1e2a3a"><td colspan="2" style="padding:10px 13px;color:#fff;font-weight:700;font-size:13px">TOTAL</td><td style="text-align:right;color:#fff;font-weight:800;font-size:14px;padding:10px 13px">'+B(tA)+'</td><td style="text-align:right;color:#fbbf24;font-weight:700;padding:10px 13px">'+B(tP)+'</td><td style="text-align:right;font-weight:700;color:'+(tB-tA<0?'#f87171':'#34d399')+';padding:10px 13px">'+B(tB-tA)+'</td><td style="padding:10px 13px"><span style="color:#fff;font-weight:700">'+tp+'%</span></td><td colspan="2"></td></tr>';
+  html+='</tbody></table></div></div>';
+  // Expense tabs
+  var curRace=RACES.find(function(r){return r.id===curTab;});
+  if(!curRace&&RACES.length){curTab=RACES[0].id;curRace=RACES[0];}
+  var tabs='<div class="tabs"><div class="tab '+(curTab==='__all'?'act':'')+'" onclick="curTab=\'__all\';pgFinance()">🌐 ทั้งหมด<span class="cnt">'+EXPENSES.length+'</span></div>';
+  RACES.forEach(function(r){
+    tabs+='<div class="tab '+(curTab===r.id?'act':'')+'" onclick="curTab=\''+r.id+'\';pgFinance()"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:'+r.color+';margin-right:5px;vertical-align:1px"></span>'+r.name.split(' ').slice(0,2).join(' ')+'<span class="cnt">'+EXPENSES.filter(function(e){return e.raceId===r.id;}).length+'</span></div>';
   });
-  tabs += '</div>';
-
-  const expList = curTab==='__all' ? EXPENSES : EXPENSES.filter(e=>e.raceId===curTab);
-  const CAT_ORDER = ['ค่าสมัคร','ตั๋วเครื่องบิน','โรงแรม','ค่าอาหาร','Expo','อุปกรณ์','เสื้อผ้า','Nutrition','ค่าเดินทาง','ประกัน','อื่นๆ'];
-  const sorted = [...expList].sort((a,b)=>CAT_ORDER.indexOf(a.cat)-CAT_ORDER.indexOf(b.cat));
-
-  let rows = '', lastCat = '', buf = [];
-  function flushCat() {
-    if (!buf.length) return;
-    rows += '<tr><td colspan="8" class="sep-row" style="padding:5px 11px;background:#f9fafb;border-top:1px solid #e5e7eb"><span class="sep-lbl">'+lastCat+'</span><span style="color:#9ca3af;font-size:10px;margin-left:8px">'+buf.length+' รายการ</span></td></tr>';
-    buf.forEach(e => {
-      const rc = RACES.find(r=>r.id===e.raceId);
-      const rname = curTab==='__all' ? '<div style="font-size:9px;color:#9ca3af">'+(rc?rc.name:'')+'</div>' : '';
-      rows += '<tr>';
-      rows += '<td style="padding-left:18px"><div style="display:flex;align-items:center;gap:6px"><div style="width:3px;height:28px;background:'+(rc?rc.color:'#6b7280')+';border-radius:2px;flex-shrink:0"></div><div><div style="font-size:12px;font-weight:500">'+e.name+'</div>'+rname+'</div></div></td>';
-      rows += '<td>'+catTag(e.cat)+'</td>';
-      rows += '<td style="min-width:110px"><input type="number" value="'+(e.amount||'')+'" placeholder="0" style="width:100%;text-align:right" onchange="updateExpAmt(\''+e.id+'\',this.value)" /></td>';
-      rows += '<td><select style="font-size:10px" onchange="updateExpStatus(\''+e.id+'\',this.value)"><option '+(e.status==='วางแผน'?'selected':'')+'>วางแผน</option><option '+(e.status==='จ่ายแล้ว'?'selected':'')+'>จ่ายแล้ว</option><option '+(e.status==='รอยืนยัน'?'selected':'')+'>รอยืนยัน</option></select></td>';
-      rows += '<td style="font-size:11px;color:#6b7280;white-space:nowrap">'+D(e.date)+'</td>';
-      rows += '<td style="font-size:10px;color:#9ca3af">'+(e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'')+'</td>';
-      rows += '<td style="font-size:11px;color:#6b7280;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(e.note||'')+'">'+(e.note||'—')+'</td>';
-      rows += '<td><div style="display:flex;gap:2px"><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.eid)">✏️</button><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.eid)">🗑️</button></div></td>';
-
-      rows += '</tr>';
+  tabs+='</div>';
+  var expList=curTab==='__all'?EXPENSES:EXPENSES.filter(function(e){return e.raceId===curTab;});
+  var CAT_ORDER=['ค่าสมัคร','ตั๋วเครื่องบิน','โรงแรม','ค่าอาหาร','Expo','อุปกรณ์','เสื้อผ้า','Nutrition','ค่าเดินทาง','ประกัน','อื่นๆ'];
+  var sorted=expList.slice().sort(function(a,b){return CAT_ORDER.indexOf(a.cat)-CAT_ORDER.indexOf(b.cat);});
+  var rows='',lastCat='',buf=[];
+  function flushCat(){
+    if(!buf.length)return;
+    rows+='<tr><td colspan="8" style="padding:6px 14px;background:#f8fafc;border-top:1.5px solid #e8eaf0"><span class="sep-lbl">'+lastCat+'</span><span style="color:#94a3b8;font-size:11px;margin-left:8px">'+buf.length+' รายการ</span></td></tr>';
+    buf.forEach(function(e){
+      var rc=RACES.find(function(r){return r.id===e.raceId;});
+      var rname=curTab==='__all'?'<div style="font-size:11px;color:#94a3b8">'+(rc?rc.name:'')+'</div>':'';
+      rows+='<tr><td style="padding-left:20px"><div style="display:flex;align-items:center;gap:7px"><div style="width:3px;height:30px;background:'+(rc?rc.color:'#94a3b8')+';border-radius:2px;flex-shrink:0"></div><div><div style="font-size:13px;font-weight:500;color:#1a1f36">'+e.name+'</div>'+rname+'</div></div></td>';
+      rows+='<td>'+catTag(e.cat)+'</td>';
+      rows+='<td style="min-width:120px"><input type="number" value="'+(e.amount||'')+'" placeholder="0" style="width:100%;text-align:right;padding:4px 8px;border:1.5px solid #e2e8f0;border-radius:6px;font-size:13px;font-weight:'+(e.amount?'700':'400')+';font-family:inherit;color:'+(e.amount?'#1a1f36':'#94a3b8')+'" onchange="updateExpAmt(\''+e.id+'\',this.value)" onfocus="this.select()" /></td>';
+      rows+='<td><select style="font-size:12px;padding:3px 7px;border:1.5px solid #e2e8f0;border-radius:5px;font-family:inherit;cursor:pointer" onchange="updateExpStatus(\''+e.id+'\',this.value)"><option '+(e.status==='วางแผน'?'selected':'')+'>วางแผน</option><option '+(e.status==='จ่ายแล้ว'?'selected':'')+'>จ่ายแล้ว</option><option '+(e.status==='รอยืนยัน'?'selected':'')+'>รอยืนยัน</option></select></td>';
+      rows+='<td style="font-size:12px;color:#94a3b8;white-space:nowrap">'+D(e.date)+'</td>';
+      rows+='<td style="font-size:11px;color:#94a3b8">'+(e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'')+'</td>';
+      rows+='<td style="font-size:12px;color:#94a3b8;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(e.note||'')+'">'+(e.note||'—')+'</td>';
+      rows+='<td><div style="display:flex;gap:3px"><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.eid)">✏️</button><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.eid)">🗑️</button></div></td></tr>';
     });
-    buf = [];
+    buf=[];
   }
-  sorted.forEach(e => {
-    if (e.cat !== lastCat) { flushCat(); lastCat = e.cat; }
-    buf.push(e);
-  });
-  flushCat();
-
-  const gt = expList.reduce((s,e)=>s+Number(e.amount||0),0);
-  const ga = expList.filter(e=>e.status==='จ่ายแล้ว').reduce((s,e)=>s+Number(e.amount||0),0);
-  if (expList.length > 0) {
-    rows += '<tr style="background:#1a1f36"><td colspan="2" style="padding:9px 11px;color:#fff;font-weight:700">TOTAL</td><td style="padding:9px 11px;text-align:right;color:#fff;font-weight:800">'+B(gt)+'</td><td style="padding:9px 11px;font-size:10px;color:rgba(255,255,255,.6)">จ่ายแล้ว '+B(ga)+'</td><td colspan="4" style="padding:9px 11px;font-size:10px;color:rgba(255,255,255,.4)">'+expList.length+' รายการ</td></tr>';
-  }
-  if (!rows) rows = '<tr><td colspan="8" style="text-align:center;padding:28px;color:#9ca3af">ยังไม่มีรายการ — กด "+ เพิ่มรายการ"</td></tr>';
-
-  html += '<div class="card">'+tabs;
-  html += '<div class="chd"><div><div class="ct">'+(curTab==='__all'?'🌐 ทั้งหมด':'<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:'+(curRace?curRace.color:'#6b7280')+';margin-right:5px;vertical-align:1px"></span>'+(curRace?curRace.name:''))+'</div>'+(curRace&&curTab!=='__all'?'<div class="csub">Budget: '+B(curRace.budget)+' · จ่ายแล้ว: '+B(sumActual(curTab))+'</div>':'')+'</div>';
-  html += '<div style="display:flex;gap:7px"><button class="btn btn-r btn-xs" onclick="openAddExp(curTab===\'__all\'?(RACES[0]&&RACES[0].id)||\'\':curTab)">+ เพิ่มรายการ</button></div>';
-
-  html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th style="min-width:200px">รายการ</th><th>หมวด</th><th style="text-align:right;min-width:110px">จำนวน (฿)</th><th style="min-width:100px">สถานะ</th><th>วันที่</th><th>สกุล</th><th style="min-width:100px">หมายเหตุ</th><th style="width:60px"></th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
-
-  C.innerHTML = html;
+  sorted.forEach(function(e){if(e.cat!==lastCat){flushCat();lastCat=e.cat;}buf.push(e);}); flushCat();
+  var gt=expList.reduce(function(s,e){return s+Number(e.amount||0);},0);
+  var ga=expList.filter(function(e){return e.status==='จ่ายแล้ว';}).reduce(function(s,e){return s+Number(e.amount||0);},0);
+  if(expList.length>0)rows+='<tr style="background:#1e2a3a"><td colspan="2" style="padding:10px 14px;color:#fff;font-weight:700;font-size:13px">TOTAL</td><td style="padding:10px 14px;text-align:right;color:#fff;font-weight:800;font-size:14px">'+B(gt)+'</td><td style="padding:10px 14px;font-size:12px;color:rgba(255,255,255,.6)">จ่ายแล้ว '+B(ga)+'</td><td colspan="4" style="padding:10px 14px;font-size:11px;color:rgba(255,255,255,.4)">'+expList.length+' รายการ</td></tr>';
+  if(!rows)rows='<tr><td colspan="8" style="text-align:center;padding:32px;color:#94a3b8"><div style="font-size:28px;margin-bottom:8px">📋</div><div style="font-size:14px">ยังไม่มีรายการ</div></td></tr>';
+  html+='<div class="card">'+tabs;
+  html+='<div class="chd"><div><div class="ct">'+(curTab==='__all'?'🌐 ทั้งหมด':'<span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:'+(curRace?curRace.color:'#94a3b8')+';margin-right:6px;vertical-align:1px"></span>'+(curRace?curRace.name:''))+'</div>';
+  if(curRace&&curTab!=='__all')html+='<div class="csub">Budget: '+B(curRace.budget)+' · จ่ายแล้ว: '+B(sumActual(curTab))+'</div>';
+  html+='</div><div style="display:flex;gap:7px"><button class="btn btn-r btn-xs" onclick="openAddExp(\''+(curTab==='__all'?(RACES[0]&&RACES[0].id)||'':curTab)+'\')">+ เพิ่มรายการ</button><button class="btn btn-o btn-xs" onclick="exportCSV(\'expenses\')">📥 CSV</button></div></div>';
+  html+='<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th style="min-width:210px">รายการ</th><th>หมวด</th><th style="text-align:right;min-width:120px">จำนวน (฿)</th><th style="min-width:110px">สถานะ</th><th>วันที่</th><th>สกุล</th><th style="min-width:110px">หมายเหตุ</th><th style="width:68px"></th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
+  C.innerHTML=html;
 }
 
-// ═══════════════════════════════════════
-//  PAGE: GEAR
-// ═══════════════════════════════════════
 function pgGear() {
-  var C = $('CONTENT');
-  var gear = EXPENSES.filter(function(e){ return ['อุปกรณ์','เสื้อผ้า','Nutrition'].indexOf(e.cat) >= 0; });
-  var totalPaid = gear.filter(function(e){ return e.status==='จ่ายแล้ว'; }).reduce(function(s,e){ return s+Number(e.amount||0); },0);
-  var totalPlan = gear.reduce(function(s,e){ return s+Number(e.amount||0); },0);
-  var html = kban('👟','GEAR &<br>NUTRITION',[
-    ['💰','kr',B(totalPaid),'จ่ายแล้ว'],
-    ['📋','ka',B(totalPlan),'วางแผนรวม'],
-    ['📦','kb',gear.filter(function(e){ return e.status==='จ่ายแล้ว'; }).length,'ซื้อแล้ว'],
-    ['⏳','kp',gear.filter(function(e){ return e.status==='วางแผน'; }).length,'วางแผน'],
-  ]);
-  var firstRaceId = RACES.length ? RACES[0].id : '';
-  html += '<div class="card"><div class="chddk"><div class="ctw">👟 อุปกรณ์ & Nutrition</div><button class="btn btn-r btn-xs" onclick="topAdd()">+ เพิ่ม</button></div>';
-  if (gear.length) {
-    html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>รายการ</th><th>Race</th><th>หมวด</th><th style="text-align:right;min-width:100px">฿</th><th>สถานะ</th><th>วันที่</th><th>หมายเหตุ</th><th style="width:65px"></th></tr></thead><tbody>';
-    gear.forEach(function(e) {
-      var rc = RACES.find(function(r){ return r.id===e.raceId; });
-      html += '<tr>';
-      html += '<td style="font-weight:500;font-size:13px">'+e.name+'</td>';
-      html += '<td><div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:'+(rc?rc.color:'#6b7280')+';flex-shrink:0"></div><span style="font-size:12px">'+(rc?rc.name.split(' ').slice(0,3).join(' '):'')+'</span></div></td>';
-      html += '<td>'+catTag(e.cat)+'</td>';
-      html += '<td style="text-align:right;font-weight:700;font-size:13px;color:'+(e.amount?'#1a1f36':'#9ca3af')+'">'+B(e.amount)+'</td>';
-      html += '<td>'+stPill(e.status)+'</td>';
-      html += '<td style="font-size:12px;color:#6b7280;white-space:nowrap">'+D(e.date)+'</td>';
-      html += '<td style="font-size:12px;color:#6b7280;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(e.note||'—')+'</td>';
-      html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.id)">🗑️</button></div></td>';
-      html += '</tr>';
+  var C=$('CONTENT');
+  var gear=EXPENSES.filter(function(e){return e.cat==='อุปกรณ์'||e.cat==='เสื้อผ้า';});
+  var total=gear.filter(function(e){return e.status==='จ่ายแล้ว';}).reduce(function(s,e){return s+Number(e.amount||0);},0);
+  var html=kban('👟','GEAR &<br>EQUIP',[['💰','kr',B(total),'มูลค่ารวม'],['📦','kb',gear.filter(function(e){return e.status==='จ่ายแล้ว';}).length,'ซื้อแล้ว'],['📋','ka',gear.filter(function(e){return e.status==='วางแผน';}).length,'วางแผน']]);
+  html+='<div class="card"><div class="chddk"><div class="ctw">👟 รายการอุปกรณ์</div><button class="btn btn-r btn-xs" onclick="openAddExp(\''+(RACES[0]?RACES[0].id:'')+'\')">+ เพิ่ม</button></div>';
+  if(gear.length){
+    html+='<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>รายการ</th><th>Race</th><th>หมวด</th><th style="text-align:right">฿</th><th>สถานะ</th><th>วันที่</th><th>หมายเหตุ</th><th style="width:68px"></th></tr></thead><tbody>';
+    gear.forEach(function(e){
+      var rc=RACES.find(function(r){return r.id===e.raceId;});
+      html+='<tr><td style="font-weight:500;font-size:13px">'+e.name+'</td><td><div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:'+(rc?rc.color:'#94a3b8')+';flex-shrink:0"></div><span style="font-size:12px">'+(rc?rc.name.split(' ').slice(0,2).join(' '):'')+'</span></div></td>';
+      html+='<td>'+catTag(e.cat)+'</td><td style="text-align:right;font-weight:700;font-size:13px;color:'+(e.amount?'#1a1f36':'#94a3b8')+'">'+B(e.amount)+'</td>';
+      html+='<td>'+stPill(e.status)+'</td><td style="font-size:12px;color:#94a3b8;white-space:nowrap">'+D(e.date)+'</td><td style="font-size:12px;color:#94a3b8">'+(e.note||'—')+'</td>';
+      html+='<td><div style="display:flex;gap:3px"><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.eid)">✏️</button><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.eid)">🗑️</button></div></td></tr>';
     });
-    html += '<tr style="background:#1a1f36"><td colspan="3" style="padding:9px 12px;color:#fff;font-weight:700">TOTAL</td><td style="padding:9px 12px;text-align:right;color:#fff;font-weight:800;font-size:14px">'+B(totalPlan)+'</td><td style="padding:9px 12px;font-size:11px;color:rgba(255,255,255,.6)">จ่ายแล้ว '+B(totalPaid)+'</td><td colspan="3"></td></tr>';
-    html += '</tbody></table></div>';
-  } else {
-    html += '<div style="text-align:center;padding:40px;color:#9ca3af"><div style="font-size:32px;margin-bottom:10px">👟</div><div style="font-size:14px">ยังไม่มีรายการ — กด "+ เพิ่ม"</div></div>';
-  }
-  html += '</div>';
-  C.innerHTML = html;
+    html+='</tbody></table></div>';
+  }else html+='<div class="loader">👟 ยังไม่มีรายการอุปกรณ์</div>';
+  html+='</div>'; C.innerHTML=html;
 }
 
 function pgTravel() {
-  var C = $('CONTENT');
-  var cats = ['ตั๋วเครื่องบิน','โรงแรม','ค่าเดินทาง','ประกัน'];
-  var trav = EXPENSES.filter(function(e){ return cats.indexOf(e.cat) >= 0; });
-  var totP = trav.reduce(function(s,e){ return s+Number(e.amount||0); },0);
-  var totA = trav.filter(function(e){ return e.status==='จ่ายแล้ว'; }).reduce(function(s,e){ return s+Number(e.amount||0); },0);
-  var html = kban('✈️','TRAVEL<br>PLAN',[
-    ['📋','ka',B(totP),'ประมาณการรวม'],
-    ['✅','kr',B(totA),'จองแล้ว'],
-    ['💵','kg',B(totP-totA),'ยังไม่จอง'],
-  ]);
-  var osakaId = RACES.find(function(r){ return r.id==='osaka'; }) ? 'osaka' : (RACES[0]||{}).id||'';
-  html += '<div class="card"><div class="chddk"><div class="ctw">✈️ รายการค่าเดินทาง</div><button class="btn btn-r btn-xs" onclick="topAdd()">+ เพิ่ม</button></div>';
-  if (trav.length) {
-    RACES.forEach(function(race) {
-      var raceTravel = trav.filter(function(e){ return e.raceId===race.id; });
-      if (!raceTravel.length) return;
-      var rTotal = raceTravel.reduce(function(s,e){ return s+Number(e.amount||0); },0);
-      var rPaid  = raceTravel.filter(function(e){ return e.status==='จ่ายแล้ว'; }).reduce(function(s,e){ return s+Number(e.amount||0); },0);
-      html += '<div style="background:#f9fafb;padding:9px 14px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between">';
-      html += '<div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:'+race.color+'"></div><span style="font-size:13px;font-weight:700;color:#1a1f36">'+race.name+'</span></div>';
-      html += '<div style="font-size:12px;color:#6b7280">วางแผน '+B(rTotal)+' · จ่ายแล้ว <span style="font-weight:700;color:#e63946">'+B(rPaid)+'</span></div>';
-      html += '</div>';
-      html += '<div style="overflow-x:auto"><table class="tbl" style="margin-bottom:0"><thead><tr><th>รายการ</th><th>หมวด</th><th style="text-align:right;min-width:100px">฿</th><th>สกุลต้นทาง</th><th>สถานะ</th><th>หมายเหตุ</th><th style="width:65px"></th></tr></thead><tbody>';
-      raceTravel.forEach(function(e) {
-        html += '<tr>';
-        html += '<td style="font-weight:500;font-size:13px">'+e.name+'</td>';
-        html += '<td>'+catTag(e.cat)+'</td>';
-        html += '<td style="text-align:right;font-weight:700;font-size:13px;color:'+(e.amount?'#1a1f36':'#9ca3af')+'">'+B(e.amount)+'</td>';
-        html += '<td style="font-size:12px;color:#6b7280">'+(e.currency&&e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'—')+'</td>';
-        html += '<td>'+stPill(e.status)+'</td>';
-        html += '<td style="font-size:12px;color:#6b7280;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(e.note||'')+'">'+(e.note||'—')+'</td>';
-        html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.id)">🗑️</button></div></td>';
-        html += '</tr>';
-      });
-      html += '</tbody></table></div>';
+  var C=$('CONTENT');
+  var trav=EXPENSES.filter(function(e){return ['ตั๋วเครื่องบิน','โรงแรม','ค่าเดินทาง','ประกัน'].indexOf(e.cat)>=0;});
+  var totP=trav.reduce(function(s,e){return s+Number(e.amount||0);},0);
+  var totA=trav.filter(function(e){return e.status==='จ่ายแล้ว';}).reduce(function(s,e){return s+Number(e.amount||0);},0);
+  var html=kban('✈️','TRAVEL<br>PLAN',[['📋','ka',B(totP),'ประมาณการ'],['✅','kr',B(totA),'จองแล้ว'],['💵','kg',B(totP-totA),'ยังไม่จอง']]);
+  html+='<div class="card"><div class="chddk"><div class="ctw">✈️ รายการค่าเดินทาง</div><button class="btn btn-r btn-xs" onclick="openAddExp(\'osaka\')">+ เพิ่ม</button></div>';
+  if(trav.length){
+    html+='<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>รายการ</th><th>Race</th><th>หมวด</th><th style="text-align:right">฿</th><th>สกุลต้นทาง</th><th>สถานะ</th><th>หมายเหตุ</th><th style="width:68px"></th></tr></thead><tbody>';
+    trav.forEach(function(e){
+      var rc=RACES.find(function(r){return r.id===e.raceId;});
+      html+='<tr><td style="font-weight:500;font-size:13px">'+e.name+'</td><td><div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:'+(rc?rc.color:'#94a3b8')+';flex-shrink:0"></div><span style="font-size:12px">'+(rc?rc.name.split(' ').slice(0,2).join(' '):'')+'</span></div></td>';
+      html+='<td>'+catTag(e.cat)+'</td><td style="text-align:right;font-weight:700;font-size:13px;color:'+(e.amount?'#1a1f36':'#94a3b8')+'">'+B(e.amount)+'</td>';
+      html+='<td style="font-size:12px;color:#94a3b8">'+(e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'—')+'</td>';
+      html+='<td>'+stPill(e.status)+'</td><td style="font-size:12px;color:#94a3b8;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(e.note||'—')+'</td>';
+      html+='<td><div style="display:flex;gap:3px"><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.eid)">✏️</button><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.eid)">🗑️</button></div></td></tr>';
     });
-    html += '<div style="background:#1a1f36;padding:10px 14px;display:flex;justify-content:space-between;align-items:center"><span style="color:#fff;font-weight:700;font-size:13px">TOTAL</span><div><span style="font-size:15px;font-weight:800;color:#fff">'+B(totP)+'</span><span style="font-size:11px;color:rgba(255,255,255,.5);margin-left:8px">จ่ายแล้ว '+B(totA)+'</span></div></div>';
-  } else {
-    html += '<div style="text-align:center;padding:40px;color:#9ca3af"><div style="font-size:32px;margin-bottom:10px">✈️</div><div style="font-size:14px">ยังไม่มีรายการเดินทาง — กด "+ เพิ่ม"</div></div>';
-  }
-  html += '</div>';
-  C.innerHTML = html;
+    html+='</tbody></table></div>';
+  }else html+='<div class="loader">✈️ ยังไม่มีรายการเดินทาง</div>';
+  html+='</div>'; C.innerHTML=html;
 }
 
 function pgPerformance() {
-  const C = $('CONTENT');
-  const done = TRAINING.filter(t=>t.status==='เสร็จ');
-  const totalKm = done.reduce((s,t)=>s+Number(t.dist||0),0);
-  const byMonth = {};
-  done.forEach(t => {
-    if (!t.date) return;
-    const m = t.date.slice(0,7);
-    byMonth[m] = (byMonth[m]||0) + Number(t.dist||0);
-  });
-  let html = kban('📈','PERFOR-<br>MANCE',[
-    ['🏅','kb','3:58:22','Marathon PB'],
-    ['🥈','kg','1:52:10','Half PB'],
-    ['⚡','ka','22:45','5K PB'],
-    ['📏','kr',totalKm.toFixed(0)+' km','km สะสม (ซ้อม)'],
+  var C=$('CONTENT');
+  var done=TRAINING.filter(function(t){return t.status==='เสร็จ';});
+  var totalKm=done.reduce(function(s,t){return s+Number(t.dist||0);},0);
+  var byMonth={};
+  done.forEach(function(t){if(!t.date)return;var m=t.date.slice(0,7);byMonth[m]=(byMonth[m]||0)+Number(t.dist||0);});
+  var html=kban('📈','PERFOR-<br>MANCE',[
+    ['🏅','kb',PB.marathon||'—','Marathon PB'],['🥈','kg',PB.half||'—','Half PB'],
+    ['⚡','ka',PB['5k']||'—','5K PB'],['📏','kr',totalKm.toFixed(0)+' km','km สะสม'],
   ]);
-  html += '<div class="card"><div class="chd"><div class="ct">📈 km ต่อเดือน</div></div><div style="padding:12px 14px"><div style="position:relative;height:200px"><canvas id="PERF_CH"></canvas></div></div></div>';
-  C.innerHTML = html;
-  setTimeout(() => {
-    const ctx = document.getElementById('PERF_CH'); if(!ctx) return;
-    const MO = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-    const keys = Object.keys(byMonth).sort();
-    const labels = keys.map(k => { const p=k.split('-'); return MO[parseInt(p[1])-1]+' '+p[0].slice(2); });
-    new Chart(ctx, {type:'bar',data:{labels,datasets:[{label:'km',data:keys.map(k=>byMonth[k]),backgroundColor:'#e63946',borderRadius:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#6b7280',font:{size:10}},grid:{display:false}},y:{ticks:{color:'#6b7280',font:{size:10},callback:v=>v+' km'},grid:{color:'#f3f4f6'}}}}});
-  }, 100);
-}
-
-// ═══════════════════════════════════════
-//  PAGE: TRAINING LOG
-// ═══════════════════════════════════════
-function pgLog() {
-  const C = $('CONTENT');
-  const logs = [...TRAINING].sort((a,b)=>b.date.localeCompare(a.date));
-  let html = '<div class="card"><div class="chddk"><div class="ctw">📋 Training Log</div><button class="btn btn-r btn-xs" onclick="openAddTr()">+ บันทึกซ้อม</button></div>';
-  html += '<div style="overflow-x:auto"><table class="tbl dk" style="min-width:800px"><thead><tr><th>วันที่</th><th>ประเภท</th><th>ระยะ</th><th>เวลา</th><th>Pace</th><th>HR</th><th>Zone</th><th>สถานะ</th><th>ความรู้สึก</th><th>หมายเหตุ</th><th style="width:60px"></th></tr></thead><tbody>';
-  logs.forEach(t => {
-    html += '<tr><td style="font-size:11px;white-space:nowrap;color:#6b7280">'+D(t.date)+'</td>';
-    html += '<td style="font-weight:500;color:#1a1f36">'+t.type+'</td>';
-    html += '<td style="font-weight:600">'+(t.dist?t.dist+' km':'—')+'</td>';
-    html += '<td>'+cleanTime(t.time)+'</td>';
-    html += '<td style="color:#3b82f6;font-weight:600">'+(cleanPace(t.pace)!=='—'?cleanPace(t.pace)+'/km':'—')+'</td>';
-    html += '<td>'+(t.hr?t.hr+' bpm':'—')+'</td>';
-    html += '<td><span class="pill p-b" style="font-size:9px">'+t.zone+'</span></td>';
-    html += '<td>'+stPill(t.status)+'</td>';
-    html += '<td>'+(t.feel||'—')+'</td>';
-    html += '<td style="font-size:11px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(t.note||'—')+'</td>';
-    html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();openEditTr(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();delTr(this.dataset.id)">🗑️</button></div></td></tr>';
+  // PB input cards
+  html+='<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:18px">';
+  [['marathon','🏅','Marathon PB','3:58:22'],['half','🥈','Half Marathon PB','1:52:10'],['10k','🏃','10K PB','48:30'],['5k','⚡','5K PB','22:45']].forEach(function(pb){
+    html+='<div class="card" style="padding:16px;text-align:center;border-top:3px solid #3b82f6">';
+    html+='<div style="font-size:22px;margin-bottom:6px">'+pb[1]+'</div>';
+    html+='<div style="font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px">'+pb[2]+'</div>';
+    html+='<input type="text" value="'+(PB[pb[0]]||'')+'" placeholder="'+pb[3]+'" style="width:100%;text-align:center;padding:6px;border:1.5px solid #e2e8f0;border-radius:7px;font-size:16px;font-weight:700;font-family:inherit;color:#1a1f36" onchange="updatePB(\''+pb[0]+'\',this.value)" />';
+    html+='</div>';
   });
-  html += '</tbody></table></div></div>';
-  C.innerHTML = html;
+  html+='</div>';
+  html+='<div class="card"><div class="chd"><div class="ct">📈 km ต่อเดือน (จาก Training Log)</div></div><div style="padding:14px 16px"><div style="position:relative;height:220px"><canvas id="PERF_CH"></canvas></div></div></div>';
+  C.innerHTML=html;
+  setTimeout(function(){
+    var ctx=document.getElementById('PERF_CH');if(!ctx)return;
+    var MO=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+    var keys=Object.keys(byMonth).sort();
+    var labels=keys.map(function(k){var p=k.split('-');return MO[parseInt(p[1])-1]+' \''+p[0].slice(2);});
+    new Chart(ctx,{type:'bar',data:{labels:labels,datasets:[{label:'km',data:keys.map(function(k){return byMonth[k];}),backgroundColor:'#3b82f6',borderRadius:6,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#64748b',font:{size:11}},grid:{display:false}},y:{ticks:{color:'#64748b',font:{size:11},callback:function(v){return v+' km';}},grid:{color:'#f0f2f7'}}}}});
+  },100);
+}
+
+function pgLog() {
+  var C=$('CONTENT');
+  var logs=TRAINING.slice().sort(function(a,b){return b.date.localeCompare(a.date);});
+  var html='<div class="card"><div class="chddk"><div class="ctw">📋 Training Log</div>';
+  html+='<div style="display:flex;gap:7px"><button class="btn btn-xs" style="background:#10b981;color:#fff;border:none" onclick="exportCSV(\'training\')">📥 CSV</button>';
+  html+='<button class="btn btn-r btn-xs" onclick="openAddTr()">+ บันทึกซ้อม</button></div></div>';
+  html+='<div style="overflow-x:auto"><table class="tbl dk" style="min-width:820px"><thead><tr><th>วันที่</th><th>ประเภท</th><th>ระยะ</th><th>เวลา</th><th>Pace</th><th>HR</th><th>Zone</th><th>สถานะ</th><th>ความรู้สึก</th><th>หมายเหตุ</th><th style="width:68px"></th></tr></thead><tbody>';
+  logs.forEach(function(t){
+    html+='<tr><td style="font-size:12px;white-space:nowrap;color:#94a3b8">'+D(t.date)+'</td>';
+    html+='<td style="font-weight:500;font-size:13px;color:#1a1f36">'+t.type+'</td>';
+    html+='<td style="font-weight:600;font-size:13px">'+(t.dist?t.dist+' km':'—')+'</td>';
+    html+='<td style="font-size:13px">'+cleanTime(t.time)+'</td>';
+    html+='<td style="color:#3b82f6;font-weight:600;font-size:13px">'+(cleanPace(t.pace)!=='—'?cleanPace(t.pace)+'/km':'—')+'</td>';
+    html+='<td style="font-size:13px">'+(t.hr?t.hr+' bpm':'—')+'</td>';
+    html+='<td><span class="pill p-b" style="font-size:10px">'+t.zone+'</span></td>';
+    html+='<td>'+stPill(t.status)+'</td><td style="font-size:13px">'+(t.feel||'—')+'</td>';
+    html+='<td style="font-size:12px;color:#94a3b8;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(t.note||'—')+'</td>';
+    html+='<td><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();openEditTr(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();delTr(this.dataset.id)">🗑️</button></div></td></tr>';
+  });
+  html+='</tbody></table></div></div>';
+  C.innerHTML=html;
 }
 
 // ═══════════════════════════════════════
-//  INIT
+// INIT
 // ═══════════════════════════════════════
+var editExpId=null,editRaceId=null,editTrId=null,curTab='',curPage='overview';
+document.querySelectorAll('.mo').forEach(function(el){el.addEventListener('click',function(e){if(e.target===el)el.classList.remove('open');});});
 loadAll();
 </script>
 </body>
