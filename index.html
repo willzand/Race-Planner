@@ -936,7 +936,7 @@ function pgTraining() {
       html += '<td><select onchange="updateTrStatus(\''+t.id+'\',this.value)" style="font-size:10px;padding:2px 5px;border:1px solid #e5e7eb;border-radius:4px"><option '+(t.status==='วางแผน'?'selected':'')+'>วางแผน</option><option '+(t.status==='เสร็จ'?'selected':'')+'>เสร็จ</option><option '+(t.status==='ข้ามไป'?'selected':'')+'>ข้ามไป</option></select></td>';
       html += '<td>'+(t.feel||'—')+'</td>';
       html += '<td style="font-size:12px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(t.note||'')+'">'+(t.note||'—')+'</td>';
-      html += '<td><div style="display:flex;gap:2px"><button class="btn-ic btn-xs" onclick="event.stopPropagation();openEditTr(\''+t.id+'\')">✏️</button><button class="btn-ic btn-xs" onclick="event.stopPropagation();delTr(\''+t.id+'\')">🗑️</button></div></td>';
+      html += '<td><div style="display:flex;gap:2px"><button class="btn-ic btn-xs" data-id="'+t.id+'" onclick="event.stopPropagation();openEditTr(this.dataset.id)">✏️</button><button class="btn-ic btn-xs" data-id="'+t.id+'" onclick="event.stopPropagation();delTr(this.dataset.id)">🗑️</button></div></td>';
       html += '</tr>';
     });
   });
@@ -986,7 +986,7 @@ function pgRaces() {
         + '<td style="padding:8px 11px"><span style="font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;background:'+r.color+'20;color:'+r.color+';border:1px solid '+r.color+'40">'+r.type+'</span></td>'
         + '<td style="padding:8px 11px;font-size:12px;font-weight:700;color:'+(d>0?'#f59e0b':'#10b981')+'">'+(d>0?d+' วัน':'✅')+'</td>'
         + cells
-        + '<td style="padding:6px 8px"><div style="display:flex;gap:2px"><button class="btn-ic" onclick="event.stopPropagation();openEditRace(\''+r.id+'\')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delRace(\''+r.id+'\')">🗑️</button></div></td>'
+        + '<td style="padding:6px 8px"><div style="display:flex;gap:2px"><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();openEditRace(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();delRace(this.dataset.id)">🗑️</button></div></td>'
         + '</tr>';
     });
     tbody += '</tbody>';
@@ -1017,7 +1017,7 @@ function pgRaces() {
     html += '<td style="font-size:11px">'+(r.target||'—')+'</td>';
     html += '<td style="text-align:right;font-weight:600">'+B(r.budget)+'</td>';
     html += '<td style="font-weight:700;color:'+(d>0?'#f59e0b':'#10b981')+'">'+(d>0?d+' วัน':'✅ ผ่านแล้ว')+'</td>';
-    html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" onclick="event.stopPropagation();openEditRace(\''+r.id+'\')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delRace(\''+r.id+'\')">🗑️</button></div></td></tr>';
+    html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();openEditRace(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+r.id+'" onclick="event.stopPropagation();delRace(this.dataset.id)">🗑️</button></div></td></tr>';
   });
   html += '</tbody></table></div></div>';
   C.innerHTML = html;
@@ -1043,7 +1043,8 @@ function pgFinance() {
   RACES.forEach(r => {
     const a=sumActual(r.id), bud=Number(r.budget||0), p=bud?Math.round(a/bud*100):0, d=days(r.date);
     const expCount = EXPENSES.filter(e=>e.raceId===r.id).length;
-    html += '<div class="rcard" style="border-top-color:'+r.color+'" onclick="curTab=\''+r.id+'\';pgFinance()">';
+    html += '<div class="rcard" style="border-top-color:'+r.color+'" data-rid="'+r.id+'" onclick="(function(b){curTab=b.dataset.rid;pgFinance();})(this)">';
+
     html += '<div style="font-size:11px;font-weight:700;color:#1a1f36;line-height:1.3;margin-bottom:2px">'+r.name+'</div>';
     html += '<div style="font-size:10px;color:#9ca3af;margin-bottom:6px">'+(d>0?'อีก '+d+' วัน':r.date?'✅ ผ่านแล้ว':'')+'</div>';
     html += '<div style="font-size:16px;font-weight:800;color:#1a1f36;margin-bottom:3px">'+B(a)+'</div>';
@@ -1068,7 +1069,8 @@ function pgFinance() {
     html += '<td style="text-align:right;font-weight:700;color:'+(rem<0?'#ef4444':'#10b981')+'">'+B(rem)+'</td>';
     html += '<td><div style="display:flex;align-items:center;gap:5px"><div class="pbar" style="flex:1"><div class="pfill '+pfc(p)+'" style="width:'+Math.min(p,100)+'%"></div></div><span style="font-size:11px;font-weight:700;min-width:28px;color:'+(p>80?'#ef4444':'#10b981')+'">'+p+'%</span></div></td>';
     html += '<td>'+st+'</td>';
-    html += '<td><button class="btn btn-o btn-xs" onclick="curTab=\''+r.id+'\';pgFinance()">รายการ</button></td>';
+    html += '<td><button class="btn btn-o btn-xs" data-rid="'+r.id+'" onclick="(function(b){curTab=b.dataset.rid;pgFinance();})(this)">รายการ</button></td>';
+
     html += '</tr>';
   });
   const tp = tB?Math.round(tA/tB*100):0;
@@ -1082,7 +1084,8 @@ function pgFinance() {
   let tabs = '<div class="tabs"><div class="tab '+(curTab==='__all'?'act':'')+'" onclick="curTab=\'__all\';pgFinance()">🌐 ทั้งหมด<span class="cnt">'+EXPENSES.length+'</span></div>';
   RACES.forEach(r => {
     const c = EXPENSES.filter(e=>e.raceId===r.id).length;
-    tabs += '<div class="tab '+(curTab===r.id?'act':'')+'" onclick="curTab=\''+r.id+'\';pgFinance()"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+r.color+';margin-right:4px;vertical-align:1px"></span>'+r.name.split(' ').slice(0,2).join(' ')+'<span class="cnt">'+c+'</span></div>';
+    tabs += '<div class="tab '+(curTab===r.id?'act':'')+' data-rid="'+r.id+'" onclick="(function(b){curTab=b.dataset.rid;pgFinance();})(this)"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:'+r.color+';margin-right:4px;vertical-align:1px"></span>'+r.name.split(' ').slice(0,2).join(' ')+'<span class="cnt">'+c+'</span></div>';
+
   });
   tabs += '</div>';
 
@@ -1105,7 +1108,8 @@ function pgFinance() {
       rows += '<td style="font-size:11px;color:#6b7280;white-space:nowrap">'+D(e.date)+'</td>';
       rows += '<td style="font-size:10px;color:#9ca3af">'+(e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'')+'</td>';
       rows += '<td style="font-size:11px;color:#6b7280;max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(e.note||'')+'">'+(e.note||'—')+'</td>';
-      rows += '<td><div style="display:flex;gap:2px"><button class="btn-ic" onclick="event.stopPropagation();openEditExp(\''+e.id+'\')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delExp(\''+e.id+'\')">🗑️</button></div></td>';
+      rows += '<td><div style="display:flex;gap:2px"><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.eid)">✏️</button><button class="btn-ic" data-eid="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.eid)">🗑️</button></div></td>';
+
       rows += '</tr>';
     });
     buf = [];
@@ -1125,7 +1129,8 @@ function pgFinance() {
 
   html += '<div class="card">'+tabs;
   html += '<div class="chd"><div><div class="ct">'+(curTab==='__all'?'🌐 ทั้งหมด':'<span style="display:inline-block;width:9px;height:9px;border-radius:50%;background:'+(curRace?curRace.color:'#6b7280')+';margin-right:5px;vertical-align:1px"></span>'+(curRace?curRace.name:''))+'</div>'+(curRace&&curTab!=='__all'?'<div class="csub">Budget: '+B(curRace.budget)+' · จ่ายแล้ว: '+B(sumActual(curTab))+'</div>':'')+'</div>';
-  html += '<div style="display:flex;gap:7px"><button class="btn btn-r btn-xs" onclick="openAddExp(\''+(curTab==='__all'?(RACES[0]&&RACES[0].id)||'':curTab)+'\')">+ เพิ่มรายการ</button></div></div>';
+  html += '<div style="display:flex;gap:7px"><button class="btn btn-r btn-xs" onclick="openAddExp(curTab===\'__all\'?(RACES[0]&&RACES[0].id)||\'\':curTab)">+ เพิ่มรายการ</button></div>';
+
   html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th style="min-width:200px">รายการ</th><th>หมวด</th><th style="text-align:right;min-width:110px">จำนวน (฿)</th><th style="min-width:100px">สถานะ</th><th>วันที่</th><th>สกุล</th><th style="min-width:100px">หมายเหตุ</th><th style="width:60px"></th></tr></thead><tbody>'+rows+'</tbody></table></div></div>';
 
   C.innerHTML = html;
@@ -1159,7 +1164,7 @@ function pgGear() {
       html += '<td>'+stPill(e.status)+'</td>';
       html += '<td style="font-size:12px;color:#6b7280;white-space:nowrap">'+D(e.date)+'</td>';
       html += '<td style="font-size:12px;color:#6b7280;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(e.note||'—')+'</td>';
-      html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" onclick="event.stopPropagation();openEditExp(''+e.id+'')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delExp(''+e.id+'')">🗑️</button></div></td>';
+      html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.id)">🗑️</button></div></td>';
       html += '</tr>';
     });
     html += '<tr style="background:#1a1f36"><td colspan="3" style="padding:9px 12px;color:#fff;font-weight:700">TOTAL</td><td style="padding:9px 12px;text-align:right;color:#fff;font-weight:800;font-size:14px">'+B(totalPlan)+'</td><td style="padding:9px 12px;font-size:11px;color:rgba(255,255,255,.6)">จ่ายแล้ว '+B(totalPaid)+'</td><td colspan="3"></td></tr>';
@@ -1203,7 +1208,7 @@ function pgTravel() {
         html += '<td style="font-size:12px;color:#6b7280">'+(e.currency&&e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'—')+'</td>';
         html += '<td>'+stPill(e.status)+'</td>';
         html += '<td style="font-size:12px;color:#6b7280;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(e.note||'')+'">'+(e.note||'—')+'</td>';
-        html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" onclick="event.stopPropagation();openEditExp(''+e.id+'')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delExp(''+e.id+'')">🗑️</button></div></td>';
+        html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();openEditExp(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+e.id+'" onclick="event.stopPropagation();delExp(this.dataset.id)">🗑️</button></div></td>';
         html += '</tr>';
       });
       html += '</tbody></table></div>';
@@ -1262,7 +1267,7 @@ function pgLog() {
     html += '<td>'+stPill(t.status)+'</td>';
     html += '<td>'+(t.feel||'—')+'</td>';
     html += '<td style="font-size:11px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(t.note||'—')+'</td>';
-    html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" onclick="event.stopPropagation();openEditTr(\''+t.id+'\')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delTr(\''+t.id+'\')">🗑️</button></div></td></tr>';
+    html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();openEditTr(this.dataset.id)">✏️</button><button class="btn-ic" data-id="'+t.id+'" onclick="event.stopPropagation();delTr(this.dataset.id)">🗑️</button></div></td></tr>';
   });
   html += '</tbody></table></div></div>';
   C.innerHTML = html;
