@@ -1094,7 +1094,7 @@ function pgGear() {
     ['⏳','kp',gear.filter(function(e){ return e.status==='วางแผน'; }).length,'วางแผน'],
   ]);
   var firstRaceId = RACES.length ? RACES[0].id : '';
-  html += '<div class="card"><div class="chddk"><div class="ctw">👟 อุปกรณ์ & Nutrition</div><button class="btn btn-r btn-xs" onclick="openAddExp(''+firstRaceId+'')">+ เพิ่ม</button></div>';
+  html += '<div class="card"><div class="chddk"><div class="ctw">👟 อุปกรณ์ & Nutrition</div><button class="btn btn-r btn-xs" onclick="openAddExp(firstRaceId)">+ เพิ่ม</button></div>';
   if (gear.length) {
     html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>รายการ</th><th>Race</th><th>หมวด</th><th style="text-align:right;min-width:100px">฿</th><th>สถานะ</th><th>วันที่</th><th>หมายเหตุ</th><th style="width:65px"></th></tr></thead><tbody>';
     gear.forEach(function(e) {
@@ -1131,7 +1131,7 @@ function pgTravel() {
     ['💵','kg',B(totP-totA),'ยังไม่จอง'],
   ]);
   var osakaId = RACES.find(function(r){ return r.id==='osaka'; }) ? 'osaka' : (RACES[0]||{}).id||'';
-  html += '<div class="card"><div class="chddk"><div class="ctw">✈️ รายการค่าเดินทาง</div><button class="btn btn-r btn-xs" onclick="openAddExp(''+osakaId+'')">+ เพิ่ม</button></div>';
+  html += '<div class="card"><div class="chddk"><div class="ctw">✈️ รายการค่าเดินทาง</div><button class="btn btn-r btn-xs" onclick="openAddExp(osakaId)">+ เพิ่ม</button></div>';
   if (trav.length) {
     RACES.forEach(function(race) {
       var raceTravel = trav.filter(function(e){ return e.raceId===race.id; });
