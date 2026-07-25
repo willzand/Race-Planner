@@ -559,7 +559,10 @@ async function saveRace() {
   var isEdit=!!editRaceId;
   var existing=isEdit?RACES.find(function(r){return r.id===editRaceId;}):null;
   var COLORS=['#f59e0b','#e63946','#10b981','#3b82f6','#8b5cf6','#ec4899','#06b6d4'];
-  var row={id:editRaceId||nextRaceId(),name:name,type:$('MR_TYPE').value,date:$('MR_DATE').value,
+  var newId = editRaceId || nextRaceId();
+  // Safety: ensure id is never a date string
+  if (!newId || newId.match(/^\d{4}-\d{2}-\d{2}$/)) newId = nextRaceId();
+  var row={id:newId,name:name,type:$('MR_TYPE').value,date:$('MR_DATE').value,
     location:$('MR_LOC').value,budget:Number($('MR_BUD').value)||0,
     color:existing?existing.color:COLORS[RACES.length%COLORS.length],target:$('MR_TARGET').value};
   var ok=await dbUpsert('RACES',row);
