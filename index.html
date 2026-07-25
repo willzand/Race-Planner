@@ -6,7 +6,7 @@
 <title>Race Planner — TomS</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1f36;font-size:13px;height:100vh;display:flex;flex-direction:column}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1f36;font-size:14px;height:100vh;display:flex;flex-direction:column}
 /* ── Layout ── */
 .app{display:flex;flex:1;overflow:hidden}
 .sb{width:192px;background:#1a1f36;display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
@@ -14,19 +14,19 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1f36;fo
 .sb-logo{width:30px;height:30px;border-radius:7px;background:#e63946;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
 .sb-sec{padding:8px 8px 2px}
 .sb-lbl{font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.06em;padding:3px 6px 2px}
-.nav{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:6px;cursor:pointer;color:rgba(255,255,255,.6);font-size:12px;white-space:nowrap;transition:background .12s,color .12s}
+.nav{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:6px;cursor:pointer;color:rgba(255,255,255,.6);font-size:13px;white-space:nowrap;transition:background .12s,color .12s}
 .nav:hover{background:rgba(255,255,255,.07);color:#fff}
 .nav.act{background:#e63946;color:#fff;font-weight:600}
 .nav .ic{font-size:14px;width:16px;text-align:center;flex-shrink:0}
 .sb-foot{margin-top:auto;padding:10px 8px;border-top:1px solid rgba(255,255,255,.08)}
 .main{flex:1;display:flex;flex-direction:column;overflow:hidden}
 .topbar{background:#fff;border-bottom:1px solid #e5e7eb;height:48px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;flex-shrink:0;gap:10px}
-.tb-title{font-size:14px;font-weight:700;color:#1a1f36;white-space:nowrap}
+.tb-title{font-size:15px;font-weight:700;color:#1a1f36;white-space:nowrap}
 .tb-sub{font-size:10px;color:#9ca3af}
 .tb-r{display:flex;align-items:center;gap:7px;flex-shrink:0}
 .content{flex:1;overflow-y:auto;padding:16px 20px;background:#f0f2f5}
 /* ── Status bar ── */
-.sbar{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:6px;font-size:10px;border:1px solid}
+.sbar{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:6px;font-size:11px;border:1px solid}
 .sbar.ok{background:#f0fdf4;border-color:#a7f3d0;color:#065f46}
 .sbar.err{background:#fef2f2;border-color:#fecaca;color:#991b1b}
 .sbar.load{background:#eff6ff;border-color:#bfdbfe;color:#1e40af}
@@ -59,8 +59,8 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1f36;fo
 .ka{background:rgba(245,158,11,.2);color:#f59e0b}
 .kb{background:rgba(59,130,246,.2);color:#3b82f6}
 .kp{background:rgba(139,92,246,.2);color:#8b5cf6}
-.knum{font-size:16px;font-weight:800;color:#fff;line-height:1}
-.klbl{font-size:9px;color:rgba(255,255,255,.4);margin-top:2px}
+.knum{font-size:17px;font-weight:800;color:#fff;line-height:1}
+.klbl{font-size:10px;color:rgba(255,255,255,.4);margin-top:2px}
 /* ── Cards ── */
 .card{background:#fff;border-radius:8px;border:1px solid #e5e7eb;margin-bottom:14px;overflow:hidden}
 .chd{padding:10px 14px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
@@ -70,11 +70,11 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1f36;fo
 .csub{font-size:10px;color:#9ca3af}
 /* ── Table ── */
 .tbl{width:100%;border-collapse:collapse}
-.tbl th{font-size:10px;font-weight:600;color:#6b7280;text-transform:uppercase;padding:7px 11px;border-bottom:1px solid #e5e7eb;background:#f9fafb;text-align:left;white-space:nowrap}
-.tbl td{padding:8px 11px;border-bottom:1px solid #f3f4f6;vertical-align:middle;color:#374151}
+.tbl th{font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;padding:7px 11px;border-bottom:1px solid #e5e7eb;background:#f9fafb;text-align:left;white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #f3f4f6;vertical-align:middle;color:#374151;font-size:13px}
 .tbl tr:last-child td{border-bottom:none}
 .tbl tr:hover td{background:#fafafa}
-.tbl.dk th{background:#1a1f36;color:rgba(255,255,255,.65);border-bottom:none}
+.tbl.dk th{background:#1a1f36;color:rgba(255,255,255,.8);border-bottom:none;font-size:11px}
 .sep-lbl{font-size:10px;font-weight:700;color:#6b7280;text-transform:uppercase;letter-spacing:.04em}
 /* ── Race cards ── */
 .rcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:11px;margin-bottom:14px}
@@ -92,13 +92,13 @@ body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#1a1f36;fo
 .gantt-bar{position:absolute;top:9px;height:20px;left:5%;width:90%;border-radius:5px;display:flex;align-items:center;justify-content:center}
 .gantt-cur{position:absolute;top:0;bottom:0;left:50%;width:1px;background:#f59e0b;opacity:.5}
 /* ── Pills / Tags ── */
-.pill{display:inline-flex;align-items:center;font-size:9px;font-weight:600;padding:2px 7px;border-radius:10px}
+.pill{display:inline-flex;align-items:center;font-size:10px;font-weight:600;padding:2px 7px;border-radius:10px}
 .p-g{background:#d1fae5;color:#065f46}
 .p-a{background:#fef3c7;color:#92400e}
 .p-r{background:#fee2e2;color:#991b1b}
 .p-b{background:#dbeafe;color:#1e40af}
 .p-gr{background:#f3f4f6;color:#6b7280}
-.tag{display:inline-flex;font-size:9px;font-weight:700;padding:2px 6px;border-radius:4px;text-transform:uppercase}
+.tag{display:inline-flex;font-size:10px;font-weight:700;padding:2px 6px;border-radius:4px;text-transform:uppercase}
 /* ── Progress bar ── */
 .pbar{height:5px;background:#e5e7eb;border-radius:3px;overflow:hidden}
 .pfill{height:100%;border-radius:3px;transition:width .3s}
@@ -286,6 +286,22 @@ let trCounter = 0, expCounter = 0;
 const $ = id => document.getElementById(id);
 const B = n => n == null ? '—' : '฿' + Number(n).toLocaleString('th-TH', {minimumFractionDigits:0});
 const D = d => d ? new Date(d + 'T00:00:00').toLocaleDateString('th-TH', {day:'numeric', month:'short', year:'2-digit'}) : '—';
+// Strip Google Sheets date artifact from time/pace strings
+function cleanTime(v) {
+  if (!v) return '—';
+  var s = String(v);
+  // Remove "1899-12-30/" or "1899-12-30T" prefix from Sheets time values
+  s = s.replace(/^1899-12-30[T\/]?/,'').replace(/^1899-12-30$/,'').trim();
+  if (!s || s === '0:00:00' || s === '00:00:00') return '—';
+  return s;
+}
+function cleanPace(v) {
+  if (!v) return '—';
+  var s = String(v);
+  s = s.replace(/^1899-12-30[T\/]?/,'').replace('1899-12-30','').trim();
+  if (!s) return '—';
+  return s;
+}
 const days = d => d ? Math.ceil((new Date(d + 'T00:00:00') - new Date()) / 86400000) : null;
 const pfc = p => p > 100 ? 'pf-r' : p > 80 ? 'pf-a' : p > 0 ? 'pf-g' : 'pf-gr';
 
@@ -387,6 +403,17 @@ function jsonpGet(url) {
   });
 }
 
+// Fix time values that Sheets converts to Date (1899-12-30T...)
+function fixVal(key, val) {
+  if (typeof val === 'string' && val.startsWith('1899-12-30')) {
+    // Sheets converted a time string to a date — extract time part
+    var m = val.match(/T(\d+:\d+:\d+)/);
+    if (m) return m[1]; // return "HH:MM:SS"
+    return '';
+  }
+  return val;
+}
+
 // Read: JSONP GET
 async function apiFetch(path) {
   return await jsonpGet(GS + path);
@@ -408,7 +435,13 @@ async function loadAll() {
     if (!d.ok) throw new Error(d.error || 'response not ok');
     RACES    = (d.races    || []).map(r => ({...r, budget: Number(r.budget||0)}));
     EXPENSES = (d.expenses || []).map(e => ({...e, amount: Number(e.amount||0), origAmt: Number(e.origAmt||0)}));
-    TRAINING = (d.training || []).map(t => ({...t, dist: Number(t.dist||0), hr: Number(t.hr||0)}));
+    TRAINING = (d.training || []).map(t => ({
+      ...t,
+      dist: Number(t.dist||0),
+      hr:   Number(t.hr||0),
+      time: fixVal('time', t.time||''),
+      pace: fixVal('pace', t.pace||''),
+    }));
     if (!curTab && RACES.length) curTab = RACES[0].id;
     setSbar('ok', 'โหลดแล้ว · ' + RACES.length + ' races · ' + EXPENSES.length + ' exp · ' + TRAINING.length + ' tr · ' + new Date().toLocaleTimeString('th-TH'));
     go(curPage);
@@ -844,13 +877,13 @@ function pgTraining() {
       html += '<td style="white-space:nowrap;font-size:11px;color:'+(isToday?'#f59e0b':'#374151')+';font-weight:'+(isToday?'700':'400')+'">'+D(t.date)+(isToday?' 📍':'')+'</td>';
       html += '<td style="font-weight:'+(isRace?'700':'500')+';color:'+(isRace?'#065f46':'#1a1f36')+'">'+t.type+'</td>';
       html += '<td style="font-weight:600">'+(t.dist?t.dist+' km':'—')+'</td>';
-      html += '<td>'+(t.time||'—')+'</td>';
-      html += '<td style="color:#3b82f6;font-weight:600">'+(t.pace?t.pace+'/km':'—')+'</td>';
+      html += '<td>'+cleanTime(t.time)+'</td>';
+      html += '<td style="color:#3b82f6;font-weight:600">'+(cleanPace(t.pace)!=='—'?cleanPace(t.pace)+'/km':'—')+'</td>';
       html += '<td>'+(t.hr?t.hr+' bpm':'—')+'</td>';
       html += '<td><span class="pill p-b" style="font-size:9px">'+t.zone+'</span></td>';
       html += '<td><select onchange="updateTrStatus(\''+t.id+'\',this.value)" style="font-size:10px;padding:2px 5px;border:1px solid #e5e7eb;border-radius:4px"><option '+(t.status==='วางแผน'?'selected':'')+'>วางแผน</option><option '+(t.status==='เสร็จ'?'selected':'')+'>เสร็จ</option><option '+(t.status==='ข้ามไป'?'selected':'')+'>ข้ามไป</option></select></td>';
       html += '<td>'+(t.feel||'—')+'</td>';
-      html += '<td style="font-size:11px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(t.note||'')+'">'+(t.note||'—')+'</td>';
+      html += '<td style="font-size:12px;color:#6b7280;max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(t.note||'')+'">'+(t.note||'—')+'</td>';
       html += '<td><div style="display:flex;gap:2px"><button class="btn-ic btn-xs" onclick="event.stopPropagation();openEditTr(\''+t.id+'\')">✏️</button><button class="btn-ic btn-xs" onclick="event.stopPropagation();delTr(\''+t.id+'\')">🗑️</button></div></td>';
       html += '</tr>';
     });
@@ -1050,62 +1083,87 @@ function pgFinance() {
 //  PAGE: GEAR
 // ═══════════════════════════════════════
 function pgGear() {
-  const C = $('CONTENT');
-  const gear = EXPENSES.filter(e=>['อุปกรณ์','เสื้อผ้า'].includes(e.cat));
-  const total = gear.filter(e=>e.status==='จ่ายแล้ว').reduce((s,e)=>s+Number(e.amount||0),0);
-  let html = kban('👟','GEAR &<br>EQUIP',[
-    ['💰','kr',B(total),'มูลค่ารวม'],
-    ['📦','kb',gear.filter(e=>e.status==='จ่ายแล้ว').length,'ซื้อแล้ว'],
-    ['📋','ka',gear.filter(e=>e.status==='วางแผน').length,'วางแผน'],
+  var C = $('CONTENT');
+  var gear = EXPENSES.filter(function(e){ return ['อุปกรณ์','เสื้อผ้า','Nutrition'].indexOf(e.cat) >= 0; });
+  var totalPaid = gear.filter(function(e){ return e.status==='จ่ายแล้ว'; }).reduce(function(s,e){ return s+Number(e.amount||0); },0);
+  var totalPlan = gear.reduce(function(s,e){ return s+Number(e.amount||0); },0);
+  var html = kban('👟','GEAR &<br>NUTRITION',[
+    ['💰','kr',B(totalPaid),'จ่ายแล้ว'],
+    ['📋','ka',B(totalPlan),'วางแผนรวม'],
+    ['📦','kb',gear.filter(function(e){ return e.status==='จ่ายแล้ว'; }).length,'ซื้อแล้ว'],
+    ['⏳','kp',gear.filter(function(e){ return e.status==='วางแผน'; }).length,'วางแผน'],
   ]);
-  html += '<div class="card"><div class="chddk"><div class="ctw">👟 รายการอุปกรณ์</div><button class="btn btn-r btn-xs" onclick="openAddExp(\''+(RACES[0]&&RACES[0].id)||''+'\')">+ เพิ่ม</button></div>';
+  var firstRaceId = RACES.length ? RACES[0].id : '';
+  html += '<div class="card"><div class="chddk"><div class="ctw">👟 อุปกรณ์ & Nutrition</div><button class="btn btn-r btn-xs" onclick="openAddExp(''+firstRaceId+'')">+ เพิ่ม</button></div>';
   if (gear.length) {
-    html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>รายการ</th><th>Race</th><th>หมวด</th><th style="text-align:right">฿</th><th>สถานะ</th><th>วันที่</th><th>หมายเหตุ</th><th style="width:60px"></th></tr></thead><tbody>';
-    gear.forEach(e => {
-      const rc = RACES.find(r=>r.id===e.raceId);
-      html += '<tr><td style="font-weight:500">'+e.name+'</td><td><div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:'+(rc?rc.color:'#6b7280')+';flex-shrink:0"></div><span style="font-size:10px">'+(rc?rc.name.split(' ').slice(0,2).join(' '):'')+'</span></div></td>';
-      html += '<td>'+catTag(e.cat)+'</td><td style="text-align:right;font-weight:700;color:'+(e.amount?'#1a1f36':'#9ca3af')+'">'+B(e.amount)+'</td>';
-      html += '<td>'+stPill(e.status)+'</td><td style="font-size:11px;color:#6b7280;white-space:nowrap">'+D(e.date)+'</td><td style="font-size:11px;color:#6b7280">'+(e.note||'—')+'</td>';
-      html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" onclick="event.stopPropagation();openEditExp(\''+e.id+'\')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delExp(\''+e.id+'\')">🗑️</button></div></td></tr>';
+    html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>รายการ</th><th>Race</th><th>หมวด</th><th style="text-align:right;min-width:100px">฿</th><th>สถานะ</th><th>วันที่</th><th>หมายเหตุ</th><th style="width:65px"></th></tr></thead><tbody>';
+    gear.forEach(function(e) {
+      var rc = RACES.find(function(r){ return r.id===e.raceId; });
+      html += '<tr>';
+      html += '<td style="font-weight:500;font-size:13px">'+e.name+'</td>';
+      html += '<td><div style="display:flex;align-items:center;gap:5px"><div style="width:8px;height:8px;border-radius:50%;background:'+(rc?rc.color:'#6b7280')+';flex-shrink:0"></div><span style="font-size:12px">'+(rc?rc.name.split(' ').slice(0,3).join(' '):'')+'</span></div></td>';
+      html += '<td>'+catTag(e.cat)+'</td>';
+      html += '<td style="text-align:right;font-weight:700;font-size:13px;color:'+(e.amount?'#1a1f36':'#9ca3af')+'">'+B(e.amount)+'</td>';
+      html += '<td>'+stPill(e.status)+'</td>';
+      html += '<td style="font-size:12px;color:#6b7280;white-space:nowrap">'+D(e.date)+'</td>';
+      html += '<td style="font-size:12px;color:#6b7280;max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(e.note||'—')+'</td>';
+      html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" onclick="event.stopPropagation();openEditExp(''+e.id+'')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delExp(''+e.id+'')">🗑️</button></div></td>';
+      html += '</tr>';
     });
+    html += '<tr style="background:#1a1f36"><td colspan="3" style="padding:9px 12px;color:#fff;font-weight:700">TOTAL</td><td style="padding:9px 12px;text-align:right;color:#fff;font-weight:800;font-size:14px">'+B(totalPlan)+'</td><td style="padding:9px 12px;font-size:11px;color:rgba(255,255,255,.6)">จ่ายแล้ว '+B(totalPaid)+'</td><td colspan="3"></td></tr>';
     html += '</tbody></table></div>';
-  } else html += '<div class="loader">👟 ยังไม่มีรายการอุปกรณ์</div>';
+  } else {
+    html += '<div style="text-align:center;padding:40px;color:#9ca3af"><div style="font-size:32px;margin-bottom:10px">👟</div><div style="font-size:14px">ยังไม่มีรายการ — กด "+ เพิ่ม"</div></div>';
+  }
   html += '</div>';
   C.innerHTML = html;
 }
 
-// ═══════════════════════════════════════
-//  PAGE: TRAVEL
-// ═══════════════════════════════════════
 function pgTravel() {
-  const C = $('CONTENT');
-  const cats = ['ตั๋วเครื่องบิน','โรงแรม','ค่าเดินทาง','ประกัน'];
-  const trav = EXPENSES.filter(e=>cats.includes(e.cat));
-  const totP = trav.reduce((s,e)=>s+Number(e.amount||0),0);
-  const totA = trav.filter(e=>e.status==='จ่ายแล้ว').reduce((s,e)=>s+Number(e.amount||0),0);
-  let html = kban('✈️','TRAVEL<br>PLAN',[
-    ['📋','ka',B(totP),'ประมาณการ'],['✅','kr',B(totA),'จองแล้ว'],['💵','kg',B(totP-totA),'ยังไม่จอง'],
+  var C = $('CONTENT');
+  var cats = ['ตั๋วเครื่องบิน','โรงแรม','ค่าเดินทาง','ประกัน'];
+  var trav = EXPENSES.filter(function(e){ return cats.indexOf(e.cat) >= 0; });
+  var totP = trav.reduce(function(s,e){ return s+Number(e.amount||0); },0);
+  var totA = trav.filter(function(e){ return e.status==='จ่ายแล้ว'; }).reduce(function(s,e){ return s+Number(e.amount||0); },0);
+  var html = kban('✈️','TRAVEL<br>PLAN',[
+    ['📋','ka',B(totP),'ประมาณการรวม'],
+    ['✅','kr',B(totA),'จองแล้ว'],
+    ['💵','kg',B(totP-totA),'ยังไม่จอง'],
   ]);
-  html += '<div class="card"><div class="chddk"><div class="ctw">✈️ รายการค่าเดินทาง</div><button class="btn btn-r btn-xs" onclick="openAddExp(\''+(RACES.find(r=>r.id==='osaka')&&'osaka')||''+'\')">+ เพิ่ม</button></div>';
+  var osakaId = RACES.find(function(r){ return r.id==='osaka'; }) ? 'osaka' : (RACES[0]||{}).id||'';
+  html += '<div class="card"><div class="chddk"><div class="ctw">✈️ รายการค่าเดินทาง</div><button class="btn btn-r btn-xs" onclick="openAddExp(''+osakaId+'')">+ เพิ่ม</button></div>';
   if (trav.length) {
-    html += '<div style="overflow-x:auto"><table class="tbl dk"><thead><tr><th>รายการ</th><th>Race</th><th>หมวด</th><th style="text-align:right">฿</th><th>สกุลต้นทาง</th><th>สถานะ</th><th>หมายเหตุ</th><th style="width:60px"></th></tr></thead><tbody>';
-    trav.forEach(e => {
-      const rc = RACES.find(r=>r.id===e.raceId);
-      html += '<tr><td style="font-weight:500">'+e.name+'</td><td><div style="display:flex;align-items:center;gap:4px"><div style="width:7px;height:7px;border-radius:50%;background:'+(rc?rc.color:'#6b7280')+';flex-shrink:0"></div><span style="font-size:10px">'+(rc?rc.name.split(' ').slice(0,2).join(' '):'')+'</span></div></td>';
-      html += '<td>'+catTag(e.cat)+'</td><td style="text-align:right;font-weight:700;color:'+(e.amount?'#1a1f36':'#9ca3af')+'">'+B(e.amount)+'</td>';
-      html += '<td style="font-size:11px;color:#6b7280">'+(e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'—')+'</td>';
-      html += '<td>'+stPill(e.status)+'</td><td style="font-size:11px;color:#6b7280;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(e.note||'—')+'</td>';
-      html += '<td><div style="display:flex;gap:2px"><button class="btn-ic" onclick="event.stopPropagation();openEditExp(\''+e.id+'\')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delExp(\''+e.id+'\')">🗑️</button></div></td></tr>';
+    RACES.forEach(function(race) {
+      var raceTravel = trav.filter(function(e){ return e.raceId===race.id; });
+      if (!raceTravel.length) return;
+      var rTotal = raceTravel.reduce(function(s,e){ return s+Number(e.amount||0); },0);
+      var rPaid  = raceTravel.filter(function(e){ return e.status==='จ่ายแล้ว'; }).reduce(function(s,e){ return s+Number(e.amount||0); },0);
+      html += '<div style="background:#f9fafb;padding:9px 14px;border-bottom:1px solid #e5e7eb;display:flex;align-items:center;justify-content:space-between">';
+      html += '<div style="display:flex;align-items:center;gap:8px"><div style="width:10px;height:10px;border-radius:50%;background:'+race.color+'"></div><span style="font-size:13px;font-weight:700;color:#1a1f36">'+race.name+'</span></div>';
+      html += '<div style="font-size:12px;color:#6b7280">วางแผน '+B(rTotal)+' · จ่ายแล้ว <span style="font-weight:700;color:#e63946">'+B(rPaid)+'</span></div>';
+      html += '</div>';
+      html += '<div style="overflow-x:auto"><table class="tbl" style="margin-bottom:0"><thead><tr><th>รายการ</th><th>หมวด</th><th style="text-align:right;min-width:100px">฿</th><th>สกุลต้นทาง</th><th>สถานะ</th><th>หมายเหตุ</th><th style="width:65px"></th></tr></thead><tbody>';
+      raceTravel.forEach(function(e) {
+        html += '<tr>';
+        html += '<td style="font-weight:500;font-size:13px">'+e.name+'</td>';
+        html += '<td>'+catTag(e.cat)+'</td>';
+        html += '<td style="text-align:right;font-weight:700;font-size:13px;color:'+(e.amount?'#1a1f36':'#9ca3af')+'">'+B(e.amount)+'</td>';
+        html += '<td style="font-size:12px;color:#6b7280">'+(e.currency&&e.currency!=='THB'&&e.origAmt?e.currency+' '+Number(e.origAmt).toLocaleString():'—')+'</td>';
+        html += '<td>'+stPill(e.status)+'</td>';
+        html += '<td style="font-size:12px;color:#6b7280;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+(e.note||'')+'">'+(e.note||'—')+'</td>';
+        html += '<td><div style="display:flex;gap:3px"><button class="btn-ic" onclick="event.stopPropagation();openEditExp(''+e.id+'')">✏️</button><button class="btn-ic" onclick="event.stopPropagation();delExp(''+e.id+'')">🗑️</button></div></td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table></div>';
     });
-    html += '</tbody></table></div>';
-  } else html += '<div class="loader">✈️ ยังไม่มีรายการเดินทาง</div>';
+    html += '<div style="background:#1a1f36;padding:10px 14px;display:flex;justify-content:space-between;align-items:center"><span style="color:#fff;font-weight:700;font-size:13px">TOTAL</span><div><span style="font-size:15px;font-weight:800;color:#fff">'+B(totP)+'</span><span style="font-size:11px;color:rgba(255,255,255,.5);margin-left:8px">จ่ายแล้ว '+B(totA)+'</span></div></div>';
+  } else {
+    html += '<div style="text-align:center;padding:40px;color:#9ca3af"><div style="font-size:32px;margin-bottom:10px">✈️</div><div style="font-size:14px">ยังไม่มีรายการเดินทาง — กด "+ เพิ่ม"</div></div>';
+  }
   html += '</div>';
   C.innerHTML = html;
 }
 
-// ═══════════════════════════════════════
-//  PAGE: PERFORMANCE
-// ═══════════════════════════════════════
 function pgPerformance() {
   const C = $('CONTENT');
   const done = TRAINING.filter(t=>t.status==='เสร็จ');
@@ -1145,8 +1203,8 @@ function pgLog() {
     html += '<tr><td style="font-size:11px;white-space:nowrap;color:#6b7280">'+D(t.date)+'</td>';
     html += '<td style="font-weight:500;color:#1a1f36">'+t.type+'</td>';
     html += '<td style="font-weight:600">'+(t.dist?t.dist+' km':'—')+'</td>';
-    html += '<td>'+(t.time||'—')+'</td>';
-    html += '<td style="color:#3b82f6;font-weight:600">'+(t.pace?t.pace+'/km':'—')+'</td>';
+    html += '<td>'+cleanTime(t.time)+'</td>';
+    html += '<td style="color:#3b82f6;font-weight:600">'+(cleanPace(t.pace)!=='—'?cleanPace(t.pace)+'/km':'—')+'</td>';
     html += '<td>'+(t.hr?t.hr+' bpm':'—')+'</td>';
     html += '<td><span class="pill p-b" style="font-size:9px">'+t.zone+'</span></td>';
     html += '<td>'+stPill(t.status)+'</td>';
